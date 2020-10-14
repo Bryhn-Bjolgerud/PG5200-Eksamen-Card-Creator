@@ -1,6 +1,8 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace Eksamen_PG5200_Card_Creator
@@ -22,7 +24,7 @@ namespace Eksamen_PG5200_Card_Creator
             HealthCard.Text = HealthValue.Text;
         }
 
-        private void cardClassType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cardClassType_SelectionChanged(object sender, RoutedEventArgs e)
         {
             switch (cardClassType.SelectedItem.ToString())
             {
@@ -64,12 +66,11 @@ namespace Eksamen_PG5200_Card_Creator
                     changeBaseCard("warrior");
                     break;
             }
-            Console.WriteLine(cardClassType.SelectedItem.ToString());
         }
 
         private void changeBaseCard(String cardClass)
         {
-            cardDisplay.Source = new BitmapImage(new Uri("Resources/" + cardClass + "BaseCard.png", UriKind.RelativeOrAbsolute)); 
+            cardDisplay.Source = new BitmapImage(new Uri("Resources/" + cardClass + "BaseCard.png", UriKind.Relative)); 
         }
     }
 }
