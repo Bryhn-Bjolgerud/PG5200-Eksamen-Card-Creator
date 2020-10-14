@@ -1,0 +1,38 @@
+﻿<Window x:Class="Eksamen_PG5200_Card_Creator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
+        xmlns:vm="clr-namespace:Eksamen_PG5200_Card_Creator.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="850" Width="1200"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        >
+    <Grid>
+        <StackPanel Margin="25,5,575,5" x:Name="statPicker">
+            <TextBox x:Name="ManaValue" Margin="5, 5, 5, 5"/>
+            <TextBox x:Name="DamageValue" Margin="5, 5, 5, 5"/>
+            <TextBox x:Name="HealthValue" Margin="5, 5, 5, 5"/>
+            <Button x:Name="MakeCard" Margin="5, 5, 5, 5" Click="MakeCard_Click">Make card</Button>
+        </StackPanel>
+        <ComboBox x:Name="cardClassType"  Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
+            <ComboBoxItem Content="Death Knight"/>
+            <ComboBoxItem Content="Demon Hunter" />
+            <ComboBoxItem Content="Druid"/>
+            <ComboBoxItem Content="Hunter"/>
+            <ComboBoxItem Content="Mage"/>
+            <ComboBoxItem Content="Neutral"/>
+            <ComboBoxItem Content="Paladin"/>
+            <ComboBoxItem Content="Priest"/>
+            <ComboBoxItem Content="Rogue"/>
+            <ComboBoxItem Content="Shaman"/>
+            <ComboBoxItem Content="Warlock"/>
+            <ComboBoxItem Content="Warrior"/>
+        </ComboBox>
+        <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="632,28,10,-18" Source="Resources/neutralBaseCard.png"/>
+        <TextBlock x:Name="ManaCard"  Margin="692,114,425,630" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2"></TextBlock>
+        <TextBlock x:Name="DamageCard" Margin="692,680,425,63" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center"></TextBlock>
+        <TextBlock x:Name="HealthCard" Margin="1068,680,48,64" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093"></TextBlock>
+    </Grid>
+</Window>
