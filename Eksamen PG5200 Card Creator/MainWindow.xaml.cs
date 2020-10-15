@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Eksamen_PG5200_Card_Creator
@@ -12,6 +13,12 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ImageBrush placeholderImage = new ImageBrush()
+        {
+            Stretch = Stretch.None,
+            AlignmentX = AlignmentX.Left
+        };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +37,6 @@ namespace Eksamen_PG5200_Card_Creator
             {
                 case "System.Windows.Controls.ComboBoxItem: Death Knight":
                     changeBaseCard("deathKnight");
-                    Console.WriteLine("bruuuh, Darkbringer");
                     break;
                 case "System.Windows.Controls.ComboBoxItem: Demon Hunter":
                     changeBaseCard("demonHunter");
@@ -70,7 +76,62 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void changeBaseCard(String cardClass)
         {
-            cardDisplay.Source = new BitmapImage(new Uri("Resources/" + cardClass + "BaseCard.png", UriKind.Relative)); 
+            cardDisplay.Source = new BitmapImage(new Uri("Resources/classBaseCards/" + cardClass + "BaseCard.png", UriKind.Relative)); 
+        }
+
+        private void NameValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NameValue.Text == "")
+            {
+                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/cardName.png", UriKind.RelativeOrAbsolute));
+                NameValue.Background = placeholderImage;
+            }
+            else
+            {
+                NameValue.Background = null;
+            }
+        }
+
+        private void ManaValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ManaValue.Text == "")
+            {
+
+                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/manaCost.png", UriKind.RelativeOrAbsolute));
+                NameValue.Background = placeholderImage;
+            }
+            else
+            {
+                ManaValue.Background = null;
+            }
+        }
+
+        private void DamageValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (DamageValue.Text == "")
+            {
+
+                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/damageDealt.png", UriKind.RelativeOrAbsolute));
+                NameValue.Background = placeholderImage;
+            }
+            else
+            {
+                DamageValue.Background = null;
+            }
+        }
+
+        private void HealthValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (HealthValue.Text == "")
+            {
+
+                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/health.png", UriKind.RelativeOrAbsolute));
+                NameValue.Background = placeholderImage;
+            }
+            else
+            {
+                HealthValue.Background = null;
+            }
         }
     }
 }

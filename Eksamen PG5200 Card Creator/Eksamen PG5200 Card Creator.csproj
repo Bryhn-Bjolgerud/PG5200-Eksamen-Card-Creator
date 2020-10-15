@@ -113,23 +113,59 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\warlockBaseCard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\deathKnightBaseCard.png" />
-    <Resource Include="Resources\demonHunterBaseCard.png" />
-    <Resource Include="Resources\druidBaseCard.png" />
-    <Resource Include="Resources\hunterBaseCard.png" />
-    <Resource Include="Resources\mageBaseCard.png" />
-    <Resource Include="Resources\neutralBaseCard.png" />
-    <Resource Include="Resources\paladinBaseCard.png" />
-    <Resource Include="Resources\priestBaseCard.png" />
-    <Resource Include="Resources\rogueBaseCard.png" />
-    <Resource Include="Resources\shamanBaseCard.png" />
-    <Resource Include="Resources\warriorBaseCard.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\classBaseCards\deathKnightBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\demonHunterBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\druidBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\hunterBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\mageBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\neutralBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\paladinBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\priestBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\rogueBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\shamanBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\warlockBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\classBaseCards\warriorBaseCard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TextboxPlaceholderImages\damageDealt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TextboxPlaceholderImages\health.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TextboxPlaceholderImages\manaCost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\TextboxPlaceholderImages\cardName.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

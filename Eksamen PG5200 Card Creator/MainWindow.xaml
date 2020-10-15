@@ -12,12 +12,30 @@
         >
     <Grid>
         <StackPanel Margin="25,5,575,5" x:Name="statPicker">
-            <TextBox x:Name="ManaValue" Margin="5, 5, 5, 5"/>
-            <TextBox x:Name="DamageValue" Margin="5, 5, 5, 5"/>
-            <TextBox x:Name="HealthValue" Margin="5, 5, 5, 5"/>
+            <TextBox x:Name="NameValue" Margin="5, 5, 5, 5" TextChanged="NameValue_TextChanged">
+                <TextBox.Background>
+                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/cardName.png" AlignmentX = "Left" Stretch = "None"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="ManaValue" Margin="5, 5, 5, 5" TextChanged="ManaValue_TextChanged">
+                <TextBox.Background>
+                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="DamageValue" Margin="5, 5, 5, 5" TextChanged="DamageValue_TextChanged">
+                <TextBox.Background>
+                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/damageDealt.png" AlignmentX = "Left" Stretch = "None"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="HealthValue" Margin="5, 5, 5, 5" TextChanged="HealthValue_TextChanged">
+                <TextBox.Background>
+                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/health.png" AlignmentX = "Left" Stretch = "None"/>
+                </TextBox.Background>
+            </TextBox>
             <Button x:Name="MakeCard" Margin="5, 5, 5, 5" Click="MakeCard_Click">Make card</Button>
         </StackPanel>
-        <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="632,28,10,-18" Source="Resources/neutralBaseCard.png"/>
+        <Image></Image>
+        <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="632,109,10,10" Source="Resources/classBaseCards/neutralBaseCard.png"/>
         <ComboBox x:Name="cardClassType" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
             <ComboBoxItem Content="Death Knight"/>
             <ComboBoxItem Content="Demon Hunter" />
