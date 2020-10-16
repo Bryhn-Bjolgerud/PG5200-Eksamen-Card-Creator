@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Eksamen_PG5200_Card_Creator
 {
@@ -13,22 +15,18 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ImageBrush placeholderImage = new ImageBrush()
-        {
-            Stretch = Stretch.None,
-            AlignmentX = AlignmentX.Left
-        };
+
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void MakeCard_Click(object sender, RoutedEventArgs e)
+        private void makeCard_Click(object sender, RoutedEventArgs e)
         {
-            ManaCard.Text = ManaValue.Text;
-            DamageCard.Text = DamageValue.Text;
-            HealthCard.Text = HealthValue.Text;
+            manaCard.Text = manaValue.Text;
+            damageCard.Text = damageValue.Text;
+            healthCard.Text = healthValue.Text;
         }
 
         private void cardClassType_SelectionChanged(object sender, RoutedEventArgs e)
@@ -76,61 +74,145 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void changeBaseCard(String cardClass)
         {
-            cardDisplay.Source = new BitmapImage(new Uri("Resources/classBaseCards/" + cardClass + "BaseCard.png", UriKind.Relative)); 
+            cardDisplay.Source = new BitmapImage(new Uri("Resources/classBaseCards/" + cardClass + "BaseCard.png", UriKind.Relative));
         }
 
         private void NameValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (NameValue.Text == "")
+            if (nameValue.Text == "")
             {
+                ImageBrush placeholderImage = new ImageBrush()
+                {
+                    Stretch = Stretch.None,
+                    AlignmentX = AlignmentX.Left
+                };
                 placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/cardName.png", UriKind.RelativeOrAbsolute));
-                NameValue.Background = placeholderImage;
+                nameValue.Background = placeholderImage;
             }
             else
             {
-                NameValue.Background = null;
+                nameValue.Background = null;
             }
         }
 
         private void ManaValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (ManaValue.Text == "")
+            if (manaValue.Text == "")
             {
-
+                ImageBrush placeholderImage = new ImageBrush()
+                {
+                    Stretch = Stretch.None,
+                    AlignmentX = AlignmentX.Left
+                };
                 placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/manaCost.png", UriKind.RelativeOrAbsolute));
-                NameValue.Background = placeholderImage;
+                manaValue.Background = placeholderImage;
             }
             else
             {
-                ManaValue.Background = null;
+                manaValue.Background = null;
             }
         }
 
         private void DamageValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (DamageValue.Text == "")
+            if (damageValue.Text == "")
             {
-
+                ImageBrush placeholderImage = new ImageBrush()
+                {
+                    Stretch = Stretch.None,
+                    AlignmentX = AlignmentX.Left
+                };
                 placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/damageDealt.png", UriKind.RelativeOrAbsolute));
-                NameValue.Background = placeholderImage;
+                damageValue.Background = placeholderImage;
             }
             else
             {
-                DamageValue.Background = null;
+                damageValue.Background = null;
             }
         }
 
         private void HealthValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (HealthValue.Text == "")
+            if (healthValue.Text == "")
             {
-
+                ImageBrush placeholderImage = new ImageBrush()
+                {
+                    Stretch = Stretch.None,
+                    AlignmentX = AlignmentX.Left
+                };
                 placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/health.png", UriKind.RelativeOrAbsolute));
-                NameValue.Background = placeholderImage;
+                healthValue.Background = placeholderImage;
             }
             else
             {
-                HealthValue.Background = null;
+                healthValue.Background = null;
+            }
+        }
+
+        private void uploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
+
+            bool? error = openFilePrompt.ShowDialog();
+
+            if (error == true)
+            {
+                string filePath = openFilePrompt.FileName;
+                userSelectedImage.Source = new BitmapImage(new Uri(openFilePrompt.FileName, UriKind.Absolute));
+            }
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var mousePos = PointToScreen(e.GetPosition(this));
+            Console.Write(mousePos.X + " ");
+            Console.WriteLine(mousePos.Y);
+        }
+
+
+        private bool _isMoving;
+        private Point? _buttonPosition;
+        private double deltaX;
+        private double deltaY;
+        private TranslateTransform _currentTT;
+
+        private void userSelectedImageMoving_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_buttonPosition == null)
+                _buttonPosition = userSelectedImageMoving.TransformToAncestor(MyGrid).Transform(new Point(0, 0));
+            var mousePosition = Mouse.GetPosition(MyGrid);
+            deltaX = mousePosition.X - _buttonPosition.Value.X;
+            deltaY = mousePosition.Y - _buttonPosition.Value.Y;
+            _isMoving = true;
+        }
+
+        private void userSelectedImageMoving_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            _currentTT = userSelectedImageMoving.RenderTransform as TranslateTransform;
+            _isMoving = false;
+        }
+
+        private void userSelectedImageMoving_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (!_isMoving) return;
+
+            var mousePoint = Mouse.GetPosition(MyGrid);
+
+            var offsetX = (_currentTT == null ? _buttonPosition.Value.X : _buttonPosition.Value.X - _currentTT.X) + deltaX - mousePoint.X;
+            var offsetY = (_currentTT == null ? _buttonPosition.Value.Y : _buttonPosition.Value.Y - _currentTT.Y) + deltaY - mousePoint.Y;
+
+            this.userSelectedImageMoving.RenderTransform = new TranslateTransform(-offsetX, -offsetY);
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            manaValue.MaxLength = 2;
+            Regex regex = new Regex("[^1-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+
+            if (manaValue.Text == "1")
+            {
+                Console.WriteLine("Fittetrune");
             }
         }
     }

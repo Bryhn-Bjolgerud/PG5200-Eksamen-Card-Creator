@@ -27,7 +27,6 @@ C:\Users\Tobias\source\repos\Eksamen PG5200 Card Creator\bin\Debug\GalaSoft.Mvvm
 C:\Users\Tobias\source\repos\Eksamen PG5200 Card Creator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Tobias\source\repos\Eksamen PG5200 Card Creator\obj\Debug\App.baml
 C:\Users\Tobias\source\repos\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.CopyComplete
-C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csprojAssemblyReference.cache
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\MainWindow.g.cs
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\App.g.cs
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -73,3 +72,4 @@ C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Cre
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\TextboxPlaceholderImages\damageDealt.png
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\TextboxPlaceholderImages\health.png
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\TextboxPlaceholderImages\manaCost.png
+C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csprojAssemblyReference.cache

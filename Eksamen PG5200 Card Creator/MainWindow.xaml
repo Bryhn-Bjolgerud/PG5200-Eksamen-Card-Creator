@@ -10,32 +10,40 @@
         Title="MainWindow" Height="850" Width="1200"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         >
-    <Grid>
-        <StackPanel Margin="25,5,575,5" x:Name="statPicker">
-            <TextBox x:Name="NameValue" Margin="5, 5, 5, 5" TextChanged="NameValue_TextChanged">
+    <Grid x:Name="MyGrid">
+        <StackPanel Margin="25,5,575,5" x:Name="statPicker" AllowDrop="True">
+            <TextBox x:Name="nameValue" Margin="5, 5, 5, 5" TextChanged="NameValue_TextChanged">
                 <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/cardName.png" AlignmentX = "Left" Stretch = "None"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox x:Name="ManaValue" Margin="5, 5, 5, 5" TextChanged="ManaValue_TextChanged">
+            <TextBox x:Name="manaValue" Margin="5, 5, 5, 5" TextChanged="ManaValue_TextChanged" PreviewTextInput="NumberValidationTextBox">
                 <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None"/>
+                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None" />
                 </TextBox.Background>
             </TextBox>
-            <TextBox x:Name="DamageValue" Margin="5, 5, 5, 5" TextChanged="DamageValue_TextChanged">
+            <TextBox x:Name="damageValue" Margin="5, 5, 5, 5" TextChanged="DamageValue_TextChanged" PreviewTextInput="NumberValidationTextBox">
                 <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/damageDealt.png" AlignmentX = "Left" Stretch = "None"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox x:Name="HealthValue" Margin="5, 5, 5, 5" TextChanged="HealthValue_TextChanged">
+            <TextBox x:Name="healthValue" Margin="5, 5, 5, 5" TextChanged="HealthValue_TextChanged" PreviewTextInput="NumberValidationTextBox">
                 <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/health.png" AlignmentX = "Left" Stretch = "None"/>
                 </TextBox.Background>
             </TextBox>
-            <Button x:Name="MakeCard" Margin="5, 5, 5, 5" Click="MakeCard_Click">Make card</Button>
+            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Make card</Button>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload Image</Button>
         </StackPanel>
-        <Image></Image>
-        <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="632,109,10,10" Source="Resources/classBaseCards/neutralBaseCard.png"/>
+        <Image x:Name="userSelectedImage" Width="350" Height="450" Margin="745,109,97,260"/>
+        <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/priestBaseCard.png" Canvas.Top="110" Margin="632,109,10,10"/>
+
+        <Ellipse x:Name="userSelectedImageMoving" Fill="#FFF1D8D8" Height="50" Width="50" 
+                 PreviewMouseDown="userSelectedImageMoving_PreviewMouseDown"
+                 PreviewMouseUp="userSelectedImageMoving_PreviewMouseUp"
+                 PreviewMouseMove="userSelectedImageMoving_PreviewMouseMove"
+                 />
+        
         <ComboBox x:Name="cardClassType" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
             <ComboBoxItem Content="Death Knight"/>
             <ComboBoxItem Content="Demon Hunter" />
@@ -50,8 +58,8 @@
             <ComboBoxItem Content="Warlock"/>
             <ComboBoxItem Content="Warrior"/>
         </ComboBox>
-        <TextBlock x:Name="ManaCard"  Margin="692,114,425,630" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2"></TextBlock>
-        <TextBlock x:Name="DamageCard" Margin="692,680,425,63" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center"></TextBlock>
-        <TextBlock x:Name="HealthCard" Margin="1068,680,48,64" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093"></TextBlock>
+        <TextBlock x:Name="manaCard"  Margin="692,114,425,630" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2"></TextBlock>
+        <TextBlock x:Name="damageCard" Margin="692,680,425,63" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center"></TextBlock>
+        <TextBlock x:Name="healthCard" Margin="1068,680,48,64" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093"></TextBlock>
     </Grid>
 </Window>
