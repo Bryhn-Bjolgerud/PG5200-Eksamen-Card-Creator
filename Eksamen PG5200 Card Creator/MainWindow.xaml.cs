@@ -15,8 +15,6 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
         public MainWindow()
         {
             InitializeComponent();
@@ -179,7 +177,7 @@ namespace Eksamen_PG5200_Card_Creator
         private void userSelectedImageMoving_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (_buttonPosition == null)
-                _buttonPosition = userSelectedImageMoving.TransformToAncestor(MyGrid).Transform(new Point(0, 0));
+                _buttonPosition = userSelectedImage.TransformToAncestor(MyGrid).Transform(new Point(0, 0));
             var mousePosition = Mouse.GetPosition(MyGrid);
             deltaX = mousePosition.X - _buttonPosition.Value.X;
             deltaY = mousePosition.Y - _buttonPosition.Value.Y;
@@ -188,7 +186,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void userSelectedImageMoving_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            _currentTT = userSelectedImageMoving.RenderTransform as TranslateTransform;
+            _currentTT = userSelectedImage.RenderTransform as TranslateTransform;
             _isMoving = false;
         }
 
@@ -201,19 +199,31 @@ namespace Eksamen_PG5200_Card_Creator
             var offsetX = (_currentTT == null ? _buttonPosition.Value.X : _buttonPosition.Value.X - _currentTT.X) + deltaX - mousePoint.X;
             var offsetY = (_currentTT == null ? _buttonPosition.Value.Y : _buttonPosition.Value.Y - _currentTT.Y) + deltaY - mousePoint.Y;
 
-            this.userSelectedImageMoving.RenderTransform = new TranslateTransform(-offsetX, -offsetY);
+            userSelectedImage.RenderTransform = new TranslateTransform(-offsetX, -offsetY);
+        }
+
+        private void userSelectedImageMoving_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Cursor = Cursors.SizeAll;
+        }
+
+        private void userSelectedImageMoving_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Cursor = Cursors.Arrow;
+            _isMoving = false;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             manaValue.MaxLength = 2;
             Regex regex = new Regex("[^1-9]+");
-            e.Handled = regex.IsMatch(e.Text);
 
             if (manaValue.Text == "1")
             {
                 Console.WriteLine("Fittetrune");
             }
         }
+
+        
     }
 }

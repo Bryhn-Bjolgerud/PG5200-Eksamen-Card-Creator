@@ -10,7 +10,7 @@
         Title="MainWindow" Height="850" Width="1200"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         >
-    <Grid x:Name="MyGrid">
+    <Grid>
         <StackPanel Margin="25,5,575,5" x:Name="statPicker" AllowDrop="True">
             <TextBox x:Name="nameValue" Margin="5, 5, 5, 5" TextChanged="NameValue_TextChanged">
                 <TextBox.Background>
@@ -35,15 +35,30 @@
             <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Make card</Button>
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload Image</Button>
         </StackPanel>
-        <Image x:Name="userSelectedImage" Width="350" Height="450" Margin="745,109,97,260"/>
+
+        <Border Width="300" Height="350" Background="White" CornerRadius="205" Margin="761,140,134,330">
+            <Border.Clip>
+                <RectangleGeometry RadiusX="205" RadiusY="205" Rect="0,0,300,350"/>
+            </Border.Clip>
+            <Grid x:Name="MyGrid" Width="700" Height="700" Margin="-192,-182,-208,-168">
+                <Image x:Name="userSelectedImage"/>
+            </Grid>
+        </Border>
+
         <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/priestBaseCard.png" Canvas.Top="110" Margin="632,109,10,10"/>
 
-        <Ellipse x:Name="userSelectedImageMoving" Fill="#FFF1D8D8" Height="50" Width="50" 
+        <Ellipse x:Name="userSelectedImageMoving" 
+                 MouseEnter="userSelectedImageMoving_MouseEnter"
+                 MouseLeave="userSelectedImageMoving_MouseLeave"
                  PreviewMouseDown="userSelectedImageMoving_PreviewMouseDown"
                  PreviewMouseUp="userSelectedImageMoving_PreviewMouseUp"
-                 PreviewMouseMove="userSelectedImageMoving_PreviewMouseMove"
-                 />
-        
+                 PreviewMouseMove="userSelectedImageMoving_PreviewMouseMove" Margin="772,114,134,374"
+                 >
+            <Ellipse.Fill>
+                <ImageBrush/>
+            </Ellipse.Fill>
+        </Ellipse>
+
         <ComboBox x:Name="cardClassType" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
             <ComboBoxItem Content="Death Knight"/>
             <ComboBoxItem Content="Demon Hunter" />
@@ -58,6 +73,7 @@
             <ComboBoxItem Content="Warlock"/>
             <ComboBoxItem Content="Warrior"/>
         </ComboBox>
+
         <TextBlock x:Name="manaCard"  Margin="692,114,425,630" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2"></TextBlock>
         <TextBlock x:Name="damageCard" Margin="692,680,425,63" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center"></TextBlock>
         <TextBlock x:Name="healthCard" Margin="1068,680,48,64" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093"></TextBlock>
