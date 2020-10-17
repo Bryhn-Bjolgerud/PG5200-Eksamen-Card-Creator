@@ -175,6 +175,7 @@ namespace Eksamen_PG5200_Card_Creator
         private double deltaY;
         private TranslateTransform _currentTT;
 
+
         private void userSelectedImageMoving_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (_buttonPosition == null)
@@ -214,6 +215,8 @@ namespace Eksamen_PG5200_Card_Creator
             _isMoving = false;
         }
 
+        //-----------------------------------------------------------------------------------------------
+
         private void manaValue_GotFocus(object sender, RoutedEventArgs e)
         {
             manaValue.BorderBrush = Brushes.Gray;
@@ -225,7 +228,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             Regex reg = new Regex("^([0-9]|10)$");
             string regCheck = manaValue.Text.ToString();
-            if (!reg.IsMatch(regCheck)) 
+            if (!reg.IsMatch(regCheck))
             {
                 manaValue.BorderBrush = Brushes.Red;
                 manaValue.TextAlignment = TextAlignment.Right;
@@ -234,9 +237,33 @@ namespace Eksamen_PG5200_Card_Creator
 
         }
 
-       
+
 
         //----------------------------------------------------------------------------------------------
 
+
+        /// <summary>
+        /// Må forklare  hva som skjer her litt ass. OGså endre varianel navn fordi disse er obviously copy pastet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveImage_Click(object sender, RoutedEventArgs e)
+        {
+            Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 64, 75, System.Windows.Media.PixelFormats.Default);
+            rtb.Render(canvas);
+
+            //endcode as PNG
+            BitmapEncoder pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
+
+            //save to memory stream
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+            pngEncoder.Save(ms);
+            ms.Close();
+            System.IO.File.WriteAllBytes("logo.png", ms.ToArray());
+            Console.WriteLine("Done");
+        }
     }
 }
