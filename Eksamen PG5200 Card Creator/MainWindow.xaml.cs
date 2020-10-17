@@ -147,6 +147,11 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
+        /// <summary>
+        /// Need to do some error checking here maybe throw and catch exception to make sure proper files are uploaded. Not only if we managed to open the file explorer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uploadImage_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
@@ -160,13 +165,9 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var mousePos = PointToScreen(e.GetPosition(this));
-            Console.Write(mousePos.X + " ");
-            Console.WriteLine(mousePos.Y);
-        }
-
+        /// <summary>
+        /// All the code for dragging the image inside the portrait frame... Need refactoring.
+        /// </summary>
 
         private bool _isMoving;
         private Point? _buttonPosition;
@@ -213,17 +214,29 @@ namespace Eksamen_PG5200_Card_Creator
             _isMoving = false;
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
         {
-            manaValue.MaxLength = 2;
-            Regex regex = new Regex("[^1-9]+");
-
-            if (manaValue.Text == "1")
-            {
-                Console.WriteLine("Fittetrune");
-            }
+            manaValue.BorderBrush = Brushes.Gray;
+            manaValue.TextAlignment = TextAlignment.Left;
+            manaValue.Text = "";
         }
 
-        
+        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Regex reg = new Regex("^([0-9]|10)$");
+            string regCheck = manaValue.Text.ToString();
+            if (!reg.IsMatch(regCheck)) 
+            {
+                manaValue.BorderBrush = Brushes.Red;
+                manaValue.TextAlignment = TextAlignment.Right;
+                manaValue.Text = "Mana cost has to be a number between 0-10";
+            }
+
+        }
+
+       
+
+        //----------------------------------------------------------------------------------------------
+
     }
 }
