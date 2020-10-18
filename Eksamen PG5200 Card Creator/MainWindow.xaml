@@ -35,6 +35,8 @@
             <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Make card</Button>
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload Image</Button>
             <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click">Save Image</Button>
+            <Button x:Name="serializeImage" Margin="5, 5, 5, 5" Click="serializeImage_Click">Serialize Image</Button>
+            <Button x:Name="deserializeImage" Margin="5, 5, 5, 5" Click="deserializeImage_Click">Deserialize button</Button>
         </StackPanel>
 
         <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">
@@ -47,10 +49,8 @@
                     <Image x:Name="userSelectedImage"/>
                 </Grid>
             </Border>
-            <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/priestBaseCard.png" Margin="-40,-15,-40,-15"/>
+            <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/neutralBaseCard.png" Margin="-40,-15,-40,-15"/>
         </Canvas>
-
-
 
         <Ellipse x:Name="userSelectedImageMoving" 
                  MouseEnter="userSelectedImageMoving_MouseEnter"

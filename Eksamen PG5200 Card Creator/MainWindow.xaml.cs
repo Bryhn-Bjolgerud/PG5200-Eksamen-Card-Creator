@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -7,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Eksamen_PG5200_Card_Creator
 {
@@ -160,7 +162,6 @@ namespace Eksamen_PG5200_Card_Creator
 
             if (error == true)
             {
-                string filePath = openFilePrompt.FileName;
                 userSelectedImage.Source = new BitmapImage(new Uri(openFilePrompt.FileName, UriKind.Absolute));
             }
         }
@@ -241,7 +242,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         //----------------------------------------------------------------------------------------------
 
-
+        string imageAsBase64;
         /// <summary>
         /// Må forklare  hva som skjer her litt ass. OGså endre varianel navn fordi disse er obviously copy pastet
         /// </summary>
@@ -250,20 +251,41 @@ namespace Eksamen_PG5200_Card_Creator
         private void saveImage_Click(object sender, RoutedEventArgs e)
         {
             Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 64, 75, System.Windows.Media.PixelFormats.Default);
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 60, 70, PixelFormats.Default);
             rtb.Render(canvas);
 
-            //endcode as PNG
+            //encode as PNG
             BitmapEncoder pngEncoder = new PngBitmapEncoder();
             pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
 
             //save to memory stream
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            MemoryStream ms = new MemoryStream();
 
             pngEncoder.Save(ms);
             ms.Close();
-            System.IO.File.WriteAllBytes("logo.png", ms.ToArray());
-            Console.WriteLine("Done");
+            byte [] imageBytes = ms.ToArray();
+            imageAsBase64 = Convert.ToBase64String(imageBytes);
+            File.WriteAllBytes("../../Resources/logo.png", imageBytes);
+            Console.WriteLine("Done saving");
+        }
+
+
+        string jsonData;
+        int cardId = 0;
+        private void serializeImage_Click(object sender, RoutedEventArgs e)
+        {
+            jsonData = JsonConvert.SerializeObject(imageAsBase64);
+            Console.WriteLine("Done serializing");
+        }
+
+        private void deserializeImage_Click(object sender, RoutedEventArgs e)
+        {
+            string base64asImage = JsonConvert.DeserializeObject<string>(jsonData);
+            byte[] imageBytes = Convert.FromBase64String(base64asImage);
+
+            File.WriteAllBytes("../../Resources/importedCards/importedCard" + cardId + ".png", imageBytes);
+            cardId++;
+            Console.WriteLine("Done deserializing");
         }
     }
 }
