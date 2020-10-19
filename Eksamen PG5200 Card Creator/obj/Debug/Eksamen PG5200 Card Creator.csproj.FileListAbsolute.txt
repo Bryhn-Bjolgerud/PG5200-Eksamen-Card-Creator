@@ -337,5 +337,163 @@ C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Cre
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.exe.config
+<<<<<<< HEAD
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\CardPreviewWindow.g.cs
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\CardPreviewWindow.baml
+=======
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\deathKnightBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\demonHunterBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\druidBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\hunterBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\mageBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\neutralBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\paladinBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\priestBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\rogueBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\shamanBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\warlockBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\classBaseCards\warriorBaseCard.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\hearthstoneLogo.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\textboxPlaceholderImages\damageDealt.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\textboxPlaceholderImages\health.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\textboxPlaceholderImages\manaCost.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\textboxPlaceholderImages\cardName.png
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\runtimes\win-x86\native\e_sqlite3.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\runtimes\win-x64\native\e_sqlite3.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\runtimes\win-arm\native\e_sqlite3.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Eksamen PG5200 Card Creator.exe.config
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Eksamen PG5200 Card Creator.exe
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Eksamen PG5200 Card Creator.pdb
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Microsoft.Win32.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\netstandard.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.AppContext.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Collections.Concurrent.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Collections.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Collections.NonGeneric.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Collections.Specialized.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.ComponentModel.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.ComponentModel.EventBasedAsync.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.ComponentModel.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.ComponentModel.TypeConverter.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Console.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Data.Common.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.Contracts.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.Debug.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.Process.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.StackTrace.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.TextWriterTraceListener.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.Tools.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.TraceSource.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Diagnostics.Tracing.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Drawing.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Dynamic.Runtime.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Globalization.Calendars.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Globalization.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Globalization.Extensions.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.Compression.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.Compression.ZipFile.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.FileSystem.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.FileSystem.DriveInfo.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.FileSystem.Watcher.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.IsolatedStorage.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.MemoryMappedFiles.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.Pipes.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.IO.UnmanagedMemoryStream.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Linq.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Linq.Expressions.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Linq.Parallel.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Linq.Queryable.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.Http.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.NameResolution.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.NetworkInformation.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.Ping.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.Requests.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.Security.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.Sockets.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.WebHeaderCollection.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.WebSockets.Client.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Net.WebSockets.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.ObjectModel.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Reflection.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Reflection.Extensions.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Reflection.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Resources.Reader.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Resources.ResourceManager.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Resources.Writer.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.CompilerServices.VisualC.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Extensions.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Handles.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.InteropServices.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Numerics.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Serialization.Formatters.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Serialization.Json.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Serialization.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.Serialization.Xml.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Claims.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Cryptography.Csp.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.Principal.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Security.SecureString.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Text.Encoding.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Text.Encoding.Extensions.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Text.RegularExpressions.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.Overlapped.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.Tasks.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.Tasks.Parallel.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.Thread.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.ThreadPool.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Threading.Timer.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.ValueTuple.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Xml.ReaderWriter.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Xml.XDocument.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Xml.XmlDocument.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Xml.XmlSerializer.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Xml.XPath.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Xml.XPath.XDocument.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Newtonsoft.Json.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\SQLite-net.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\SQLitePCLRaw.core.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\SQLitePCLRaw.nativelibrary.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Buffers.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Memory.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Numerics.Vectors.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Newtonsoft.Json.xml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\SQLite-net.xml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Buffers.xml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Memory.xml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Numerics.Vectors.xml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csprojAssemblyReference.cache
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.exe.config
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Controls\CardControl.g.cs
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\MainWindow.g.cs
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\NewCardWindow.g.cs
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\App.g.cs
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator_Content.g.cs
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator_MarkupCompile.cache
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator_MarkupCompile.lref
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Controls\CardControl.baml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\MainWindow.baml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\NewCardWindow.baml
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.g.resources
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen_PG5200_Card_Creator.Properties.Resources.resources
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.GenerateResource.cache
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.CoreCompileInputs.cache
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.CopyComplete
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.exe
+C:\Skole\Toolsprog\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.pdb
+>>>>>>> 9f3eee859e5209d239ce9cb2fc50caff46702cbe
