@@ -57,6 +57,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             string jsonData = JsonConvert.SerializeObject(m_card);
             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/" + m_card.cardName + m_card.Id + ".json", jsonData);
+            MessageBox.Show("Your json file is added to your 'My Documents' folder");
         }
     }
 }

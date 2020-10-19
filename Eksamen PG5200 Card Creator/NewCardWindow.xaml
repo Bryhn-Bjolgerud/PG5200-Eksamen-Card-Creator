@@ -30,11 +30,10 @@
             </TextBox>
             <TextBox x:Name="abilityValue" Height="50"  Margin="5, 5, 5, 5" BorderThickness="5" BorderBrush="Gray"/>
 
-            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Make card</Button>
-            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload Image</Button>
-            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click">Save Image</Button>
-            <Button x:Name="serializeImage" Margin="5, 5, 5, 5" Click="serializeImage_Click">Serialize Image</Button>
-            <Button x:Name="deserializeImage" Margin="5, 5, 5, 5" Click="deserializeImage_Click">Deserialize button</Button>
+            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Apply to card</Button>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload portrait for card</Button>
+            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click">Save card</Button>
+           
         </StackPanel>
 
         <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">

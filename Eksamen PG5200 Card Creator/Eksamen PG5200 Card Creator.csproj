@@ -153,9 +153,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\importedCards\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\classBaseCards\deathKnightBaseCard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
