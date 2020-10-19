@@ -154,3 +154,4 @@ C:\Skole\Toolsprog\Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 
 C:\Skole\Toolsprog\Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.CopyComplete
 C:\Skole\Toolsprog\Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.exe
 C:\Skole\Toolsprog\Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.pdb
+C:\Skole\Toolsprog\Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csprojAssemblyReference.cache

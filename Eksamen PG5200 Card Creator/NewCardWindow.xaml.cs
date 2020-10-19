@@ -31,15 +31,15 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void makeCard_Click(object sender, RoutedEventArgs e)
         {
-            nameCard.Text = nameValue.Text;
             abilityCard.Text = abilityValue.Text;
 
-            if (manaValue.Text == "Mana cost has to be a number between 0-10" || damageValue.Text == "Damage cannot exceed 25" || healthValue.Text == "Health cannot exceed 25")
+            if (manaValue.Text == "Mana cost has to be a number between 0-10" || manaValue.Text == "Enter mana: " || damageValue.Text == "Damage cannot exceed 25" || damageValue.Text == "Enter attack: " || nameValue.Text == "Enter name: " || healthValue.Text == "Health cannot exceed 25" || healthValue.Text == "Enter health: ")
             {
                 MessageBox.Show("Before you can make card, please make sure you entered a valid input in all the boxes above!");
             }
             else
             {
+                nameCard.Text = nameValue.Text;
                 manaCard.Text = manaValue.Text;
                 damageCard.Text = damageValue.Text;
                 healthCard.Text = healthValue.Text;
@@ -96,38 +96,27 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void NameValue_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
+        }
+        
+        private void NameValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            nameValue.BorderBrush = Brushes.Gray;
+            nameValue.TextAlignment = TextAlignment.Left;
+            nameValue.Text = "";
+        }
+
+        private void NameValue_LostFocus(object sender, RoutedEventArgs e)
+        {
             if (nameValue.Text == "")
             {
-                ImageBrush placeholderImage = new ImageBrush()
-                {
-                    Stretch = Stretch.None,
-                    AlignmentX = AlignmentX.Left
-                };
-                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/cardName.png", UriKind.RelativeOrAbsolute));
-                nameValue.Background = placeholderImage;
-            }
-            else
-            {
-                nameValue.Background = null;
+                nameValue.Text = "Enter name: ";
             }
         }
 
         private void ManaValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (manaValue.Text == "")
-            {
-                ImageBrush placeholderImage = new ImageBrush()
-                {
-                    Stretch = Stretch.None,
-                    AlignmentX = AlignmentX.Left
-                };
-                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/manaCost.png", UriKind.RelativeOrAbsolute));
-                manaValue.Background = placeholderImage;
-            }
-            else
-            {
-                manaValue.Background = null;
-            }
+            
         }
         private void manaValue_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -138,33 +127,26 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void manaValue_LostFocus(object sender, RoutedEventArgs e)
         {
-            Regex reg = new Regex("^([0-9]|10)$");
-            string regCheck = manaValue.Text.ToString();
-            if (!reg.IsMatch(regCheck))
+            if (manaValue.Text == "")
             {
-                manaValue.BorderBrush = Brushes.Red;
-                manaValue.TextAlignment = TextAlignment.Right;
-                manaValue.Text = "Mana cost has to be a number between 0-10";
+                manaValue.Text = "Enter manacost: ";
             }
-
+            else
+            {
+                Regex reg = new Regex("^([0-9]|10)$");
+                string regCheck = manaValue.Text.ToString();
+                if (!reg.IsMatch(regCheck))
+                {
+                    manaValue.BorderBrush = Brushes.Red;
+                    manaValue.TextAlignment = TextAlignment.Right;
+                    manaValue.Text = "Mana cost has to be a number between 0-10";
+                }
+            }
         }
 
         private void DamageValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (damageValue.Text == "")
-            {
-                ImageBrush placeholderImage = new ImageBrush()
-                {
-                    Stretch = Stretch.None,
-                    AlignmentX = AlignmentX.Left
-                };
-                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/damageDealt.png", UriKind.RelativeOrAbsolute));
-                damageValue.Background = placeholderImage;
-            }
-            else
-            {
-                damageValue.Background = null;
-            }
+            
         }
         private void DamageValue_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -174,32 +156,26 @@ namespace Eksamen_PG5200_Card_Creator
         }
         private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
         {
-            Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
-            string regCheck = damageValue.Text.ToString();
-            if (!reg.IsMatch(regCheck))
+            if (damageValue.Text == "")
             {
-                damageValue.BorderBrush = Brushes.Red;
-                damageValue.TextAlignment = TextAlignment.Right;
-                damageValue.Text = "Damage cannot exceed 25";
+                damageValue.Text = "Enter attack: ";
+            }
+            else
+            {
+                Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
+                string regCheck = damageValue.Text.ToString();
+                if (!reg.IsMatch(regCheck))
+                {
+                    damageValue.BorderBrush = Brushes.Red;
+                    damageValue.TextAlignment = TextAlignment.Right;
+                    damageValue.Text = "Attack cannot exceed 25";
+                }
             }
         }
 
         private void HealthValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (healthValue.Text == "")
-            {
-                ImageBrush placeholderImage = new ImageBrush()
-                {
-                    Stretch = Stretch.None,
-                    AlignmentX = AlignmentX.Left
-                };
-                placeholderImage.ImageSource = new BitmapImage(new Uri("Resources/TextboxPlaceholderImages/health.png", UriKind.RelativeOrAbsolute));
-                healthValue.Background = placeholderImage;
-            }
-            else
-            {
-                healthValue.Background = null;
-            }
+           
         }
         private void HealthValue_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -209,13 +185,20 @@ namespace Eksamen_PG5200_Card_Creator
         }
         private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
         {
-            Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
-            string regCheck = healthValue.Text.ToString();
-            if (!reg.IsMatch(regCheck))
+            if (healthValue.Text == "")
             {
-                healthValue.BorderBrush = Brushes.Red;
-                healthValue.TextAlignment = TextAlignment.Right;
-                healthValue.Text = "Health cannot exceed 25";
+                healthValue.Text = "Enter health: ";
+            }
+            else
+            {
+                Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
+                string regCheck = healthValue.Text.ToString();
+                if (!reg.IsMatch(regCheck))
+                {
+                    healthValue.BorderBrush = Brushes.Red;
+                    healthValue.TextAlignment = TextAlignment.Right;
+                    healthValue.Text = "Health cannot exceed 25";
+                }
             }
         }
 

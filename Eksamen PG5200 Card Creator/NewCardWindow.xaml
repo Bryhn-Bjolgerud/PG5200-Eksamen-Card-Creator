@@ -8,25 +8,25 @@
         Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize">
     <Grid>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" BorderBrush="Gray">
-                <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/cardName.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background>
+            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="Gray" >
+                <!-- <TextBox.Background>
+                   <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/cardName.png" AlignmentX = "Left" Stretch = "None"/> 
+                </TextBox.Background> -->
             </TextBox>
-            <TextBox x:Name="manaValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="ManaValue_TextChanged" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="Gray">
-                <TextBox.Background>
+            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="ManaValue_TextChanged" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="Gray">
+                <!-- <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None" />
-                </TextBox.Background>
+                </TextBox.Background> -->
             </TextBox>
-            <TextBox x:Name="damageValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="Gray">
-                <TextBox.Background>
+            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="Gray">
+               <!-- <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/damageDealt.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background>
+                </TextBox.Background> -->
             </TextBox>
-            <TextBox x:Name="healthValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="Gray">
-                <TextBox.Background>
+            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="Gray">
+               <!-- <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/health.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background>
+                </TextBox.Background> -->
             </TextBox>
             <TextBox x:Name="abilityValue" Height="50"  Margin="5, 5, 5, 5" BorderThickness="5" BorderBrush="Gray"/>
 
