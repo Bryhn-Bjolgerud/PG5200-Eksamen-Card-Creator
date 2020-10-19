@@ -20,10 +20,13 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/classbasecards/shamanbasecard.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/classbasecards/warlockbasecard.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/classbasecards/warriorbasecard.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/logo.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/hearthstonelogo.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/textboxplaceholderimages/damagedealt.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/textboxplaceholderimages/health.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/textboxplaceholderimages/manacost.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/textboxplaceholderimages/cardname.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/sqlitepclraw.lib.e_sqlite3.2.0.3/runtimes/win-x86/native/e_sqlite3.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/sqlitepclraw.lib.e_sqlite3.2.0.3/runtimes/win-x64/native/e_sqlite3.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/sqlitepclraw.lib.e_sqlite3.2.0.3/runtimes/win-arm/native/e_sqlite3.dll")]
 
 

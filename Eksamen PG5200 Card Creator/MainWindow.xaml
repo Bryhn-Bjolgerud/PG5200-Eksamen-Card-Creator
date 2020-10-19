@@ -3,84 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
-        xmlns:vm="clr-namespace:Eksamen_PG5200_Card_Creator.ViewModel" 
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:uc="clr-namespace:Eksamen_PG5200_Card_Creator.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1200"
-        DataContext="{Binding Main, Source={StaticResource Locator}}"
-        >
+        Title="MainWindow" Height="850" Width="1200">
     <Grid>
-        <StackPanel Margin="25,5,575,5" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" BorderBrush="Gray">
-                <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/cardName.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background>
-            </TextBox>
-            <TextBox x:Name="manaValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="ManaValue_TextChanged" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="Gray">
-                <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None" />
-                </TextBox.Background>
-            </TextBox>
-            <TextBox x:Name="damageValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" BorderBrush="Gray">
-                <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/damageDealt.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background>
-            </TextBox>
-            <TextBox x:Name="healthValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" BorderBrush="Gray">
-                <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/health.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background>
-            </TextBox>
-            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Make card</Button>
-            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload Image</Button>
-            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click">Save Image</Button>
-            <Button x:Name="serializeImage" Margin="5, 5, 5, 5" Click="serializeImage_Click">Serialize Image</Button>
-            <Button x:Name="deserializeImage" Margin="5, 5, 5, 5" Click="deserializeImage_Click">Deserialize button</Button>
-        </StackPanel>
-
-        <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">
-            <!-- ClipToBounds will not work correctly with cornerRadius. Need to create a shape to define what will be clipped and not -->
-            <Border Width="300" Height="350" Margin="95,24,80,296">
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="205" RadiusY="205" Rect="0,0,300,350"/>
-                </Border.Clip>
-                <Grid x:Name="MyGrid" Width="700" Height="700" Canvas.Left="-108" Canvas.Top="-153" Margin="-198,-146,-202,-204">
-                    <Image x:Name="userSelectedImage"/>
-                </Grid>
-            </Border>
-            <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/neutralBaseCard.png" Margin="-40,-15,-40,-15"/>
-        </Canvas>
-
-        <Ellipse x:Name="userSelectedImageMoving" 
-                 MouseEnter="userSelectedImageMoving_MouseEnter"
-                 MouseLeave="userSelectedImageMoving_MouseLeave"
-                 PreviewMouseDown="userSelectedImageMoving_PreviewMouseDown"
-                 PreviewMouseUp="userSelectedImageMoving_PreviewMouseUp"
-                 PreviewMouseMove="userSelectedImageMoving_PreviewMouseMove" Margin="772,114,134,374"
-                 >
-            <Ellipse.Fill>
-                <ImageBrush/>
-            </Ellipse.Fill>
-        </Ellipse>
-
-        <ComboBox x:Name="cardClassType" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
-            <ComboBoxItem Content="Death Knight"/>
-            <ComboBoxItem Content="Demon Hunter" />
-            <ComboBoxItem Content="Druid"/>
-            <ComboBoxItem Content="Hunter"/>
-            <ComboBoxItem Content="Mage"/>
-            <ComboBoxItem Content="Neutral" IsSelected="True"/>
-            <ComboBoxItem Content="Paladin"/>
-            <ComboBoxItem Content="Priest"/>
-            <ComboBoxItem Content="Rogue"/>
-            <ComboBoxItem Content="Shaman"/>
-            <ComboBoxItem Content="Warlock"/>
-            <ComboBoxItem Content="Warrior"/>
-        </ComboBox>
-
-        <TextBlock x:Name="manaCard"  Margin="692,114,425,630" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2"></TextBlock>
-        <TextBlock x:Name="damageCard" Margin="692,680,425,63" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center"></TextBlock>
-        <TextBlock x:Name="healthCard" Margin="1068,680,48,64" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093"></TextBlock>
+        <Image Source="Resources/hearthstoneLogo.png" Margin="478,10,478,651"></Image>
+        <Button x:Name="createNewCard"  Margin="478,173,602,617" Click="createNewCard_Click" Content="Create new card"/>
+        <Button x:Name="importImage"  Margin="602,173,478,617" Click="importImage_Click" Content="Import card"/>
+        <ListView x:Name="cardsListView"  Margin="10,230,10,10" Background="Beige">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <uc:CardControl Card="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
