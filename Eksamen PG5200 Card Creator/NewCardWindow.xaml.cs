@@ -166,6 +166,7 @@ namespace Eksamen_PG5200_Card_Creator
         private void uploadImage_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
+            openFilePrompt.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
 
             bool? error = openFilePrompt.ShowDialog();
 

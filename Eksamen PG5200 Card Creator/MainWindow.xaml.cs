@@ -52,7 +52,57 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void importImage_Click(object sender, RoutedEventArgs e)
         {
+            /*
+            Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 60, 70, PixelFormats.Default);
+            rtb.Render(canvas);
 
+            //encode as PNG
+            BitmapEncoder pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
+
+            //save to memory stream
+            MemoryStream ms = new MemoryStream();
+            pngEncoder.Save(ms);
+            ms.Close();
+
+            //convert to png and base64 string
+            byte[] imageBytes = ms.ToArray();
+            imageAsBase64 = Convert.ToBase64String(imageBytes);
+
+            //Usikker på om vi kommer til å trenge denne. Du skal jo egentlig ikke lagre bildet i filsystemet, men i databasen. 
+            //File.WriteAllBytes("../../Resources/logo.png", imageBytes);
+
+            Card newCard = new Card()
+            {
+                cardName = nameCard.Text,
+                cardType = cardClassType.SelectedItem.ToString(),
+                manaCost = manaCard.Text,
+                damage = damageCard.Text,
+                health = healthCard.Text,
+                cardAbility = abilityValue.Text,
+                cardImageBase64 = Convert.ToBase64String(imageBytes)
+            };
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            {
+                connection.CreateTable<Card>();
+                connection.Insert(newCard);
+            }
+
+            "Json files (*.json)|*.json|Text files (*.txt)|*.txt";
+            */
+        }
+
+        private void cardsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Card selectedCard = (Card)cardsListView.SelectedItem;
+
+            if (selectedCard != null)
+            {
+                CardPreviewWindow cardDetailsWindow = new CardPreviewWindow(selectedCard);
+                cardDetailsWindow.ShowDialog();
+            }
         }
     }
 }

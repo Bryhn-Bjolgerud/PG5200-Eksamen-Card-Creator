@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:Eksamen_PG5200_Card_Creator.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1200">
+        Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize">
     <Grid>
         <Image Source="Resources/hearthstoneLogo.png" Margin="478,10,478,651"></Image>
         <Button x:Name="createNewCard"  Margin="478,173,602,617" Click="createNewCard_Click" Content="Create new card"/>
         <Button x:Name="importImage"  Margin="602,173,478,617" Click="importImage_Click" Content="Import card"/>
-        <ListView x:Name="cardsListView"  Margin="10,230,10,10" Background="Beige">
+        <ListView x:Name="cardsListView"  Margin="10,230,10,10" Background="Beige" SelectionChanged="cardsListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <uc:CardControl Card="{Binding}"/>

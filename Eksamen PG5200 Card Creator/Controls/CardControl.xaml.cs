@@ -1,6 +1,10 @@
 ﻿using Eksamen_PG5200_Card_Creator.Classes;
+using System;
+using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Eksamen_PG5200_Card_Creator.Controls
 {
@@ -25,16 +29,19 @@ namespace Eksamen_PG5200_Card_Creator.Controls
 
             if (control != null)
             {
-                control.cardNameTextBlock.Text = (e.NewValue as Card).cardName;
-                control.cardAbilityTextBlock.Text = (e.NewValue as Card).cardAbility;
-                control.manaCostTextBlock.Text = (e.NewValue as Card).manaCost;
-                control.damageTextBlock.Text = (e.NewValue as Card).damage;
-                control.healthTextBlock.Text = (e.NewValue as Card).health;
-                control.cardTypeTextBlock.Text = (e.NewValue as Card).cardType;
+                byte[] imageBytes = Convert.FromBase64String((e.NewValue as Card).cardImageBase64);
+                BitmapImage controlImageSource = new BitmapImage();
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    controlImageSource.BeginInit();
+                    controlImageSource.StreamSource = ms;
+                    controlImageSource.CacheOption = BitmapCacheOption.OnLoad;
+                    controlImageSource.EndInit();
+                }
+
+                control.cardImage.Source = controlImageSource;
             }
-
         }
-
         public CardControl()
         {
             InitializeComponent();

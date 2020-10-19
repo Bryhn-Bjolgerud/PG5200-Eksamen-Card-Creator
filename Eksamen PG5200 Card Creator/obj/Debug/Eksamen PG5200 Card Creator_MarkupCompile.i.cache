@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tobias\source\repos\Teste versjon\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\
+C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\
 Eksamen_PG5200_Card_Creator
 none
 false
 DEBUG;TRACE
-C:\Users\Tobias\source\repos\Teste versjon\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\App.xaml
-31135944233
-20421793950
-9-1291719769
-13175635344
-Controls\CardControl.xaml;MainWindow.xaml;NewCardWindow.xaml;
+C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\App.xaml
+4-26060382
+20512343749
+10720535293
+1321929450924
+CardPreviewWindow.xaml;Controls\CardControl.xaml;MainWindow.xaml;NewCardWindow.xaml;
 
 True
 

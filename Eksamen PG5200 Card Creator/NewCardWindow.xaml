@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
         mc:Ignorable="d"
-        Title="NewCardWindow" Height="850" Width="1200">
+        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize">
     <Grid>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
             <TextBox x:Name="nameValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" BorderBrush="Gray">

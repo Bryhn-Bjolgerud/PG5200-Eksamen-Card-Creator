@@ -1,0 +1,14 @@
+﻿<Window x:Class="Eksamen_PG5200_Card_Creator.CardPreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
+        mc:Ignorable="d"
+        Title="CardPreviewWindow" Height="450" Width="300"  ResizeMode="NoResize">
+    <Grid>
+        <Image x:Name="cardImage" Source="Resources/importedCards/importedCard0.png" Width="900" Margin="-304,-185,-304,-184"/>
+        <Button x:Name="deleteCardButton" Height="40" Width="75" Margin="30,347,164,24" Background="#FFB43B3B" Foreground="White" FontFamily="Yu Gothic" FontSize="10" FontWeight="Bold" Click="deleteCardButton_Click">Delete card</Button>
+        <Button x:Name="exportCardButton" Height="40" Width="75" Margin="164,347,30,24" Background="LightGray" Foreground="Black" FontFamily="Yu Gothic" FontSize="10" FontWeight="Bold" Click="exportCardButton_Click">Export card</Button>
+    </Grid>
+</Window>
