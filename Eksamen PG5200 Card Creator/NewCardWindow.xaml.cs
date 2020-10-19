@@ -33,9 +33,17 @@ namespace Eksamen_PG5200_Card_Creator
         {
             nameCard.Text = nameValue.Text;
             abilityCard.Text = abilityValue.Text;
-            manaCard.Text = manaValue.Text;
-            damageCard.Text = damageValue.Text;
-            healthCard.Text = healthValue.Text;
+
+            if (manaValue.Text == "Mana cost has to be a number between 0-10" || damageValue.Text == "Damage cannot exceed 25" || healthValue.Text == "Health cannot exceed 25")
+            {
+                MessageBox.Show("Before you can make card, please make sure you entered a valid input in all the boxes above!");
+            }
+            else
+            {
+                manaCard.Text = manaValue.Text;
+                damageCard.Text = damageValue.Text;
+                healthCard.Text = healthValue.Text;
+            }
         }
 
         private void cardClassType_SelectionChanged(object sender, RoutedEventArgs e)
@@ -121,6 +129,25 @@ namespace Eksamen_PG5200_Card_Creator
                 manaValue.Background = null;
             }
         }
+        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            manaValue.BorderBrush = Brushes.Gray;
+            manaValue.TextAlignment = TextAlignment.Left;
+            manaValue.Text = "";
+        }
+
+        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Regex reg = new Regex("^([0-9]|10)$");
+            string regCheck = manaValue.Text.ToString();
+            if (!reg.IsMatch(regCheck))
+            {
+                manaValue.BorderBrush = Brushes.Red;
+                manaValue.TextAlignment = TextAlignment.Right;
+                manaValue.Text = "Mana cost has to be a number between 0-10";
+            }
+
+        }
 
         private void DamageValue_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -139,6 +166,23 @@ namespace Eksamen_PG5200_Card_Creator
                 damageValue.Background = null;
             }
         }
+        private void DamageValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            damageValue.BorderBrush = Brushes.Gray;
+            damageValue.TextAlignment = TextAlignment.Left;
+            damageValue.Text = "";
+        }
+        private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
+            string regCheck = damageValue.Text.ToString();
+            if (!reg.IsMatch(regCheck))
+            {
+                damageValue.BorderBrush = Brushes.Red;
+                damageValue.TextAlignment = TextAlignment.Right;
+                damageValue.Text = "Damage cannot exceed 25";
+            }
+        }
 
         private void HealthValue_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -155,6 +199,23 @@ namespace Eksamen_PG5200_Card_Creator
             else
             {
                 healthValue.Background = null;
+            }
+        }
+        private void HealthValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            healthValue.BorderBrush = Brushes.Gray;
+            healthValue.TextAlignment = TextAlignment.Left;
+            healthValue.Text = "";
+        }
+        private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
+            string regCheck = healthValue.Text.ToString();
+            if (!reg.IsMatch(regCheck))
+            {
+                healthValue.BorderBrush = Brushes.Red;
+                healthValue.TextAlignment = TextAlignment.Right;
+                healthValue.Text = "Health cannot exceed 25";
             }
         }
 
@@ -227,27 +288,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         //-----------------------------------------------------------------------------------------------
 
-        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            manaValue.BorderBrush = Brushes.Gray;
-            manaValue.TextAlignment = TextAlignment.Left;
-            manaValue.Text = "";
-        }
-
-        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Regex reg = new Regex("^([0-9]|10)$");
-            string regCheck = manaValue.Text.ToString();
-            if (!reg.IsMatch(regCheck))
-            {
-                manaValue.BorderBrush = Brushes.Red;
-                manaValue.TextAlignment = TextAlignment.Right;
-                manaValue.Text = "Mana cost has to be a number between 0-10";
-            }
-
-        }
-
-
+       
 
         //----------------------------------------------------------------------------------------------
 

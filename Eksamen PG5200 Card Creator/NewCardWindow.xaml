@@ -18,18 +18,18 @@
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None" />
                 </TextBox.Background>
             </TextBox>
-            <TextBox x:Name="damageValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" BorderBrush="Gray">
+            <TextBox x:Name="damageValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="Gray">
                 <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/damageDealt.png" AlignmentX = "Left" Stretch = "None"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox x:Name="healthValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" BorderBrush="Gray">
+            <TextBox x:Name="healthValue" Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="Gray">
                 <TextBox.Background>
                     <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/health.png" AlignmentX = "Left" Stretch = "None"/>
                 </TextBox.Background>
             </TextBox>
             <TextBox x:Name="abilityValue" Height="50"  Margin="5, 5, 5, 5" BorderThickness="5" BorderBrush="Gray"/>
-            
+
             <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Make card</Button>
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload Image</Button>
             <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click">Save Image</Button>
@@ -48,11 +48,19 @@
                 </Grid>
             </Border>
             <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/neutralBaseCard.png" Margin="-40,-15,-40,-15"/>
-            <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334"></TextBlock>
+            <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-4.283"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform></TextBlock>
             <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"></TextBlock>
-            <TextBlock x:Name="manaCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Canvas.Left="10" Canvas.Top="40" Width="120" Height="120"></TextBlock>
-            <TextBlock x:Name="damageCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="120" Height="120" Canvas.Left="10" Canvas.Top="570"></TextBlock>
-            <TextBlock x:Name="healthCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="120" Height="120" Canvas.Left="362" Canvas.Top="570"></TextBlock>
+            <TextBlock x:Name="manaCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2" Canvas.Left="24" Canvas.Top="27" Width="96" Height="91"></TextBlock>
+            <TextBlock x:Name="damageCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center"  RenderTransformOrigin="0.5,0.5" Canvas.Left="32" Canvas.Top="555" Width="91" Height="73"></TextBlock>
+            <TextBlock x:Name="healthCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold"  Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093" Canvas.Left="380" Canvas.Top="555" Width="90" Height="93"></TextBlock>
         </Canvas>
 
         <Ellipse x:Name="userSelectedImageMoving" 
