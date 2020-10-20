@@ -11,6 +11,7 @@ using System.IO;
 using Eksamen_PG5200_Card_Creator.Classes;
 using System.Collections.Generic;
 using System.Linq;
+using SQLite;
 
 namespace Eksamen_PG5200_Card_Creator
 {
@@ -52,46 +53,22 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void importImage_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 60, 70, PixelFormats.Default);
-            rtb.Render(canvas);
 
-            //encode as PNG
-            BitmapEncoder pngEncoder = new PngBitmapEncoder();
-            pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
+            Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
+            openFilePrompt.Filter = "Json files (*.json)|*.json|Text files (*.txt)|*.txt";
 
-            //save to memory stream
-            MemoryStream ms = new MemoryStream();
-            pngEncoder.Save(ms);
-            ms.Close();
+            bool? error = openFilePrompt.ShowDialog();
 
-            //convert to png and base64 string
-            byte[] imageBytes = ms.ToArray();
-            imageAsBase64 = Convert.ToBase64String(imageBytes);
-
-            //Usikker på om vi kommer til å trenge denne. Du skal jo egentlig ikke lagre bildet i filsystemet, men i databasen. 
-            //File.WriteAllBytes("../../Resources/logo.png", imageBytes);
-
-            Card newCard = new Card()
+            if (error == true)
             {
-                cardName = nameCard.Text,
-                cardType = cardClassType.SelectedItem.ToString(),
-                manaCost = manaCard.Text,
-                damage = damageCard.Text,
-                health = healthCard.Text,
-                cardAbility = abilityValue.Text,
-                cardImageBase64 = Convert.ToBase64String(imageBytes)
-            };
-
-            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
-            {
-                connection.CreateTable<Card>();
-                connection.Insert(newCard);
-            }
-
-            "Json files (*.json)|*.json|Text files (*.txt)|*.txt";
-            */
+                string importedJsonData = File.ReadAllText(openFilePrompt.FileName);
+                Card newCard = JsonConvert.DeserializeObject<Card>(importedJsonData);
+                using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+                {
+                    connection.CreateTable<Card>();
+                    connection.Insert(newCard);
+                }
+            }       
         }
 
         private void cardsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -103,6 +80,15 @@ namespace Eksamen_PG5200_Card_Creator
                 CardPreviewWindow cardDetailsWindow = new CardPreviewWindow(selectedCard);
                 cardDetailsWindow.ShowDialog();
             }
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox searchTextBox = sender as TextBox;
+
+            var filteredList = cards.Where(c => c.cardName.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+
+            cardsListView.ItemsSource = filteredList;
         }
     }
 }

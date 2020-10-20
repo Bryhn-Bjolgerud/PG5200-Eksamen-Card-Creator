@@ -5,19 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="140" d:DesignWidth="100">
+             d:DesignHeight="540" d:DesignWidth="500">
     <Grid Background="LightGray">
-        <StackPanel>
-            <Image x:Name="cardImage" Source="Resources/classBaseCards/warlockBaseCard.png" Height="142"/>
-        </StackPanel>
+        <Image x:Name="cardImage" Source="Resources/classBaseCards/warlockBaseCard.png" Height="250" Margin="-35,45,-35,45"/>
     </Grid>
-    <!--
-        <TextBlock x:Name="cardNameTextBlock" Text="Northshire Cleric" FontSize="25" FontWeight="Bold"/>
-        <TextBlock x:Name="cardAbilityTextBlock" Text="Whenever a minion is healed, draw a card." FontWeight="Bold" FontSize="15"/>
-        <TextBlock x:Name="manaCostTextBlock" Text="Mana cost: 1" FontSize="15"/>
-        <TextBlock x:Name="damageTextBlock" Text="Damage: 1" FontSize="15"/>
-        <TextBlock x:Name="healthTextBlock" Text="Health: 3" FontSize="15"/>
-        <TextBlock x:Name="cardTypeTextBlock" Text="Priest" FontSize="20"/>
-d:DesignHeight="140" d:DesignWidth="450"
-    -->
 </UserControl>

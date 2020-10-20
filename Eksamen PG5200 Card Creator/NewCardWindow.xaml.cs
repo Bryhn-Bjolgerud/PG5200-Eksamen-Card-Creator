@@ -320,30 +320,6 @@ namespace Eksamen_PG5200_Card_Creator
                 connection.CreateTable<Card>();
                 connection.Insert(newCard);
             }
-
-            Console.WriteLine("Done saving");
-        }
-
-
-
-        //-------------------------------------------------------------------------------------------------
-
-        string jsonData;
-        int cardId = 0;
-        private void serializeImage_Click(object sender, RoutedEventArgs e)
-        {
-            jsonData = JsonConvert.SerializeObject(imageAsBase64);
-            Console.WriteLine("Done serializing");
-        }
-
-        private void deserializeImage_Click(object sender, RoutedEventArgs e)
-        {
-            string base64asImage = JsonConvert.DeserializeObject<string>(jsonData);
-            byte[] imageBytes = Convert.FromBase64String(base64asImage);
-
-            File.WriteAllBytes("../../Resources/importedCards/importedCard" + cardId + ".png", imageBytes);
-            cardId++;
-            Console.WriteLine("Done deserializing");
         }
     }
 }
