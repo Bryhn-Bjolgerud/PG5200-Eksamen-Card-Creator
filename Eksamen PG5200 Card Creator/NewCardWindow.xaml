@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
         mc:Ignorable="d"
         Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize">
     <Grid>
@@ -66,6 +65,7 @@
             </Ellipse.Fill>
         </Ellipse>
 
+        <!--
         <ComboBox x:Name="cardClassType" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
             <ComboBoxItem Content="Death Knight"/>
             <ComboBoxItem Content="Demon Hunter" />
@@ -80,5 +80,10 @@
             <ComboBoxItem Content="Warlock"/>
             <ComboBoxItem Content="Warrior"/>
         </ComboBox>
+        -->
+        <ComboBox x:Name="cardTypeComboBox" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardTypeComboBox_SelectionChanged">
+            
+        </ComboBox>
+
     </Grid>
 </Window>

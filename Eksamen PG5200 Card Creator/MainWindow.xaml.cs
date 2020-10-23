@@ -31,7 +31,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         void ReadDatabase()
         {
-            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.databasePath))
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.cardsDatabasePath))
             {
                 conn.CreateTable<Card>();
                 cards = (conn.Table<Card>().ToList()).OrderBy(c => c.cardName).ToList();
@@ -63,7 +63,7 @@ namespace Eksamen_PG5200_Card_Creator
             {
                 string importedJsonData = File.ReadAllText(openFilePrompt.FileName);
                 Card newCard = JsonConvert.DeserializeObject<Card>(importedJsonData);
-                using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+                using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
                 {
                     connection.CreateTable<Card>();
                     connection.Insert(newCard);
@@ -98,5 +98,34 @@ namespace Eksamen_PG5200_Card_Creator
             NewTypeWindow newType = new NewTypeWindow();
             newType.ShowDialog();
         }
+
+        /*
+        private void forTestPurposes_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] imageBytes;
+            MemoryStream inMemoryCopy = new MemoryStream();
+            using (FileStream fs = File.OpenRead("../../Resources/classBaseCards/deathKnightBaseCard.png"))
+            {
+                fs.CopyTo(inMemoryCopy);
+                imageBytes = inMemoryCopy.ToArray();
+            }
+
+
+            CardType newType = new CardType()
+            {
+                cardType = "Death Knight",
+                maxManaCost = 10,
+                maxDamage = 25,
+                maxHealth = 15,
+                typeImage = imageBytes
+            };
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+            {
+                connection.CreateTable<CardType>();
+                connection.Insert(newType);
+            }
+        }
+        */
     }
 }

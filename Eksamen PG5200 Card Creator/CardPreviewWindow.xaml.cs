@@ -29,9 +29,8 @@ namespace Eksamen_PG5200_Card_Creator
             InitializeComponent();
             m_card = card;
 
-            byte[] imageBytes = Convert.FromBase64String(m_card.cardImageBase64);
             BitmapImage controlImageSource = new BitmapImage();
-            using (MemoryStream ms = new MemoryStream(imageBytes))
+            using (MemoryStream ms = new MemoryStream(m_card.cardImage))
             {
                 controlImageSource.BeginInit();
                 controlImageSource.StreamSource = ms;
@@ -44,7 +43,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void deleteCardButton_Click(object sender, RoutedEventArgs e)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
             {
                 connection.CreateTable<Card>();
                 connection.Delete(m_card);
@@ -57,7 +56,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             string jsonData = JsonConvert.SerializeObject(m_card);
             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/" + m_card.cardName + m_card.Id + ".json", jsonData);
-            MessageBox.Show("Your json file is added to your 'My Documents' folder");
+            MessageBox.Show("Your .json file is added to your 'My Documents' folder");
         }
     }
 }

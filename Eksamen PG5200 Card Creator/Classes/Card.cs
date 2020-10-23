@@ -17,7 +17,7 @@ namespace Eksamen_PG5200_Card_Creator.Classes
         public string manaCost { get; set; }
         public string damage { get; set; }
         public string health { get; set; }
-        public string cardImageBase64 { get; set; }
+        public byte[] cardImage{ get; set; }
         public override string ToString()
         {
             return $"{cardName} - {manaCost} - {damage} - {health}";
