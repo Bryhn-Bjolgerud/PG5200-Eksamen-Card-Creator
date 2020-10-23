@@ -29,9 +29,8 @@ namespace Eksamen_PG5200_Card_Creator.Controls
 
             if (control != null)
             {
-                byte[] imageBytes = Convert.FromBase64String((e.NewValue as Card).cardImageBase64);
                 BitmapImage controlImageSource = new BitmapImage();
-                using (MemoryStream ms = new MemoryStream(imageBytes))
+                using (MemoryStream ms = new MemoryStream((e.NewValue as Card).cardImage))
                 {
                     controlImageSource.BeginInit();
                     controlImageSource.StreamSource = ms;

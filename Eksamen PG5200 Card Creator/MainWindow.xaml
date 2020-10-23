@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize">
     <Grid>
+
         <Image Source="Resources/hearthstoneLogo.png" Margin="479,10,477,651"></Image>
         <Button x:Name="createNewCard" Margin="421,173,659,617" Click="createNewCard_Click" Content="Create new card"/>
         <Button x:Name="importImage" Margin="540,173,540,617" Click="importImage_Click" Content="Import card"/>
         <Button x:Name="createNewType" Margin="659,173,421,617"  Click="createNewType_Click" Content="Create new type"/>
+        
         <TextBox x:Name="searchBox" Margin="478,215,478,570" BorderThickness="5" BorderBrush="Gray" TextChanged="searchBox_TextChanged"/>
         <ListView x:Name="cardsListView"  Margin="10,268,10,10" Background="Beige" SelectionChanged="cardsListView_SelectionChanged">
             <ListView.ItemTemplate>

@@ -24,9 +24,19 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class NewCardWindow : Window
     {
+        List<CardType> cardTypes;
         public NewCardWindow()
         {
             InitializeComponent();
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+            {
+                cardTypes = connection.Table<CardType>().ToList();
+                foreach(CardType ct in cardTypes)
+                {
+                    cardTypeComboBox.Items.Add(ct.cardType);
+                }
+            }
         }
 
         private void makeCard_Click(object sender, RoutedEventArgs e)
@@ -46,52 +56,22 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void cardClassType_SelectionChanged(object sender, RoutedEventArgs e)
+        private void cardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (cardClassType.SelectedItem.ToString())
+            CardType selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
+            
+            if(selectedType != null)
             {
-                case "System.Windows.Controls.ComboBoxItem: Death Knight":
-                    changeBaseCard("deathKnight");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Demon Hunter":
-                    changeBaseCard("demonHunter");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Druid":
-                    changeBaseCard("druid");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Hunter":
-                    changeBaseCard("hunter");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Mage":
-                    changeBaseCard("mage");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Neutral":
-                    changeBaseCard("neutral");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Paladin":
-                    changeBaseCard("paladin");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Priest":
-                    changeBaseCard("priest");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Rogue":
-                    changeBaseCard("rogue");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Shaman":
-                    changeBaseCard("shaman");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Warlock":
-                    changeBaseCard("warlock");
-                    break;
-                case "System.Windows.Controls.ComboBoxItem: Warrior":
-                    changeBaseCard("warrior");
-                    break;
+                BitmapImage cardDisplaySrc = new BitmapImage();
+                using (MemoryStream ms = new MemoryStream(selectedType.typeImage))
+                {
+                    cardDisplaySrc.BeginInit();
+                    cardDisplaySrc.StreamSource = ms;
+                    cardDisplaySrc.CacheOption = BitmapCacheOption.OnLoad;
+                    cardDisplaySrc.EndInit();
+                }
+                cardDisplay.Source = cardDisplaySrc; 
             }
-        }
-
-        private void changeBaseCard(String cardClass)
-        {
-            cardDisplay.Source = new BitmapImage(new Uri("Resources/classBaseCards/" + cardClass + "BaseCard.png", UriKind.Relative));
         }
 
         private void NameValue_TextChanged(object sender, TextChangedEventArgs e)
@@ -274,9 +254,7 @@ namespace Eksamen_PG5200_Card_Creator
 
        
 
-        //----------------------------------------------------------------------------------------------
-
-        string imageAsBase64;
+        //-----------------------------------------------------------------------------------------------
         /// <summary>
         /// Må forklare  hva som skjer her litt ass. OGså endre varianel navn fordi disse er obviously copy pastet
         /// </summary>
@@ -299,7 +277,6 @@ namespace Eksamen_PG5200_Card_Creator
 
             //convert to png and base64 string
             byte[] imageBytes = ms.ToArray();
-            imageAsBase64 = Convert.ToBase64String(imageBytes);
 
             //Usikker på om vi kommer til å trenge denne. Du skal jo egentlig ikke lagre bildet i filsystemet, men i databasen. 
             //File.WriteAllBytes("../../Resources/logo.png", imageBytes);
@@ -307,19 +284,20 @@ namespace Eksamen_PG5200_Card_Creator
             Card newCard = new Card()
             {
                 cardName = nameCard.Text,
-                cardType = cardClassType.SelectedItem.ToString(),
+                cardType = cardTypeComboBox.SelectedItem.ToString(),
                 manaCost = manaCard.Text,
                 damage = damageCard.Text,
                 health = healthCard.Text,
                 cardAbility = abilityValue.Text,
-                cardImageBase64 = Convert.ToBase64String(imageBytes)
+                cardImage = imageBytes
             };
 
-            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
             {
                 connection.CreateTable<Card>();
                 connection.Insert(newCard);
             }
         }
+
     }
 }

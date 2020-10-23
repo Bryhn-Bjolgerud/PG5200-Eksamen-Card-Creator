@@ -11,9 +11,15 @@ false
 DEBUG;TRACE
 C:\Skole\Toolsprog\Ekte Eksamen\Eksamen PG5200 Card Creator\App.xaml
 5-1367305986
+<<<<<<< HEAD
 20-292870206
 10161598827
 132-879322232
+=======
+20512343749
+11755841003
+1321929450924
+>>>>>>> ada2bf60e455df73d8798fa43a1a266fd3aa3a5e
 CardPreviewWindow.xaml;Controls\CardControl.xaml;MainWindow.xaml;NewCardWindow.xaml;NewTypeWindow.xaml;
 
 False
