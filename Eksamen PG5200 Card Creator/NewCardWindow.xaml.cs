@@ -191,7 +191,7 @@ namespace Eksamen_PG5200_Card_Creator
             }
             else
             {
-                Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
+                Regex reg = new Regex("^([1]?[1-9]|2[0-5])$");
                 string regCheck = healthValue.Text.ToString();
                 if (!reg.IsMatch(regCheck))
                 {
