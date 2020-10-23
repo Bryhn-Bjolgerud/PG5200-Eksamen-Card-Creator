@@ -68,7 +68,9 @@ namespace Eksamen_PG5200_Card_Creator
                     connection.CreateTable<Card>();
                     connection.Insert(newCard);
                 }
-            }       
+            }
+
+            ReadDatabase();
         }
 
         private void cardsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -89,6 +91,12 @@ namespace Eksamen_PG5200_Card_Creator
             var filteredList = cards.Where(c => c.cardName.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
 
             cardsListView.ItemsSource = filteredList;
+        }
+
+        private void createNewType_Click(object sender, RoutedEventArgs e)
+        {
+            NewTypeWindow newType = new NewTypeWindow();
+            newType.ShowDialog();
         }
     }
 }

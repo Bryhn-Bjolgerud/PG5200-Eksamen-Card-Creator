@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="540" d:DesignWidth="500">
-    <Grid Background="LightGray">
-        <Image x:Name="cardImage" Source="Resources/classBaseCards/warlockBaseCard.png" Height="250" Margin="-35,45,-35,45"/>
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <Grid>
+        <Image x:Name="cardImage" Source="Resources/classBaseCards/warlockBaseCard.png" Width="450" Height="650" Margin="-35,45,-35,45"/>
     </Grid>
 </UserControl>
