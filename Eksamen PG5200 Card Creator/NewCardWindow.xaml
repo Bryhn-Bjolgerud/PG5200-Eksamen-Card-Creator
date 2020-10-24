@@ -7,26 +7,10 @@
         Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize">
     <Grid>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="Gray" >
-                <!-- <TextBox.Background>
-                   <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/cardName.png" AlignmentX = "Left" Stretch = "None"/> 
-                </TextBox.Background> -->
-            </TextBox>
-            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="ManaValue_TextChanged" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="Gray">
-                <!-- <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/manaCost.png" AlignmentX = "Left" Stretch = "None" />
-                </TextBox.Background> -->
-            </TextBox>
-            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="Gray">
-               <!-- <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/damageDealt.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background> -->
-            </TextBox>
-            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="Gray">
-               <!-- <TextBox.Background>
-                    <ImageBrush ImageSource = "Resources/TextboxPlaceholderImages/health.png" AlignmentX = "Left" Stretch = "None"/>
-                </TextBox.Background> -->
-            </TextBox>
+            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="Gray"/>
+            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="ManaValue_TextChanged" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="Gray"/>
+            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="Gray"/>
+            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="Gray"/>
             <TextBox x:Name="abilityValue" Text="Enter card flavor text: " Height="50"  Margin="5, 5, 5, 5" BorderThickness="5" BorderBrush="Gray"/>
 
             <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Apply to card</Button>
@@ -65,22 +49,6 @@
             </Ellipse.Fill>
         </Ellipse>
 
-        <!--
-        <ComboBox x:Name="cardClassType" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardClassType_SelectionChanged">
-            <ComboBoxItem Content="Death Knight"/>
-            <ComboBoxItem Content="Demon Hunter" />
-            <ComboBoxItem Content="Druid"/>
-            <ComboBoxItem Content="Hunter"/>
-            <ComboBoxItem Content="Mage"/>
-            <ComboBoxItem Content="Neutral" IsSelected="True"/>
-            <ComboBoxItem Content="Paladin"/>
-            <ComboBoxItem Content="Priest"/>
-            <ComboBoxItem Content="Rogue"/>
-            <ComboBoxItem Content="Shaman"/>
-            <ComboBoxItem Content="Warlock"/>
-            <ComboBoxItem Content="Warrior"/>
-        </ComboBox>
-        -->
         <ComboBox x:Name="cardTypeComboBox" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardTypeComboBox_SelectionChanged">
             
         </ComboBox>

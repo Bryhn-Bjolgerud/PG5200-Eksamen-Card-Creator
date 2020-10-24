@@ -99,33 +99,5 @@ namespace Eksamen_PG5200_Card_Creator
             newType.ShowDialog();
         }
 
-        /*
-        private void forTestPurposes_Click(object sender, RoutedEventArgs e)
-        {
-            byte[] imageBytes;
-            MemoryStream inMemoryCopy = new MemoryStream();
-            using (FileStream fs = File.OpenRead("../../Resources/classBaseCards/deathKnightBaseCard.png"))
-            {
-                fs.CopyTo(inMemoryCopy);
-                imageBytes = inMemoryCopy.ToArray();
-            }
-
-
-            CardType newType = new CardType()
-            {
-                cardType = "Death Knight",
-                maxManaCost = 10,
-                maxDamage = 25,
-                maxHealth = 15,
-                typeImage = imageBytes
-            };
-
-            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
-            {
-                connection.CreateTable<CardType>();
-                connection.Insert(newType);
-            }
-        }
-        */
     }
 }
