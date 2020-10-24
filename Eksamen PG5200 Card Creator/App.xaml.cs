@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Eksamen_PG5200_Card_Creator
 {
@@ -19,5 +20,8 @@ namespace Eksamen_PG5200_Card_Creator
  
 
         public static string cardTypesDatabasePath = "../../Resources/CardTypes.db";
+        public static SolidColorBrush yellowBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#f5cf5e");
+
+        
     }
 }

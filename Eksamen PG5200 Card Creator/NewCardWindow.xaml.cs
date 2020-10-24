@@ -25,6 +25,11 @@ namespace Eksamen_PG5200_Card_Creator
     public partial class NewCardWindow : Window
     {
         List<CardType> cardTypes;
+        CardType selectedType;
+        List<TextBox> cardValueTextboxes = new List<TextBox>();
+
+        private Regex isChars = new Regex("^[a-zA-Z0-9]*$");
+
         public NewCardWindow()
         {
             InitializeComponent();
@@ -33,18 +38,41 @@ namespace Eksamen_PG5200_Card_Creator
             {
                 connection.CreateTable<CardType>();
                 cardTypes = connection.Table<CardType>().ToList();
-                foreach(CardType ct in cardTypes)
+                foreach (CardType ct in cardTypes)
                 {
                     cardTypeComboBox.Items.Add(ct.cardType);
                 }
             }
+
+            cardValueTextboxes.Add(manaValue);
+            cardValueTextboxes.Add(damageValue);
+            cardValueTextboxes.Add(healthValue);
+
+            cardTypeComboBox.SelectedIndex = 6;
+        }
+
+        private bool isCardReady()
+        {
+            bool cardReady = true;
+
+            foreach (TextBox tb in cardValueTextboxes)
+            {
+                if (tb.Text.Length > 2)
+                {
+                    cardReady = false;
+                }
+            }
+
+            if (nameValue.Text == "Enter name: ")
+            {
+                cardReady = false;
+            }
+            return cardReady;
         }
 
         private void makeCard_Click(object sender, RoutedEventArgs e)
         {
-            abilityCard.Text = abilityValue.Text;
-
-            if (manaValue.Text == "Mana cost has to be a number between 0-10" || manaValue.Text == "Enter mana: " || damageValue.Text == "Damage cannot exceed 25" || damageValue.Text == "Enter attack: " || nameValue.Text == "Enter name: " || healthValue.Text == "Health cannot exceed 25" || healthValue.Text == "Enter health: ")
+            if (!isCardReady())
             {
                 MessageBox.Show("Before you can make card, please make sure you entered a valid input in all the boxes above!");
             }
@@ -54,14 +82,15 @@ namespace Eksamen_PG5200_Card_Creator
                 manaCard.Text = manaValue.Text;
                 damageCard.Text = damageValue.Text;
                 healthCard.Text = healthValue.Text;
+                abilityCard.Text = abilityValue.Text;
             }
         }
 
         private void cardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CardType selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
-            
-            if(selectedType != null)
+            selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
+
+            if (selectedType != null)
             {
                 BitmapImage cardDisplaySrc = new BitmapImage();
                 using (MemoryStream ms = new MemoryStream(selectedType.typeImage))
@@ -71,117 +100,113 @@ namespace Eksamen_PG5200_Card_Creator
                     cardDisplaySrc.CacheOption = BitmapCacheOption.OnLoad;
                     cardDisplaySrc.EndInit();
                 }
-                cardDisplay.Source = cardDisplaySrc; 
+                cardDisplay.Source = cardDisplaySrc;
             }
         }
 
-        private void NameValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-        
         private void NameValue_GotFocus(object sender, RoutedEventArgs e)
         {
-            nameValue.BorderBrush = Brushes.Gray;
-            nameValue.TextAlignment = TextAlignment.Left;
-            nameValue.Text = "";
+            changeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "");
         }
 
         private void NameValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (nameValue.Text == "")
             {
-                nameValue.Text = "Enter name: ";
+                changeTextBox(nameValue, App.yellowBrush, TextAlignment.Left, "Enter name: ");
             }
         }
 
-        private void ManaValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
         private void manaValue_GotFocus(object sender, RoutedEventArgs e)
         {
-            manaValue.BorderBrush = Brushes.Gray;
-            manaValue.TextAlignment = TextAlignment.Left;
-            manaValue.Text = "";
+            changeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "");
         }
 
         private void manaValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (manaValue.Text == "")
             {
-                manaValue.Text = "Enter manacost: ";
+                changeTextBox(manaValue, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
             }
             else
             {
-                Regex reg = new Regex("^([0-9]|10)$");
-                string regCheck = manaValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
+                if (isChars.IsMatch(manaValue.Text))
                 {
-                    manaValue.BorderBrush = Brushes.Red;
-                    manaValue.TextAlignment = TextAlignment.Right;
-                    manaValue.Text = "Mana cost has to be a number between 0-10";
+                    changeTextBox(manaValue, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
+                }
+                else if (Int32.Parse(manaValue.Text) > selectedType.maxManaCost)
+                {
+                    changeTextBox(manaValue, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
                 }
             }
         }
 
-        private void DamageValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
         private void DamageValue_GotFocus(object sender, RoutedEventArgs e)
         {
-            damageValue.BorderBrush = Brushes.Gray;
-            damageValue.TextAlignment = TextAlignment.Left;
-            damageValue.Text = "";
+            changeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "");
         }
         private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (damageValue.Text == "")
             {
-                damageValue.Text = "Enter attack: ";
+                changeTextBox(damageValue, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
             }
             else
             {
-                Regex reg = new Regex("^([1]?[0-9]|2[0-5])$");
-                string regCheck = damageValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
+                if (isChars.IsMatch(damageValue.Text))
                 {
-                    damageValue.BorderBrush = Brushes.Red;
-                    damageValue.TextAlignment = TextAlignment.Right;
-                    damageValue.Text = "Attack cannot exceed 25";
+                    changeTextBox(damageValue, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
+                }
+                else if (Int32.Parse(damageValue.Text) > selectedType.maxDamage)
+                {
+                    changeTextBox(damageValue, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
                 }
             }
         }
-
-        private void HealthValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
         private void HealthValue_GotFocus(object sender, RoutedEventArgs e)
         {
-            healthValue.BorderBrush = Brushes.Gray;
-            healthValue.TextAlignment = TextAlignment.Left;
-            healthValue.Text = "";
+            changeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "");
         }
         private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (healthValue.Text == "")
             {
-                healthValue.Text = "Enter health: ";
+                changeTextBox(healthValue, App.yellowBrush, TextAlignment.Left, "Enter health: ");
             }
             else
             {
-                Regex reg = new Regex("^([1]?[1-9]|2[0-5])$");
-                string regCheck = healthValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
+                if (isChars.IsMatch(healthValue.Text))
                 {
-                    healthValue.BorderBrush = Brushes.Red;
-                    healthValue.TextAlignment = TextAlignment.Right;
-                    healthValue.Text = "Health cannot exceed 25";
+                    changeTextBox(healthValue, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
+                }
+                else if (Int32.Parse(healthValue.Text) > selectedType.maxHealth)
+                {
+                    changeTextBox(healthValue, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
                 }
             }
         }
+
+        private void abilityValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            changeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "");
+        }
+
+        private void abilityValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (abilityValue.Text == "")
+            {
+                changeTextBox(abilityValue, App.yellowBrush, TextAlignment.Left, "Enter card ability:");
+            }
+        }
+
+        private void changeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
+        {
+            tb.BorderBrush = br;
+            tb.TextAlignment = ta;
+            tb.Text = txt;
+        }
+
+
 
         /// <summary>
         /// Need to do some error checking here maybe throw and catch exception to make sure proper files are uploaded. Not only if we managed to open the file explorer.
@@ -201,6 +226,8 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
+
+        //-----------------------------------------------------------------------------------------------
         /// <summary>
         /// All the code for dragging the image inside the portrait frame... Need refactoring.
         /// </summary>
@@ -253,15 +280,37 @@ namespace Eksamen_PG5200_Card_Creator
 
         //-----------------------------------------------------------------------------------------------
 
-       
 
-        //-----------------------------------------------------------------------------------------------
+
+
         /// <summary>
         /// Må forklare  hva som skjer her litt ass. OGså endre varianel navn fordi disse er obviously copy pastet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void saveImage_Click(object sender, RoutedEventArgs e)
+        {
+            Card newCard = new Card()
+            {
+                cardName = nameCard.Text,
+                cardType = cardTypeComboBox.SelectedItem.ToString(),
+                manaCost = manaCard.Text,
+                damage = damageCard.Text,
+                health = healthCard.Text,
+                cardAbility = abilityValue.Text,
+                cardImage = createImageFromCanvas()
+            };
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+            {
+                connection.CreateTable<Card>();
+                connection.Insert(newCard);
+            }
+
+            prepareForNextCard(sender, e);
+        }
+
+        private byte[] createImageFromCanvas()
         {
             byte[] imageBytes;
             Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
@@ -279,22 +328,24 @@ namespace Eksamen_PG5200_Card_Creator
                 imageBytes = ms.ToArray();
             }
 
-            Card newCard = new Card()
-            {
-                cardName = nameCard.Text,
-                cardType = cardTypeComboBox.SelectedItem.ToString(),
-                manaCost = manaCard.Text,
-                damage = damageCard.Text,
-                health = healthCard.Text,
-                cardAbility = abilityValue.Text,
-                cardImage = imageBytes
-            };
+            return imageBytes;
+        }
 
-            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
-            {
-                connection.CreateTable<Card>();
-                connection.Insert(newCard);
-            }
+        private void prepareForNextCard(object sender, RoutedEventArgs e)
+        {
+            NameValue_GotFocus(sender, e);
+            manaValue_GotFocus(sender, e);
+            DamageValue_GotFocus(sender, e);
+            HealthValue_GotFocus(sender, e);
+            abilityValue_GotFocus(sender, e);
+
+            nameCard.Text = "";
+            manaCard.Text = "";
+            damageCard.Text = "";
+            healthCard.Text = "";
+            abilityCard.Text = "";
+            userSelectedImage.Source = null;
+            cardTypeComboBox.SelectedIndex = 6;
         }
 
     }

@@ -40,6 +40,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (typeValue.Text == "")
             {
                 typeValue.Text = "Set new type: ";
+                typeValue.BorderBrush = App.yellowBrush;
             }
 
         }
@@ -55,6 +56,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (manaValue.Text == "")
             {
                 manaValue.Text = "Set max mana: ";
+                manaValue.BorderBrush = App.yellowBrush;
             }
             else
             {
@@ -81,6 +83,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (damageValue.Text == "")
             {
                 damageValue.Text = "Set max damage: ";
+                damageValue.BorderBrush = App.yellowBrush;
             }
             else
             {
@@ -106,6 +109,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (healthValue.Text == "")
             {
                 healthValue.Text = "Set max health: ";
+                healthValue.BorderBrush = App.yellowBrush;
             }
             else
             {
@@ -162,43 +166,12 @@ namespace Eksamen_PG5200_Card_Creator
                 return;
             }
 
-            
-
             using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
             {
                 connection.CreateTable<CardType>();
                 connection.Insert(newType);
             }
         }
-
-        /*
-        private void forTestPurposes_Click(object sender, RoutedEventArgs e)
-        {
-            byte[] imageBytes;
-            MemoryStream inMemoryCopy = new MemoryStream();
-            using (FileStream fs = File.OpenRead("../../Resources/classBaseCards/deathKnightBaseCard.png"))
-            {
-                fs.CopyTo(inMemoryCopy);
-                imageBytes = inMemoryCopy.ToArray();
-            }
-
-
-            CardType newType = new CardType()
-            {
-                cardType = "Death Knight",
-                maxManaCost = 10,
-                maxDamage = 25,
-                maxHealth = 15,
-                typeImage = imageBytes
-            };
-
-            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
-            {
-                connection.CreateTable<CardType>();
-                connection.Insert(newType);
-            }
-        }
-        */
     }
 
 }

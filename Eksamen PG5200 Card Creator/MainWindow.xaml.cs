@@ -31,7 +31,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         void ReadDatabase()
         {
-            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.cardsDatabasePath))
+            using (SQLiteConnection conn = new SQLiteConnection(App.cardsDatabasePath))
             {
                 conn.CreateTable<Card>();
                 cards = (conn.Table<Card>().ToList()).OrderBy(c => c.cardName).ToList();

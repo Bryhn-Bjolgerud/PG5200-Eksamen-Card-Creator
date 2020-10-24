@@ -4,18 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/hearthstoneLogo.ico">
+        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/windowLogo.ico"  Background="#3eb6fc">
     <Grid>
+        <Image Source="Resources/hearthstoneLogo.png" Margin="25,264,575,3"></Image>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="Gray"/>
-            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="ManaValue_TextChanged" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="Gray"/>
-            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="DamageValue_TextChanged" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="Gray"/>
-            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="HealthValue_TextChanged" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="Gray"/>
-            <TextBox x:Name="abilityValue" Text="Enter card flavor text: " Height="50"  Margin="5, 5, 5, 5" BorderThickness="5" BorderBrush="Gray"/>
+            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="abilityValue" Text="Enter card ability: " Height="50"  Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="abilityValue_GotFocus" LostFocus="abilityValue_LostFocus" BorderBrush="#f5cf5e"/>
 
-            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click">Apply to card</Button>
-            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload portrait for card</Button>
-            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click">Save card</Button>
+            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click" Background="#f5cf5e">Apply to card</Button>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click" Background="#f5cf5e">Upload portrait for card</Button>
+            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click" Background="#f5cf5e">Save card</Button>
            
         </StackPanel>
 
@@ -30,7 +31,7 @@
                 </Grid>
             </Border>
             <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="-40,-15,-40,-15"/>
-            <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5"></TextBlock>
             <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"></TextBlock>
             <TextBlock x:Name="manaCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2" Canvas.Left="24" Canvas.Top="27" Width="96" Height="91"></TextBlock>
             <TextBlock x:Name="damageCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center"  RenderTransformOrigin="0.5,0.5" Canvas.Left="32" Canvas.Top="555" Width="91" Height="73"></TextBlock>
