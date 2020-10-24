@@ -10,7 +10,14 @@
         
         <Image Source="Resources/hearthstoneLogo.png" Margin="25,186,575,81"></Image>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+            
+=======
+<<<<<<< HEAD
+>>>>>>> 0e4d18e45895cb5c65fd67758dea75eb6a215b62
             <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="typeValue_GotFocus" LostFocus="typeValue_LostFocus" BorderBrush="#f5cf5e" ></TextBox>
             <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="#f5cf5e" ></TextBox>
             <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="damageValue_GotFocus" LostFocus="damageValue_LostFocus" BorderBrush="#f5cf5e" ></TextBox>
@@ -20,9 +27,25 @@
             <!--
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click" Content="Upload image for type"/>
             <Button x:Name="createType" Margin="5, 5, 5, 5" Click="createType_Click" Content="Create new type"/>
+<<<<<<< HEAD
             -->
            
 
+=======
+=======
+>>>>>>> 819df16723000861c1d51cc526a61ce3b4a54901
+            <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="typeValue_GotFocus" LostFocus="typeValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="damageValue_GotFocus" LostFocus="damageValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <TextBox x:Name="healthValue" Text="Set max health: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="healthValue_GotFocus" LostFocus="healthValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click"> Choose new type art</Button>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9e3d1c100fb5a61d102c87c3a8e79044c36e4f2d
+>>>>>>> 3eb8ce74ddb18a101b56a86f690f398895ac15c0
+>>>>>>> 819df16723000861c1d51cc526a61ce3b4a54901
+>>>>>>> 0e4d18e45895cb5c65fd67758dea75eb6a215b62
         </StackPanel>
 
         <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">
