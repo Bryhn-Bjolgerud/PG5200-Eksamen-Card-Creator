@@ -16,5 +16,8 @@ namespace Eksamen_PG5200_Card_Creator
         static string cardsDatabaseName = "Cards.db";
         static string cardsFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public static string cardsDatabasePath = System.IO.Path.Combine(cardsFolderPath, cardsDatabaseName);
+ 
+
+        public static string cardTypesDatabasePath = "../../Resources/CardsType.db";
     }
 }

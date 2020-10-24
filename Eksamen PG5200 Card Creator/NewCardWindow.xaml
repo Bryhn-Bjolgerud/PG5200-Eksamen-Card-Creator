@@ -45,7 +45,7 @@
                     <Image x:Name="userSelectedImage"/>
                 </Grid>
             </Border>
-            <Image x:Name="cardDisplay"  Width="550" Height="700" Source="Resources/classBaseCards/neutralBaseCard.png" Margin="-40,-15,-40,-15"/>
+            <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="-40,-15,-40,-15"/>
             <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5"/>
             <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"></TextBlock>
             <TextBlock x:Name="manaCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2" Canvas.Left="24" Canvas.Top="27" Width="96" Height="91"></TextBlock>

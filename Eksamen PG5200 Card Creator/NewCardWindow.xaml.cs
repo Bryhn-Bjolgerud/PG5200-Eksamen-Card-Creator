@@ -29,13 +29,14 @@ namespace Eksamen_PG5200_Card_Creator
         {
             InitializeComponent();
 
-            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
             {
                 connection.CreateTable<CardType>();
                 cardTypes = connection.Table<CardType>().ToList();
                 foreach(CardType ct in cardTypes)
                 {
                     cardTypeComboBox.Items.Add(ct.cardType);
+                    Console.WriteLine("kreft");
                 }
             }
         }
