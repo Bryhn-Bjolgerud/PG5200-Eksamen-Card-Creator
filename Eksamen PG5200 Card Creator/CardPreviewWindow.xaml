@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
         mc:Ignorable="d"
-        Title="CardPreviewWindow" Height="450" Width="300"  ResizeMode="NoResize">
+        Title="CardPreviewWindow" Height="450" Width="300"  ResizeMode="NoResize" Icon="/Resources/Hearthstone.ico">
     <Grid>
         <Image x:Name="cardImage" Width="900" Margin="-304,-185,-304,-184"/>
         <Button x:Name="deleteCardButton" Height="40" Width="75" Margin="30,347,164,24" Background="#FFB43B3B" Foreground="White" FontFamily="Yu Gothic" FontSize="10" FontWeight="Bold" Click="deleteCardButton_Click">Delete card</Button>

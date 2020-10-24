@@ -31,6 +31,7 @@ namespace Eksamen_PG5200_Card_Creator
 
             using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
             {
+                connection.CreateTable<CardType>();
                 cardTypes = connection.Table<CardType>().ToList();
                 foreach(CardType ct in cardTypes)
                 {

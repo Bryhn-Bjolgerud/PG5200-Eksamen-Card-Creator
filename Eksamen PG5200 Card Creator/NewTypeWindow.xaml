@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eksamen_PG5200_Card_Creator"
         mc:Ignorable="d"
-        Title="NewTypeWindow" Height="850" Width="1200" ResizeMode="NoResize">
+        Title="NewTypeWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/Hearthstone.ico">
     <Grid>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
             <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="typeValue_GotFocus" LostFocus="typeValue_LostFocus"  BorderBrush="Gray" ></TextBox>
-            <TextBox x:Name="damageValue" Text="Enter max damage: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="damageValue_GotFocus" LostFocus="damageValue_LostFocus"  BorderBrush="Gray" ></TextBox>
-            <TextBox x:Name="healthValue" Text="Set max health for new type, default is 25:" Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="healthValue_GotFocus" LostFocus="healthValue_LostFocus"  BorderBrush="Gray" ></TextBox>
-            <TextBox x:Name="manaValue" Text="Set max mana for new type, default is 10: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="Gray" ></TextBox>
-            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click">Upload new type</Button>
+            <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="damageValue_GotFocus" LostFocus="damageValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <TextBox x:Name="healthValue" Text="Set max health: " Margin="5, 5, 5, 5" BorderThickness="5" GotFocus="healthValue_GotFocus" LostFocus="healthValue_LostFocus"  BorderBrush="Gray" ></TextBox>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click"> Choose new type art</Button>
         </StackPanel>
 
         <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">

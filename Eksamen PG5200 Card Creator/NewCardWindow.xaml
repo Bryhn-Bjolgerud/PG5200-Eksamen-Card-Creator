@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize">
+        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/Hearthstone.ico">
     <Grid>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
             <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="5" TextChanged="NameValue_TextChanged" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="Gray" >
