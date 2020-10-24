@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Hearthstone.ico" />
+    <Resource Include="Resources\hearthstoneLogo.ico" />
     <Content Include="Resources\hearthstoneLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
