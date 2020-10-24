@@ -166,8 +166,7 @@
     <Folder Include="packages\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Hearthstone.ico" />
-    <Resource Include="Resources\hearthstoneLogo.ico" />
+    <Resource Include="Resources\windowLogo.ico" />
     <Content Include="Resources\hearthstoneLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

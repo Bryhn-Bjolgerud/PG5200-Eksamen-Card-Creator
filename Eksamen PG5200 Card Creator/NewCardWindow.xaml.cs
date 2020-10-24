@@ -42,8 +42,6 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void makeCard_Click(object sender, RoutedEventArgs e)
         {
-            abilityCard.Text = abilityValue.Text;
-
             if (manaValue.Text == "Mana cost has to be a number between 0-10" || manaValue.Text == "Enter mana: " || damageValue.Text == "Damage cannot exceed 25" || damageValue.Text == "Enter attack: " || nameValue.Text == "Enter name: " || healthValue.Text == "Health cannot exceed 25" || healthValue.Text == "Enter health: ")
             {
                 MessageBox.Show("Before you can make card, please make sure you entered a valid input in all the boxes above!");
@@ -54,6 +52,7 @@ namespace Eksamen_PG5200_Card_Creator
                 manaCard.Text = manaValue.Text;
                 damageCard.Text = damageValue.Text;
                 healthCard.Text = healthValue.Text;
+                abilityCard.Text = abilityValue.Text;
             }
         }
 
@@ -75,11 +74,6 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void NameValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-        
         private void NameValue_GotFocus(object sender, RoutedEventArgs e)
         {
             nameValue.BorderBrush = Brushes.Gray;
@@ -92,13 +86,10 @@ namespace Eksamen_PG5200_Card_Creator
             if (nameValue.Text == "")
             {
                 nameValue.Text = "Enter name: ";
+                nameValue.BorderBrush = App.yellowBrush;
             }
         }
 
-        private void ManaValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
         private void manaValue_GotFocus(object sender, RoutedEventArgs e)
         {
             manaValue.BorderBrush = Brushes.Gray;
@@ -111,6 +102,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (manaValue.Text == "")
             {
                 manaValue.Text = "Enter manacost: ";
+                manaValue.BorderBrush = App.yellowBrush;
             }
             else
             {
@@ -125,10 +117,6 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void DamageValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
         private void DamageValue_GotFocus(object sender, RoutedEventArgs e)
         {
             damageValue.BorderBrush = Brushes.Gray;
@@ -140,6 +128,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (damageValue.Text == "")
             {
                 damageValue.Text = "Enter attack: ";
+                damageValue.BorderBrush = App.yellowBrush;
             }
             else
             {
@@ -153,11 +142,6 @@ namespace Eksamen_PG5200_Card_Creator
                 }
             }
         }
-
-        private void HealthValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
         private void HealthValue_GotFocus(object sender, RoutedEventArgs e)
         {
             healthValue.BorderBrush = Brushes.Gray;
@@ -169,6 +153,7 @@ namespace Eksamen_PG5200_Card_Creator
             if (healthValue.Text == "")
             {
                 healthValue.Text = "Enter health: ";
+                healthValue.BorderBrush = App.yellowBrush;
             }
             else
             {
@@ -180,6 +165,22 @@ namespace Eksamen_PG5200_Card_Creator
                     healthValue.TextAlignment = TextAlignment.Right;
                     healthValue.Text = "Health cannot exceed 25";
                 }
+            }
+        }
+        
+        private void abilityValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            abilityValue.BorderBrush = Brushes.Gray;
+            abilityValue.TextAlignment = TextAlignment.Left;
+            abilityValue.Text = "";
+        }
+        
+        private void abilityValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (abilityValue.Text == "")
+            {
+                abilityValue.BorderBrush = App.yellowBrush;
+                abilityValue.Text = "Enter card ability: ";
             }
         }
 
