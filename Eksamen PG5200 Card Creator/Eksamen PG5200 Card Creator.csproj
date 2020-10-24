@@ -157,7 +157,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\CardsType.db" />
+    <None Include="Resources\CardTypes.db" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

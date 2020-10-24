@@ -36,7 +36,6 @@ namespace Eksamen_PG5200_Card_Creator
                 foreach(CardType ct in cardTypes)
                 {
                     cardTypeComboBox.Items.Add(ct.cardType);
-                    Console.WriteLine("kreft");
                 }
             }
         }
@@ -264,6 +263,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// <param name="e"></param>
         private void saveImage_Click(object sender, RoutedEventArgs e)
         {
+            byte[] imageBytes;
             Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 60, 70, PixelFormats.Default);
             rtb.Render(canvas);
@@ -273,15 +273,11 @@ namespace Eksamen_PG5200_Card_Creator
             pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
 
             //save to memory stream
-            MemoryStream ms = new MemoryStream();
-            pngEncoder.Save(ms);
-            ms.Close();
-
-            //convert to png and base64 string
-            byte[] imageBytes = ms.ToArray();
-
-            //Usikker på om vi kommer til å trenge denne. Du skal jo egentlig ikke lagre bildet i filsystemet, men i databasen. 
-            //File.WriteAllBytes("../../Resources/logo.png", imageBytes);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                pngEncoder.Save(ms);
+                imageBytes = ms.ToArray();
+            }
 
             Card newCard = new Card()
             {

@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Eksamen_PG5200_Card_Creator.Classes;
+using SQLite;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -126,6 +130,73 @@ namespace Eksamen_PG5200_Card_Creator
                 userSelectedImage.Source = new BitmapImage(new Uri(openFilePrompt.FileName, UriKind.Absolute));
             }
         }
+
+        private void createType_Click(object sender, RoutedEventArgs e)
+        {
+            CardType newType = new CardType();
+            byte[] imageBytes;
+            BitmapEncoder pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
+
+            if (pngEncoder.Frames != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    pngEncoder.Save(ms);
+                    imageBytes = ms.ToArray();
+                }
+
+                newType = new CardType()
+                {
+                    cardType = typeValue.Text,
+                    maxManaCost = Int32.Parse(manaValue.Text),
+                    maxDamage = Int32.Parse(damageValue.Text),
+                    maxHealth = Int32.Parse(healthValue.Text),
+                    typeImage = imageBytes
+                };
+            } else
+            {
+                MessageBox.Show("You have not selected an image for your type!");
+                return;
+            }
+
+            
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
+            {
+                connection.CreateTable<CardType>();
+                connection.Insert(newType);
+            }
+        }
+
+        /*
+        private void forTestPurposes_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] imageBytes;
+            MemoryStream inMemoryCopy = new MemoryStream();
+            using (FileStream fs = File.OpenRead("../../Resources/classBaseCards/deathKnightBaseCard.png"))
+            {
+                fs.CopyTo(inMemoryCopy);
+                imageBytes = inMemoryCopy.ToArray();
+            }
+
+
+            CardType newType = new CardType()
+            {
+                cardType = "Death Knight",
+                maxManaCost = 10,
+                maxDamage = 25,
+                maxHealth = 15,
+                typeImage = imageBytes
+            };
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+            {
+                connection.CreateTable<CardType>();
+                connection.Insert(newType);
+            }
+        }
+        */
     }
 
 }
