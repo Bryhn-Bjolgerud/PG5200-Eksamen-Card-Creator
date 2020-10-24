@@ -39,21 +39,48 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (typeValue.Text == "")
             {
-                typeValue.Text = "Enter new type: ";
+                typeValue.Text = "Set new type: ";
             }
 
         }
+        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
+        {
+            manaValue.BorderBrush = Brushes.Gray;
+            manaValue.TextAlignment = TextAlignment.Left;
+            manaValue.Text = "";
+        }
+
+        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (manaValue.Text == "")
+            {
+                manaValue.Text = "Set max mana: ";
+            }
+            else
+            {
+                Regex reg = new Regex("^([0-9]|10)$");
+                string regCheck = manaValue.Text.ToString();
+                if (!reg.IsMatch(regCheck))
+                {
+                    manaValue.BorderBrush = Brushes.Red;
+                    manaValue.TextAlignment = TextAlignment.Right;
+                    manaValue.Text = "You must set max mana for your type";
+                }
+            }
+        }
+
         private void damageValue_GotFocus(object sender, RoutedEventArgs e)
         {
             damageValue.BorderBrush = Brushes.Gray;
             damageValue.TextAlignment = TextAlignment.Left;
             damageValue.Text = "";
         }
+
         private void damageValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (damageValue.Text == "")
             {
-                damageValue.Text = "Enter max damage: ";
+                damageValue.Text = "Set max damage: ";
             }
             else
             {
@@ -63,7 +90,7 @@ namespace Eksamen_PG5200_Card_Creator
                 {
                     damageValue.BorderBrush = Brushes.Red;
                     damageValue.TextAlignment = TextAlignment.Right;
-                    damageValue.Text = "Max damage by default is 10";
+                    damageValue.Text = "You must set max damage for your type";
                 }
             }
         }
@@ -78,7 +105,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (healthValue.Text == "")
             {
-                healthValue.Text = "Set max health for new type, default is 25: ";
+                healthValue.Text = "Set max health: ";
             }
             else
             {
@@ -88,32 +115,7 @@ namespace Eksamen_PG5200_Card_Creator
                 {
                     healthValue.BorderBrush = Brushes.Red;
                     healthValue.TextAlignment = TextAlignment.Right;
-                    healthValue.Text = "";
-                }
-            }
-        }
-        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            manaValue.BorderBrush = Brushes.Gray;
-            manaValue.TextAlignment = TextAlignment.Left;
-            manaValue.Text = "";
-        }
-
-        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (manaValue.Text == "")
-            {
-                manaValue.Text = "Set max mana for new type, default is 10: ";
-            }
-            else
-            {
-                Regex reg = new Regex("^([0-9]|10)$");
-                string regCheck = manaValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
-                {
-                    manaValue.BorderBrush = Brushes.Red;
-                    manaValue.TextAlignment = TextAlignment.Right;
-                    manaValue.Text = "Mana cost has to be a number between 0-10";
+                    healthValue.Text = "You must set max health for your type";
                 }
             }
         }

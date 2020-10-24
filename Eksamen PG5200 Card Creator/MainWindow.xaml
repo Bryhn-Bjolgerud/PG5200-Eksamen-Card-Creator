@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:Eksamen_PG5200_Card_Creator.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize">
+        Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/Hearthstone.ico">
     <Grid>
 
         <Image Source="Resources/hearthstoneLogo.png" Margin="479,10,477,651"></Image>
