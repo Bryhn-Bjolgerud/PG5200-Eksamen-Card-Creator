@@ -63,7 +63,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void resetTextbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            changeTextBox(e, Brushes.Gray, TextAlignment.Left, "");
+            changeTextBox(e, Brushes.Green, TextAlignment.Left, "");
         }
 
         private void typeValue_LostFocus(object sender, RoutedEventArgs e)
