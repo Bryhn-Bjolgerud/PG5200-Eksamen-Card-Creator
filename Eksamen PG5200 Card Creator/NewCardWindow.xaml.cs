@@ -28,8 +28,6 @@ namespace Eksamen_PG5200_Card_Creator
         CardType selectedType;
         List<TextBox> cardValueTextboxes = new List<TextBox>();
 
-        private Regex isChars = new Regex("^[a-zA-Z0-9]*$");
-
         public NewCardWindow()
         {
             InitializeComponent();
@@ -44,9 +42,11 @@ namespace Eksamen_PG5200_Card_Creator
                 }
             }
 
+            cardValueTextboxes.Add(nameValue);
             cardValueTextboxes.Add(manaValue);
             cardValueTextboxes.Add(damageValue);
             cardValueTextboxes.Add(healthValue);
+            cardValueTextboxes.Add(abilityValue);
 
             cardTypeComboBox.SelectedIndex = 6;
         }
@@ -57,15 +57,21 @@ namespace Eksamen_PG5200_Card_Creator
 
             foreach (TextBox tb in cardValueTextboxes)
             {
-                if (tb.Text.Length > 2)
+                if (tb == nameValue && nameValue.Text == "Enter name: ")
                 {
                     cardReady = false;
                 }
-            }
-
-            if (nameValue.Text == "Enter name: ")
-            {
-                cardReady = false;
+                else if (tb == abilityValue && abilityValue.Text == "Enter card ability: ")
+                {
+                    cardReady = false;
+                }
+                else
+                {
+                    if (tb.Text.Length > 2)
+                    {
+                        cardReady = false;
+                    }
+                }
             }
             return cardReady;
         }
@@ -103,102 +109,6 @@ namespace Eksamen_PG5200_Card_Creator
                 cardDisplay.Source = cardDisplaySrc;
             }
         }
-
-        private void NameValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            changeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "");
-        }
-
-        private void NameValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (nameValue.Text == "")
-            {
-                changeTextBox(nameValue, App.yellowBrush, TextAlignment.Left, "Enter name: ");
-            }
-        }
-
-        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            changeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "");
-        }
-
-        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (manaValue.Text == "")
-            {
-                changeTextBox(manaValue, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
-            }
-            else
-            {
-                if (isChars.IsMatch(manaValue.Text))
-                {
-                    changeTextBox(manaValue, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
-                }
-                else if (Int32.Parse(manaValue.Text) > selectedType.maxManaCost)
-                {
-                    changeTextBox(manaValue, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
-                }
-            }
-        }
-
-        private void DamageValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            changeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "");
-        }
-        private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (damageValue.Text == "")
-            {
-                changeTextBox(damageValue, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
-            }
-            else
-            {
-                if (isChars.IsMatch(damageValue.Text))
-                {
-                    changeTextBox(damageValue, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
-                }
-                else if (Int32.Parse(damageValue.Text) > selectedType.maxDamage)
-                {
-                    changeTextBox(damageValue, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
-                }
-            }
-        }
-        private void HealthValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            changeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "");
-        }
-        private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (healthValue.Text == "")
-            {
-                changeTextBox(healthValue, App.yellowBrush, TextAlignment.Left, "Enter health: ");
-            }
-            else
-            {
-                if (isChars.IsMatch(healthValue.Text))
-                {
-                    changeTextBox(healthValue, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
-                }
-                else if (Int32.Parse(healthValue.Text) > selectedType.maxHealth)
-                {
-                    changeTextBox(healthValue, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
-                }
-            }
-        }
-
-        private void abilityValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            changeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "");
-        }
-
-        private void abilityValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (abilityValue.Text == "")
-            {
-                changeTextBox(abilityValue, App.yellowBrush, TextAlignment.Left, "Enter card ability:");
-            }
-        }
-
         private void changeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
         {
             tb.BorderBrush = br;
@@ -206,6 +116,83 @@ namespace Eksamen_PG5200_Card_Creator
             tb.Text = txt;
         }
 
+        private void resetTextbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            changeTextBox(e.Source as TextBox, Brushes.Gray, TextAlignment.Left, "");
+        }
+
+        private void NameValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (nameValue.Text == "")
+            {
+                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter name: ");
+            }
+        }
+
+        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (manaValue.Text == "")
+            {
+                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
+            }
+            else
+            {
+                if (!App.isChars.IsMatch(manaValue.Text))
+                {
+                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
+                }
+                else if (Int32.Parse(manaValue.Text) > selectedType.maxManaCost)
+                {
+                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
+                }
+            }
+        }
+
+        private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (damageValue.Text == "")
+            {
+                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
+            }
+            else
+            {
+                if (!App.isChars.IsMatch(damageValue.Text))
+                {
+                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
+                }
+                else if (Int32.Parse(damageValue.Text) > selectedType.maxDamage)
+                {
+                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
+                }
+            }
+        }
+
+        private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (healthValue.Text == "")
+            {
+                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter health: ");
+            }
+            else
+            {
+                if (!App.isChars.IsMatch(healthValue.Text))
+                {
+                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
+                }
+                else if (Int32.Parse(healthValue.Text) > selectedType.maxHealth)
+                {
+                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
+                }
+            }
+        }
+
+        private void abilityValue_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (abilityValue.Text == "")
+            {
+                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter card ability: ");
+            }
+        }
 
 
         /// <summary>
@@ -278,10 +265,8 @@ namespace Eksamen_PG5200_Card_Creator
             _isMoving = false;
         }
 
+
         //-----------------------------------------------------------------------------------------------
-
-
-
 
         /// <summary>
         /// Må forklare  hva som skjer her litt ass. OGså endre varianel navn fordi disse er obviously copy pastet
@@ -307,7 +292,7 @@ namespace Eksamen_PG5200_Card_Creator
                 connection.Insert(newCard);
             }
 
-            prepareForNextCard(sender, e);
+            prepareForNextCard();
         }
 
         private byte[] createImageFromCanvas()
@@ -331,13 +316,12 @@ namespace Eksamen_PG5200_Card_Creator
             return imageBytes;
         }
 
-        private void prepareForNextCard(object sender, RoutedEventArgs e)
+        private void prepareForNextCard()
         {
-            NameValue_GotFocus(sender, e);
-            manaValue_GotFocus(sender, e);
-            DamageValue_GotFocus(sender, e);
-            HealthValue_GotFocus(sender, e);
-            abilityValue_GotFocus(sender, e);
+            foreach(TextBox tb in cardValueTextboxes)
+            {
+                changeTextBox(tb, Brushes.Gray, TextAlignment.Left, "");
+            }
 
             nameCard.Text = "";
             manaCard.Text = "";
@@ -347,6 +331,5 @@ namespace Eksamen_PG5200_Card_Creator
             userSelectedImage.Source = null;
             cardTypeComboBox.SelectedIndex = 6;
         }
-
     }
 }

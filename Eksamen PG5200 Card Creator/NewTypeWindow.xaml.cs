@@ -24,102 +24,97 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class NewTypeWindow : Window
     {
+        List<TextBox> cardValueTextboxes = new List<TextBox>();
         public NewTypeWindow()
         {
             InitializeComponent();
+            cardValueTextboxes.Add(manaValue);
+            cardValueTextboxes.Add(damageValue);
+            cardValueTextboxes.Add(healthValue);
         }
 
-        private void typeValue_GotFocus(object sender, RoutedEventArgs e)
+        private bool isTypeReady()
         {
-            typeValue.BorderBrush = Brushes.Gray;
-            typeValue.TextAlignment = TextAlignment.Left;
-            typeValue.Text = "";
+            bool cardReady = true;
+
+            foreach (TextBox tb in cardValueTextboxes)
+            {
+                if (tb.Text.Length > 2)
+                {
+                    cardReady = false;
+                }
+            }
+
+            if (typeValue.Text == "Set type name: ")
+            {
+                cardReady = false;
+            }
+            return cardReady;
         }
+
+
+        private void changeTextBox(RoutedEventArgs e, Brush br, TextAlignment ta, string txt)
+        {
+            TextBox tb = e.Source as TextBox;
+            tb.BorderBrush = br;
+            tb.TextAlignment = ta;
+            tb.Text = txt;
+        }
+
+        private void resetTextbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            changeTextBox(e, Brushes.Gray, TextAlignment.Left, "");
+        }
+
         private void typeValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (typeValue.Text == "")
             {
-                typeValue.Text = "Set new type: ";
-                typeValue.BorderBrush = App.yellowBrush;
+                changeTextBox(e, App.yellowBrush, TextAlignment.Left, "Set type name: ");
             }
-
-        }
-        private void manaValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            manaValue.BorderBrush = Brushes.Gray;
-            manaValue.TextAlignment = TextAlignment.Left;
-            manaValue.Text = "";
         }
 
         private void manaValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (manaValue.Text == "")
             {
-                manaValue.Text = "Set max mana: ";
-                manaValue.BorderBrush = App.yellowBrush;
+                changeTextBox(e, App.yellowBrush, TextAlignment.Left, "Set max manacost: ");
             }
             else
             {
-                Regex reg = new Regex("^([0-9]|10)$");
-                string regCheck = manaValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
+                if (!App.isChars.IsMatch(manaValue.Text))
                 {
-                    manaValue.BorderBrush = Brushes.Red;
-                    manaValue.TextAlignment = TextAlignment.Right;
-                    manaValue.Text = "You must set max mana for your type";
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max manacost must be a number!");
                 }
             }
-        }
-
-        private void damageValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            damageValue.BorderBrush = Brushes.Gray;
-            damageValue.TextAlignment = TextAlignment.Left;
-            damageValue.Text = "";
         }
 
         private void damageValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (damageValue.Text == "")
             {
-                damageValue.Text = "Set max damage: ";
-                damageValue.BorderBrush = App.yellowBrush;
+                changeTextBox(e, App.yellowBrush, TextAlignment.Left, "Set max damage: ");
             }
             else
             {
-                Regex reg = new Regex("^([0-9])$");
-                string regCheck = damageValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
+                if (!App.isChars.IsMatch(damageValue.Text))
                 {
-                    damageValue.BorderBrush = Brushes.Red;
-                    damageValue.TextAlignment = TextAlignment.Right;
-                    damageValue.Text = "You must set max damage for your type";
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max damage must be a number!");
                 }
             }
         }
 
-        private void healthValue_GotFocus(object sender, RoutedEventArgs e)
-        {
-            healthValue.BorderBrush = Brushes.Gray;
-            healthValue.TextAlignment = TextAlignment.Left;
-            healthValue.Text = "";
-        }
         private void healthValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (healthValue.Text == "")
             {
-                healthValue.Text = "Set max health: ";
-                healthValue.BorderBrush = App.yellowBrush;
+                changeTextBox(e, App.yellowBrush, TextAlignment.Left, "Set max health: ");
             }
             else
             {
-                Regex reg = new Regex("^([0-9]|10)$");
-                string regCheck = healthValue.Text.ToString();
-                if (!reg.IsMatch(regCheck))
+                if (!App.isChars.IsMatch(healthValue.Text))
                 {
-                    healthValue.BorderBrush = Brushes.Red;
-                    healthValue.TextAlignment = TextAlignment.Right;
-                    healthValue.Text = "You must set max health for your type";
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max health must be a number!");
                 }
             }
         }
@@ -142,36 +137,42 @@ namespace Eksamen_PG5200_Card_Creator
             CardType newType = new CardType();
             byte[] imageBytes;
             BitmapEncoder pngEncoder = new PngBitmapEncoder();
-            pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
-
-            if (pngEncoder.Frames != null)
+            if (userSelectedImage.Source != null)
             {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    pngEncoder.Save(ms);
-                    imageBytes = ms.ToArray();
-                }
+                pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
 
-                newType = new CardType()
+                if (isTypeReady())
                 {
-                    cardType = typeValue.Text,
-                    maxManaCost = Int32.Parse(manaValue.Text),
-                    maxDamage = Int32.Parse(damageValue.Text),
-                    maxHealth = Int32.Parse(healthValue.Text),
-                    typeImage = imageBytes
-                };
-            } else
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pngEncoder.Save(ms);
+                        imageBytes = ms.ToArray();
+                    }
+
+                    newType = new CardType()
+                    {
+                        cardType = typeValue.Text,
+                        maxManaCost = Int32.Parse(manaValue.Text),
+                        maxDamage = Int32.Parse(damageValue.Text),
+                        maxHealth = Int32.Parse(healthValue.Text),
+                        typeImage = imageBytes
+                    };
+
+                    using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
+                    {
+                        connection.CreateTable<CardType>();
+                        connection.Insert(newType);
+                    }
+                    Close();
+                }
+                MessageBox.Show("You chosen invalid values for the type parameters!");
+                return;
+            }
+            else
             {
                 MessageBox.Show("You have not selected an image for your type!");
                 return;
             }
-
-            using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
-            {
-                connection.CreateTable<CardType>();
-                connection.Insert(newType);
-            }
         }
     }
-
 }

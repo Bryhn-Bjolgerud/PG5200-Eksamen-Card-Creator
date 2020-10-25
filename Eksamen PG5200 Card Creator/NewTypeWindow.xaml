@@ -10,10 +10,10 @@
         
         <Image Source="Resources/hearthstoneLogo.png" Margin="25,186,575,81"></Image>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="typeValue_GotFocus" LostFocus="typeValue_LostFocus" BorderBrush="#f5cf5e" ></TextBox>
-            <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="#f5cf5e" ></TextBox>
-            <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="damageValue_GotFocus" LostFocus="damageValue_LostFocus" BorderBrush="#f5cf5e" ></TextBox>
-            <TextBox x:Name="healthValue" Text="Set max health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="healthValue_GotFocus" LostFocus="healthValue_LostFocus" BorderBrush="#f5cf5e"></TextBox>
+            <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="typeValue_LostFocus" BorderBrush="#f5cf5e" ></TextBox>
+            <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="#f5cf5e" ></TextBox>
+            <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="damageValue_LostFocus" BorderBrush="#f5cf5e" ></TextBox>
+            <TextBox x:Name="healthValue" Text="Set max health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="healthValue_LostFocus" BorderBrush="#f5cf5e"></TextBox>
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click" Background="#f5cf5e"> Choose new type art</Button>
             <Button x:Name="createType" Margin="5, 5, 5, 5" Click="createType_Click" Content="Create new type"/>
         </StackPanel>

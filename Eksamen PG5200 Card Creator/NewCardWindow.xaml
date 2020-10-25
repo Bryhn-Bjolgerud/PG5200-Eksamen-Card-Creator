@@ -8,11 +8,11 @@
     <Grid>
         <Image Source="Resources/hearthstoneLogo.png" Margin="25,264,575,3"></Image>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="NameValue_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="manaValue_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="DamageValue_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="HealthValue_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="abilityValue" Text="Enter card ability: " Height="50"  Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="abilityValue_GotFocus" LostFocus="abilityValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="abilityValue" Text="Enter card ability: " Height="50"  Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="abilityValue_LostFocus" BorderBrush="#f5cf5e"/>
 
             <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click" Background="#f5cf5e">Apply to card</Button>
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click" Background="#f5cf5e">Upload portrait for card</Button>
