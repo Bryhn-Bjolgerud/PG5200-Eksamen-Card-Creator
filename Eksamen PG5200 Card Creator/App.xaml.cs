@@ -23,6 +23,6 @@ namespace Eksamen_PG5200_Card_Creator
 
         public static string cardTypesDatabasePath = "../../Resources/CardTypes.db";
         public static SolidColorBrush yellowBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#f5cf5e");
-        public static Regex isChars = new Regex("^[0-9]*$");
+        public static Regex isNumbers = new Regex("^[0-9]*$");
     }
 }

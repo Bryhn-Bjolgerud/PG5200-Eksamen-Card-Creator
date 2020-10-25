@@ -8,12 +8,12 @@
         Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/windowLogo.ico" Background="#d4b368">
     <Grid>
 
-        <Image Source="Resources/hearthstoneLogo.png" Margin="479,10,477,651"></Image>
+        <Image Source="Resources/hearthstoneLogo.png" Margin="479,10,477,651"/>
         <Button x:Name="createNewCard" Margin="421,173,659,617" Click="createNewCard_Click" Content="Create new card" Background="#f5cf5e"/>
         <Button x:Name="importImage" Margin="540,173,540,617" Click="importImage_Click" Content="Import card" Background="#f5cf5e"/>
         <Button x:Name="createNewType" Margin="659,173,421,617"  Click="createNewType_Click" Content="Create new type" Background="#f5cf5e"/>
         
-        <TextBox x:Name="searchBox" Margin="478,215,478,570" BorderThickness="2.5" BorderBrush="Gray" TextChanged="searchBox_TextChanged"/>
+        <TextBox x:Name="searchBox" Margin="478,215,478,576" BorderThickness="2.5" BorderBrush="Gray" TextChanged="searchBox_TextChanged"/>
         <ListView x:Name="cardsListView"  Margin="302,268,302,10" Background="#3eb6fc" SelectionChanged="cardsListView_SelectionChanged" RenderTransformOrigin="0.646,0.456">
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -6,18 +6,18 @@
         mc:Ignorable="d"
         Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/windowLogo.ico"  Background="#3eb6fc">
     <Grid>
-        <Image Source="Resources/hearthstoneLogo.png" Margin="25,264,575,3"></Image>
+        <Image Source="Resources/hearthstoneLogo.png" Margin="25,264,575,3"/>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="manaValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="abilityValue" Text="Enter card ability: " Height="50"  Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="abilityValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="NameValue_LostFocus"  BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ManaValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="abilityValue" Text="Enter card ability: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="AbilityValue_LostFocus" BorderBrush="#f5cf5e"/>
 
-            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="makeCard_Click" Background="#f5cf5e">Apply to card</Button>
-            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click" Background="#f5cf5e">Upload portrait for card</Button>
-            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="saveImage_Click" Background="#f5cf5e">Save card</Button>
-           
+            <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="MakeCard_Click" Background="#f5cf5e" Content="Apply to card"/>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="UploadImage_Click" Background="#f5cf5e" Content="Upload portrait for card"/>
+            <Button x:Name="saveImage" Margin="5, 5, 5, 5" Click="SaveImage_Click" Content="Save card"/>
+
         </StackPanel>
 
         <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">
@@ -31,11 +31,11 @@
                 </Grid>
             </Border>
             <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="-40,-15,-40,-15"/>
-            <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5"></TextBlock>
-            <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"></TextBlock>
-            <TextBlock x:Name="manaCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2" Canvas.Left="24" Canvas.Top="27" Width="96" Height="91"></TextBlock>
-            <TextBlock x:Name="damageCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center"  RenderTransformOrigin="0.5,0.5" Canvas.Left="32" Canvas.Top="555" Width="91" Height="73"></TextBlock>
-            <TextBlock x:Name="healthCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold"  Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093" Canvas.Left="380" Canvas.Top="555" Width="90" Height="93"></TextBlock>
+            <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"/>
+            <TextBlock x:Name="manaCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2" Canvas.Left="24" Canvas.Top="27" Width="96" Height="91"/>
+            <TextBlock x:Name="damageCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center"  RenderTransformOrigin="0.5,0.5" Canvas.Left="32" Canvas.Top="555" Width="91" Height="73"/>
+            <TextBlock x:Name="healthCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold"  Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093" Canvas.Left="380" Canvas.Top="555" Width="90" Height="93"/>
         </Canvas>
 
         <Ellipse x:Name="userSelectedImageMoving" 
@@ -50,9 +50,7 @@
             </Ellipse.Fill>
         </Ellipse>
 
-        <ComboBox x:Name="cardTypeComboBox" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="cardTypeComboBox_SelectionChanged">
-            
-        </ComboBox>
+        <ComboBox x:Name="cardTypeComboBox" Width="525" Height="25" Margin="632,23,10,761" SelectionChanged="CardTypeComboBox_SelectionChanged"/>
 
     </Grid>
 </Window>

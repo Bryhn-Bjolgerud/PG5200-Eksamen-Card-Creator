@@ -51,34 +51,41 @@ namespace Eksamen_PG5200_Card_Creator
             cardTypeComboBox.SelectedIndex = 6;
         }
 
-        private bool isCardReady()
+        private bool IsCardReady()
         {
             bool cardReady = true;
 
             foreach (TextBox tb in cardValueTextboxes)
             {
-                if (tb == nameValue && nameValue.Text == "Enter name: ")
+                if (tb == nameValue)
                 {
-                    cardReady = false;
+                    if (nameValue.Text == "Enter name: ")
+                    {
+                        cardReady = false;
+                    }
                 }
-                else if (tb == abilityValue && abilityValue.Text == "Enter card ability: ")
+                else if (tb == abilityValue) 
                 {
-                    cardReady = false;
+                    if(abilityValue.Text == "Enter card ability: ")
+                    {
+                        cardReady = false;
+                    }
                 }
                 else
                 {
                     if (tb.Text.Length > 2)
                     {
                         cardReady = false;
+                        Console.WriteLine("Hei3");
                     }
                 }
             }
             return cardReady;
         }
 
-        private void makeCard_Click(object sender, RoutedEventArgs e)
+        private void MakeCard_Click(object sender, RoutedEventArgs e)
         {
-            if (!isCardReady())
+            if (!IsCardReady())
             {
                 MessageBox.Show("Before you can make card, please make sure you entered a valid input in all the boxes above!");
             }
@@ -92,7 +99,7 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void cardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
 
@@ -109,88 +116,70 @@ namespace Eksamen_PG5200_Card_Creator
                 cardDisplay.Source = cardDisplaySrc;
             }
         }
-        private void changeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
+        private void ChangeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
         {
             tb.BorderBrush = br;
             tb.TextAlignment = ta;
             tb.Text = txt;
         }
 
-        private void resetTextbox_GotFocus(object sender, RoutedEventArgs e)
+        private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            changeTextBox(e.Source as TextBox, Brushes.Gray, TextAlignment.Left, "");
+            ChangeTextBox(e.Source as TextBox, Brushes.Gray, TextAlignment.Left, "");
         }
 
         private void NameValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (nameValue.Text == "")
             {
-                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter name: ");
+                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter name: ");
             }
         }
 
-        private void manaValue_LostFocus(object sender, RoutedEventArgs e)
+        private void ManaValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (manaValue.Text == "")
             {
-                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
+                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
             }
-            else
+            else if (!App.isNumbers.IsMatch(manaValue.Text) || manaValue.Text.Length > 2 || Int64.Parse(manaValue.Text) > selectedType.maxManaCost)
             {
-                if (!App.isChars.IsMatch(manaValue.Text))
-                {
-                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
-                }
-                else if (Int32.Parse(manaValue.Text) > selectedType.maxManaCost)
-                {
-                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
-                }
+                ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
             }
+
         }
 
         private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (damageValue.Text == "")
             {
-                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
+                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
             }
-            else
+            else if (!App.isNumbers.IsMatch(damageValue.Text) || damageValue.Text.Length > 2 || Int64.Parse(damageValue.Text) > selectedType.maxDamage)
             {
-                if (!App.isChars.IsMatch(damageValue.Text))
-                {
-                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
-                }
-                else if (Int32.Parse(damageValue.Text) > selectedType.maxDamage)
-                {
-                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
-                }
+                ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
             }
         }
+            
+        
 
         private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (healthValue.Text == "")
             {
-                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter health: ");
+                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter health: ");
             }
-            else
+            else if (!App.isNumbers.IsMatch(healthValue.Text) || healthValue.Text.Length > 2 || Int64.Parse(healthValue.Text) > selectedType.maxHealth)
             {
-                if (!App.isChars.IsMatch(healthValue.Text))
-                {
-                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
-                }
-                else if (Int32.Parse(healthValue.Text) > selectedType.maxHealth)
-                {
-                    changeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Health has to be a number between 0 - " + selectedType.maxHealth.ToString());
-                }
+                ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxHealth.ToString());
             }
         }
 
-        private void abilityValue_LostFocus(object sender, RoutedEventArgs e)
+        private void AbilityValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (abilityValue.Text == "")
             {
-                changeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter card ability: ");
+                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter card ability: ");
             }
         }
 
@@ -200,7 +189,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uploadImage_Click(object sender, RoutedEventArgs e)
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
             openFilePrompt.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
@@ -273,7 +262,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveImage_Click(object sender, RoutedEventArgs e)
+        private void SaveImage_Click(object sender, RoutedEventArgs e)
         {
             Card newCard = new Card()
             {
@@ -283,7 +272,7 @@ namespace Eksamen_PG5200_Card_Creator
                 damage = damageCard.Text,
                 health = healthCard.Text,
                 cardAbility = abilityValue.Text,
-                cardImage = createImageFromCanvas()
+                cardImage = CreateImageFromCanvas()
             };
 
             using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
@@ -292,10 +281,10 @@ namespace Eksamen_PG5200_Card_Creator
                 connection.Insert(newCard);
             }
 
-            prepareForNextCard();
+            PrepareForNextCard();
         }
 
-        private byte[] createImageFromCanvas()
+        private byte[] CreateImageFromCanvas()
         {
             byte[] imageBytes;
             Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
@@ -316,11 +305,11 @@ namespace Eksamen_PG5200_Card_Creator
             return imageBytes;
         }
 
-        private void prepareForNextCard()
+        private void PrepareForNextCard()
         {
-            foreach(TextBox tb in cardValueTextboxes)
+            foreach (TextBox tb in cardValueTextboxes)
             {
-                changeTextBox(tb, Brushes.Gray, TextAlignment.Left, "");
+                ChangeTextBox(tb, Brushes.Gray, TextAlignment.Left, "");
             }
 
             nameCard.Text = "";

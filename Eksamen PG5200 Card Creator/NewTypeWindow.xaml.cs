@@ -82,9 +82,11 @@ namespace Eksamen_PG5200_Card_Creator
             }
             else
             {
-                if (!App.isChars.IsMatch(manaValue.Text))
+                if (!App.isNumbers.IsMatch(manaValue.Text))
                 {
-                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max manacost must be a number!");
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max manacost must be a number between 0-99!");
+                } else if(manaValue.Text.Length > 2){
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max manacost must be a number between 0-99!");
                 }
             }
         }
@@ -97,9 +99,13 @@ namespace Eksamen_PG5200_Card_Creator
             }
             else
             {
-                if (!App.isChars.IsMatch(damageValue.Text))
+                if (!App.isNumbers.IsMatch(damageValue.Text))
                 {
-                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max damage must be a number!");
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max damage must be a number between 0-99!");
+                }
+                else if (manaValue.Text.Length > 2)
+                {
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max damage must be a number between 0-99!");
                 }
             }
         }
@@ -112,9 +118,13 @@ namespace Eksamen_PG5200_Card_Creator
             }
             else
             {
-                if (!App.isChars.IsMatch(healthValue.Text))
+                if (!App.isNumbers.IsMatch(healthValue.Text))
                 {
-                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max health must be a number!");
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max health must be a number between 0-99!");
+                }
+                else if (manaValue.Text.Length > 2)
+                {
+                    changeTextBox(e, Brushes.Red, TextAlignment.Right, "Max health must be a number between 0-99!");
                 }
             }
         }
@@ -165,13 +175,16 @@ namespace Eksamen_PG5200_Card_Creator
                     }
                     Close();
                 }
-                MessageBox.Show("You chosen invalid values for the type parameters!");
-                return;
+                else
+                {
+                    MessageBox.Show("You have chosen invalid values for the type parameters!");
+                }
+
             }
             else
             {
                 MessageBox.Show("You have not selected an image for your type!");
-                return;
+
             }
         }
     }
