@@ -27,7 +27,7 @@ namespace Eksamen_PG5200_Card_Creator
         List<CardType> cardTypes;
         CardType selectedType;
         List<TextBox> cardValueTextboxes = new List<TextBox>();
-
+        bool statsAppliedToCard;
         public NewCardWindow()
         {
             InitializeComponent();
@@ -76,7 +76,6 @@ namespace Eksamen_PG5200_Card_Creator
                     if (tb.Text.Length > 2)
                     {
                         cardReady = false;
-                        Console.WriteLine("Hei3");
                     }
                 }
             }
@@ -96,6 +95,7 @@ namespace Eksamen_PG5200_Card_Creator
                 damageCard.Text = damageValue.Text;
                 healthCard.Text = healthValue.Text;
                 abilityCard.Text = abilityValue.Text;
+                statsAppliedToCard = true;
             }
         }
 
@@ -114,6 +114,7 @@ namespace Eksamen_PG5200_Card_Creator
                     cardDisplaySrc.EndInit();
                 }
                 cardDisplay.Source = cardDisplaySrc;
+                PrepareForNextCard();
             }
         }
         private void ChangeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
@@ -264,7 +265,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// <param name="e"></param>
         private void SaveImage_Click(object sender, RoutedEventArgs e)
         {
-            if (IsCardReady())
+            if (statsAppliedToCard)
             {
                 Card newCard = new Card()
                 {
@@ -282,10 +283,14 @@ namespace Eksamen_PG5200_Card_Creator
                     connection.CreateTable<Card>();
                     connection.Insert(newCard);
                 }
+                statsAppliedToCard = false;
+                PrepareForNextCard();
+                cardTypeComboBox.SelectedIndex = 6;
+                MessageBox.Show("Your card was created successfully!");
+            } else
+            {
+                MessageBox.Show("Give the card some stats!");
             }
-
-            PrepareForNextCard();
-            MessageBox.Show("Your card was created successfully!");
         }
 
         private byte[] CreateImageFromCanvas()
@@ -324,7 +329,6 @@ namespace Eksamen_PG5200_Card_Creator
             healthCard.Text = "";
             abilityCard.Text = "";
             userSelectedImage.Source = null;
-            cardTypeComboBox.SelectedIndex = 6;
         }
     }
 }
