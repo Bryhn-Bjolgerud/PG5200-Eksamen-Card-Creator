@@ -27,7 +27,6 @@ namespace Eksamen_PG5200_Card_Creator
         {
             InitializeComponent();
             ReadDatabase();
-
             
             for(int i = 0; i < searchFilterComboBox.Items.Count; i++)
             {
@@ -36,7 +35,7 @@ namespace Eksamen_PG5200_Card_Creator
             
         }
 
-        void ReadDatabase()
+        private void ReadDatabase()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.cardsDatabasePath))
             {
@@ -60,7 +59,6 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void ImportImage_Click(object sender, RoutedEventArgs e)
         {
-
             Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
             openFilePrompt.Filter = "Json files (*.json)|*.json|Text files (*.txt)|*.txt";
 
@@ -75,9 +73,9 @@ namespace Eksamen_PG5200_Card_Creator
                     connection.CreateTable<Card>();
                     connection.Insert(newCard);
                 }
-            }
 
-            ReadDatabase();
+                ReadDatabase();
+            }
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -124,6 +122,7 @@ namespace Eksamen_PG5200_Card_Creator
             {
                 CardPreviewWindow cardDetailsWindow = new CardPreviewWindow(selectedCard);
                 cardDetailsWindow.ShowDialog();
+                ReadDatabase();
             }
         }
 

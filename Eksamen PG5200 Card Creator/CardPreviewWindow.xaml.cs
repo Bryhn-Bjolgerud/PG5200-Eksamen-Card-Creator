@@ -48,7 +48,6 @@ namespace Eksamen_PG5200_Card_Creator
                 connection.CreateTable<Card>();
                 connection.Delete(m_card);
             }
-
             Close();
         }
 

@@ -125,7 +125,7 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            ChangeTextBox(e.Source as TextBox, Brushes.Gray, TextAlignment.Left, "");
+            ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
         }
 
         private void NameValue_LostFocus(object sender, RoutedEventArgs e)
@@ -264,24 +264,28 @@ namespace Eksamen_PG5200_Card_Creator
         /// <param name="e"></param>
         private void SaveImage_Click(object sender, RoutedEventArgs e)
         {
-            Card newCard = new Card()
+            if (IsCardReady())
             {
-                cardName = nameCard.Text,
-                cardType = cardTypeComboBox.SelectedItem.ToString(),
-                manaCost = manaCard.Text,
-                damage = damageCard.Text,
-                health = healthCard.Text,
-                cardAbility = abilityValue.Text,
-                cardImage = CreateImageFromCanvas()
-            };
+                Card newCard = new Card()
+                {
+                    cardName = nameCard.Text,
+                    cardType = cardTypeComboBox.SelectedItem.ToString(),
+                    manaCost = manaCard.Text,
+                    damage = damageCard.Text,
+                    health = healthCard.Text,
+                    cardAbility = abilityValue.Text,
+                    cardImage = CreateImageFromCanvas()
+                };
 
-            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
-            {
-                connection.CreateTable<Card>();
-                connection.Insert(newCard);
+                using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+                {
+                    connection.CreateTable<Card>();
+                    connection.Insert(newCard);
+                }
             }
 
             PrepareForNextCard();
+            MessageBox.Show("Your card was created successfully!");
         }
 
         private byte[] CreateImageFromCanvas()
@@ -307,10 +311,12 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void PrepareForNextCard()
         {
-            foreach (TextBox tb in cardValueTextboxes)
-            {
-                ChangeTextBox(tb, Brushes.Gray, TextAlignment.Left, "");
-            }
+            ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
+            ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
+            ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
+            ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
+            ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
+
 
             nameCard.Text = "";
             manaCard.Text = "";
