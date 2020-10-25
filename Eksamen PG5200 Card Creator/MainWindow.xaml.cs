@@ -20,13 +20,20 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Card> cards;
-
+        List<Card> cards = new List<Card>();
+        List<string> searchFilters = new List<string>();
+        ComboBoxItem selectedFilter = new ComboBoxItem();
         public MainWindow()
         {
             InitializeComponent();
-            cards = new List<Card>();
             ReadDatabase();
+
+            
+            for(int i = 0; i < searchFilterComboBox.Items.Count; i++)
+            {
+                searchFilters.Add(searchFilterComboBox.Items[i].ToString());
+            }
+            
         }
 
         void ReadDatabase()
@@ -73,22 +80,26 @@ namespace Eksamen_PG5200_Card_Creator
             ReadDatabase();
         }
 
-        private void CardsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Card selectedCard = (Card)cardsListView.SelectedItem;
-
-            if (selectedCard != null)
-            {
-                CardPreviewWindow cardDetailsWindow = new CardPreviewWindow(selectedCard);
-                cardDetailsWindow.ShowDialog();
-            }
-        }
-
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox searchTextBox = sender as TextBox;
+            List<Card> filteredList = new List<Card>();
 
-            var filteredList = cards.Where(c => c.cardName.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+            switch (selectedFilter.ToString().Substring(38))
+            {
+                case "Name":
+                    filteredList = cards.Where(c => c.cardName.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+                    break;
+                case "Mana":
+                    filteredList = cards.Where(c => c.manaCost.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+                    break;
+                case "Damage":
+                    filteredList = cards.Where(c => c.damage.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+                    break;
+                case "Health":
+                    filteredList = cards.Where(c => c.health.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+                    break;
+            }
 
             cardsListView.ItemsSource = filteredList;
         }
@@ -99,5 +110,31 @@ namespace Eksamen_PG5200_Card_Creator
             newType.ShowDialog();
         }
 
+        private void SearchFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = e.Source as ComboBox;
+            selectedFilter = (ComboBoxItem)cb.SelectedItem;
+        }
+
+        private void CardsListView_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Card selectedCard = (Card)cardsListView.SelectedItem;
+
+            if (selectedCard != null)
+            {
+                CardPreviewWindow cardDetailsWindow = new CardPreviewWindow(selectedCard);
+                cardDetailsWindow.ShowDialog();
+            }
+        }
+
+        private void CardsListView_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void CardsListView_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Arrow;
+        }
     }
 }

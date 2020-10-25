@@ -12,9 +12,15 @@
         <Button x:Name="createNewCard" Margin="421,173,659,617" Click="CreateNewCard_Click" Content="Create new card" Background="#f5cf5e"/>
         <Button x:Name="importImage" Margin="540,173,540,617" Click="ImportImage_Click" Content="Import card" Background="#f5cf5e"/>
         <Button x:Name="createNewType" Margin="659,173,421,617"  Click="CreateNewType_Click" Content="Create new type" Background="#f5cf5e"/>
-        
-        <TextBox x:Name="searchBox" Margin="478,225,478,566" BorderThickness="2.5" BorderBrush="Gray" TextChanged="SearchBox_TextChanged"/>
-        <ListView x:Name="cardsListView"  Margin="302,268,302,10" Background="#3eb6fc" SelectionChanged="CardsListView_SelectionChanged" RenderTransformOrigin="0.646,0.456">
+
+        <TextBox x:Name="searchBox" Margin="519,217,437,574" BorderThickness="2.5" BorderBrush="Gray" TextChanged="SearchBox_TextChanged"/>
+        <ComboBox x:Name="searchFilterComboBox" Margin="432,216,680,573" BorderThickness="2.5" SelectionChanged="SearchFilter_SelectionChanged">
+            <ComboBoxItem Content="Name" IsSelected="True"/>
+            <ComboBoxItem Content="Mana"/>
+            <ComboBoxItem Content="Damage"/>
+            <ComboBoxItem Content="Health"/>
+        </ComboBox>
+        <ListView x:Name="cardsListView"  Margin="302,268,302,10" Background="#3eb6fc"  MouseUp="CardsListView_MouseUp"  MouseEnter="CardsListView_MouseEnter"  MouseLeave="CardsListView_MouseLeave">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <uc:CardControl Card="{Binding}"/>
