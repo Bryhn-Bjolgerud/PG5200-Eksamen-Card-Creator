@@ -43,7 +43,7 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void createNewCard_Click(object sender, RoutedEventArgs e)
+        private void CreateNewCard_Click(object sender, RoutedEventArgs e)
         {
             NewCardWindow newCard = new NewCardWindow();
             newCard.ShowDialog();
@@ -51,7 +51,7 @@ namespace Eksamen_PG5200_Card_Creator
             ReadDatabase();
         }
 
-        private void importImage_Click(object sender, RoutedEventArgs e)
+        private void ImportImage_Click(object sender, RoutedEventArgs e)
         {
 
             Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
@@ -73,7 +73,7 @@ namespace Eksamen_PG5200_Card_Creator
             ReadDatabase();
         }
 
-        private void cardsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CardsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Card selectedCard = (Card)cardsListView.SelectedItem;
 
@@ -84,7 +84,7 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox searchTextBox = sender as TextBox;
 
@@ -93,7 +93,7 @@ namespace Eksamen_PG5200_Card_Creator
             cardsListView.ItemsSource = filteredList;
         }
 
-        private void createNewType_Click(object sender, RoutedEventArgs e)
+        private void CreateNewType_Click(object sender, RoutedEventArgs e)
         {
             NewTypeWindow newType = new NewTypeWindow();
             newType.ShowDialog();
