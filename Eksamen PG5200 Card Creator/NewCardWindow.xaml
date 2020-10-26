@@ -21,7 +21,8 @@
         </StackPanel>
 
         <Canvas x:Name="userCreatedCard" Width="470" Height="670" Margin="674,114,48,45">
-            <!-- ClipToBounds will not work correctly with cornerRadius. Need to create a shape to define what will be clipped and not -->
+            <!-- ClipToBounds will not work correctly with cornerRadius. Need to create a shape to define what will be clipped and not. 
+            We want to make the portrait image appear as it does in the actual game. -->
             <Border Width="300" Height="350" Margin="95,24,80,296">
                 <Border.Clip>
                     <RectangleGeometry RadiusX="205" RadiusY="205" Rect="0,0,300,350"/>
@@ -38,6 +39,8 @@
             <TextBlock x:Name="healthCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold"  Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093" Canvas.Left="380" Canvas.Top="555" Width="90" Height="93"/>
         </Canvas>
 
+        <!-- Since the portrait is underneath our base image, we cannot click on it. 
+        Need to create a shape that is roughly the same as the portrait and put the logic on that.-->
         <Ellipse x:Name="userSelectedImageMoving" 
                  MouseEnter="userSelectedImageMoving_MouseEnter"
                  MouseLeave="userSelectedImageMoving_MouseLeave"
