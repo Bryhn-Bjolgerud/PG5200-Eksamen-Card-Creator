@@ -32,6 +32,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             InitializeComponent();
 
+            //Since a user can create new types, we need to make the comboBoxItems based on what is in the database.
             using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
             {
                 connection.CreateTable<CardType>();
@@ -51,7 +52,11 @@ namespace Eksamen_PG5200_Card_Creator
             cardTypeComboBox.SelectedIndex = 6;
         }
 
-        private bool IsCardReady()
+        /// <summary>
+        /// Checking every textbox to see if their values are default or not.
+        /// </summary>
+        /// <returns>A bool representing whether or not the user have set any values in the textbox.</returns>
+        private bool IsCardValuesNotDefault()
         {
             bool cardReady = true;
 
@@ -64,15 +69,16 @@ namespace Eksamen_PG5200_Card_Creator
                         cardReady = false;
                     }
                 }
-                else if (tb == abilityValue) 
+                else if (tb == abilityValue)
                 {
-                    if(abilityValue.Text == "Enter card ability: ")
+                    if (abilityValue.Text == "Enter card ability: ")
                     {
                         cardReady = false;
                     }
                 }
                 else
                 {
+                    //We dont allow stats to be bigger than 99.
                     if (tb.Text.Length > 2)
                     {
                         cardReady = false;
@@ -82,9 +88,14 @@ namespace Eksamen_PG5200_Card_Creator
             return cardReady;
         }
 
+        /// <summary>
+        /// If the user has set values for each stat of the card, we transfer those onto the card.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MakeCard_Click(object sender, RoutedEventArgs e)
         {
-            if (!IsCardReady())
+            if (!IsCardValuesNotDefault())
             {
                 MessageBox.Show("Before you can make card, please make sure you entered a valid input in all the boxes above!");
             }
@@ -99,6 +110,11 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
+        /// <summary>
+        /// Displaying the correct base card depending on what type of card is chosen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
@@ -117,6 +133,7 @@ namespace Eksamen_PG5200_Card_Creator
                 PrepareForNextCard();
             }
         }
+
         private void ChangeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
         {
             tb.BorderBrush = br;
@@ -129,6 +146,13 @@ namespace Eksamen_PG5200_Card_Creator
             ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
         }
 
+
+        /// <summary>
+        /// All of the Lostfocus() does more or less excatly the same thing so will only comment one of them.
+        /// Checking if what the user typed in, is within the rules we set for each type of value.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (nameValue.Text == "")
@@ -161,8 +185,8 @@ namespace Eksamen_PG5200_Card_Creator
                 ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
             }
         }
-            
-        
+
+
 
         private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -184,12 +208,6 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-
-        /// <summary>
-        /// Need to do some error checking here maybe throw and catch exception to make sure proper files are uploaded. Not only if we managed to open the file explorer.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFilePrompt = new Microsoft.Win32.OpenFileDialog();
@@ -210,7 +228,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// </summary>
 
         private bool _isMoving;
-        private Point? _buttonPosition;
+        private Point? _imagePosition;
         private double deltaX;
         private double deltaY;
         private TranslateTransform _currentTT;
@@ -218,11 +236,13 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void userSelectedImageMoving_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (_buttonPosition == null)
-                _buttonPosition = userSelectedImage.TransformToAncestor(MyGrid).Transform(new Point(0, 0));
-            var mousePosition = Mouse.GetPosition(MyGrid);
-            deltaX = mousePosition.X - _buttonPosition.Value.X;
-            deltaY = mousePosition.Y - _buttonPosition.Value.Y;
+            if (_imagePosition == null)
+            {
+                _imagePosition = userSelectedImage.TransformToAncestor(userSelectedImageContainer).Transform(new Point(0, 0));
+            }
+            var mousePosition = Mouse.GetPosition(userSelectedImageContainer);
+            deltaX = mousePosition.X - _imagePosition.Value.X;
+            deltaY = mousePosition.Y - _imagePosition.Value.Y;
             _isMoving = true;
         }
 
@@ -234,12 +254,15 @@ namespace Eksamen_PG5200_Card_Creator
 
         private void userSelectedImageMoving_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            if (!_isMoving) return;
+            if (!_isMoving)
+            {
+                return;
+            }
 
-            var mousePoint = Mouse.GetPosition(MyGrid);
+            var mousePoint = Mouse.GetPosition(userSelectedImageContainer);
 
-            var offsetX = (_currentTT == null ? _buttonPosition.Value.X : _buttonPosition.Value.X - _currentTT.X) + deltaX - mousePoint.X;
-            var offsetY = (_currentTT == null ? _buttonPosition.Value.Y : _buttonPosition.Value.Y - _currentTT.Y) + deltaY - mousePoint.Y;
+            var offsetX = (_currentTT == null ? _imagePosition.Value.X : _imagePosition.Value.X - _currentTT.X) + deltaX - mousePoint.X;
+            var offsetY = (_currentTT == null ? _imagePosition.Value.Y : _imagePosition.Value.Y - _currentTT.Y) + deltaY - mousePoint.Y;
 
             userSelectedImage.RenderTransform = new TranslateTransform(-offsetX, -offsetY);
         }
@@ -259,11 +282,11 @@ namespace Eksamen_PG5200_Card_Creator
         //-----------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// Må forklare  hva som skjer her litt ass. OGså endre varianel navn fordi disse er obviously copy pastet
+        /// Creating a new card object and setting it's values corresponding to what the user typed. Then adding it to the database. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveImage_Click(object sender, RoutedEventArgs e)
+        private void SaveCard_Click(object sender, RoutedEventArgs e)
         {
             if (statsAppliedToCard)
             {
@@ -287,22 +310,27 @@ namespace Eksamen_PG5200_Card_Creator
                 PrepareForNextCard();
                 cardTypeComboBox.SelectedIndex = 6;
                 MessageBox.Show("Your card was created successfully!");
-            } else
+            }
+            else
             {
                 MessageBox.Show("Give the card some stats!");
             }
         }
 
+        /// <summary>
+        /// Converting whats inside the canvas into a byte array.
+        /// </summary>
+        /// <returns>The image of whats inside the canvas, as a byte array.</returns>
         private byte[] CreateImageFromCanvas()
         {
             byte[] imageBytes;
-            Rect rect = new Rect(canvas.Margin.Left, canvas.Margin.Top, canvas.ActualWidth, canvas.ActualHeight);
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)rect.Right, (int)rect.Bottom, 60, 70, PixelFormats.Default);
-            rtb.Render(canvas);
+            Rect canvasAsRectangle = new Rect(userCreatedCard.Margin.Left, userCreatedCard.Margin.Top, userCreatedCard.ActualWidth, userCreatedCard.ActualHeight);
+            RenderTargetBitmap canvasAsBitmap = new RenderTargetBitmap((int)canvasAsRectangle.Right, (int)canvasAsRectangle.Bottom, 60, 70, PixelFormats.Default);
+            canvasAsBitmap.Render(userCreatedCard);
 
             //encode as PNG
             BitmapEncoder pngEncoder = new PngBitmapEncoder();
-            pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
+            pngEncoder.Frames.Add(BitmapFrame.Create(canvasAsBitmap));
 
             //save to memory stream
             using (MemoryStream ms = new MemoryStream())
@@ -314,6 +342,9 @@ namespace Eksamen_PG5200_Card_Creator
             return imageBytes;
         }
 
+        /// <summary>
+        /// Resets all the textboxes and textblocks to their default state.
+        /// </summary>
         private void PrepareForNextCard()
         {
             ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");

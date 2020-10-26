@@ -10,12 +10,12 @@
 
         <Image Source="Resources/hearthstoneLogo.png" Margin="25,186,575,81"/>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="typeValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="manaValue_LostFocus"  BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="damageValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="healthValue" Text="Set max health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="resetTextbox_GotFocus" LostFocus="healthValue_LostFocus" BorderBrush="#f5cf5e"/>
-            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="uploadImage_Click" Background="#f5cf5e" Content="Choose card base for new type"/> 
-            <Button x:Name="createType" Margin="5, 5, 5, 5" Click="createType_Click" Content="Create new type"/>
+            <TextBox x:Name="typeValue" Text="Enter new type: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="TypeValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="manaValue" Text="Set max mana: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ManaValue_LostFocus"  BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="damageValue" Text="Set max damage: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="DamageValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="healthValue" Text="Set max health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="HealthValue_LostFocus" BorderBrush="#f5cf5e"/>
+            <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="UploadImage_Click" Background="#f5cf5e" Content="Choose card base for new type"/> 
+            <Button x:Name="createType" Margin="5, 5, 5, 5" Click="CreateType_Click" Content="Create new type"/>
         </StackPanel>
 
         <Canvas x:Name="canvas" Width="470" Height="670" Margin="674,114,48,45">

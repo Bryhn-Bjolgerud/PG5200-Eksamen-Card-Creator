@@ -29,6 +29,7 @@ namespace Eksamen_PG5200_Card_Creator
             InitializeComponent();
             m_card = card;
 
+            //Converts the byte array to a BitmapImage.
             BitmapImage controlImageSource = new BitmapImage();
             using (MemoryStream ms = new MemoryStream(m_card.cardImage))
             {
@@ -41,6 +42,11 @@ namespace Eksamen_PG5200_Card_Creator
             cardImage.Source = controlImageSource;
         }
 
+        /// <summary>
+        /// Deletes the card that is currently being previewed from the database. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteCardButton_Click(object sender, RoutedEventArgs e)
         {
             using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
@@ -51,6 +57,11 @@ namespace Eksamen_PG5200_Card_Creator
             Close();
         }
 
+        /// <summary>
+        /// Exporting the card to a json file using the jsonSerializer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exportCardButton_Click(object sender, RoutedEventArgs e)
         {
             string jsonData = JsonConvert.SerializeObject(m_card);
