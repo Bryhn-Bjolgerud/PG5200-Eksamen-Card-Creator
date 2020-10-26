@@ -154,34 +154,41 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
+        /// Converts an image into an array of bytes.
+        /// </summary>
+        /// <returns>The array of bytes.</returns>
+        private byte[] ConvertUserSelectedImageToBytes()
+        {
+            byte[] imageBytes;
+            BitmapEncoder pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                pngEncoder.Save(ms);
+                imageBytes = ms.ToArray();
+            }
+            return imageBytes;
+        }
+
+        /// <summary>
         /// Creating a new newType object and setting it's values corresponding to what the user typed. Then adding it to the database. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CreateType_Click(object sender, RoutedEventArgs e)
         {
-            CardType newType = new CardType();
-            byte[] imageBytes;
-            BitmapEncoder pngEncoder = new PngBitmapEncoder();
             if (userSelectedImage.Source != null)
-            {
-                pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
-
+            { 
                 if (IsTypeReady())
                 {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        pngEncoder.Save(ms);
-                        imageBytes = ms.ToArray();
-                    }
 
-                    newType = new CardType()
+                    CardType newType = new CardType()
                     {
                         cardType = typeValue.Text,
                         maxManaCost = Int32.Parse(manaValue.Text),
                         maxDamage = Int32.Parse(damageValue.Text),
                         maxHealth = Int32.Parse(healthValue.Text),
-                        typeImage = imageBytes
+                        typeImage = ConvertUserSelectedImageToBytes()
                     };
 
                     using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))

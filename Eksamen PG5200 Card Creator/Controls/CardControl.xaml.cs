@@ -30,19 +30,29 @@ namespace Eksamen_PG5200_Card_Creator.Controls
 
             if (control != null)
             {
-                //Converts the byte array to a BitmapImage.
-                BitmapImage controlImageSource = new BitmapImage();
-                using (MemoryStream ms = new MemoryStream((e.NewValue as Card).cardImage))
-                {
-                    controlImageSource.BeginInit();
-                    controlImageSource.StreamSource = ms;
-                    controlImageSource.CacheOption = BitmapCacheOption.OnLoad;
-                    controlImageSource.EndInit();
-                }
-
-                control.cardImage.Source = controlImageSource;
+                control.cardImage.Source = convertByteToImage((e.NewValue as Card).cardImage);
             }
         }
+
+        /// <summary>
+        /// Converting an array of bytes to a BitmapImage.
+        /// </summary>
+        /// <param name="imageBytes">The byte representation of the image.</param>
+        /// <returns>The converted BitmapImage</returns>
+        static BitmapImage convertByteToImage(byte[] imageBytes)
+        {
+            //Converts the byte array to a BitmapImage.
+            BitmapImage controlImageSource = new BitmapImage();
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                controlImageSource.BeginInit();
+                controlImageSource.StreamSource = ms;
+                controlImageSource.CacheOption = BitmapCacheOption.OnLoad;
+                controlImageSource.EndInit();
+            }
+            return controlImageSource;
+        }
+
         public CardControl()
         {
             InitializeComponent();

@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.IO;
 using Eksamen_PG5200_Card_Creator.Classes;
 using System.Collections.Generic;
@@ -42,10 +37,10 @@ namespace Eksamen_PG5200_Card_Creator
         /// </summary>
         private void ReadDatabase()
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.cardsDatabasePath))
+            using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
             {
-                conn.CreateTable<Card>();
-                m_cards = (conn.Table<Card>().ToList()).OrderBy(c => c.cardName).ToList();
+                connection.CreateTable<Card>();
+                m_cards = (connection.Table<Card>().ToList()).OrderBy(c => c.cardName).ToList();
             }
 
             if (m_cards != null)

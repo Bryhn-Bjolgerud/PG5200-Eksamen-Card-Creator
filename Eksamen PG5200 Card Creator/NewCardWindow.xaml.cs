@@ -1,21 +1,13 @@
 ﻿using Eksamen_PG5200_Card_Creator.Classes;
-using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Eksamen_PG5200_Card_Creator
 {
@@ -28,6 +20,8 @@ namespace Eksamen_PG5200_Card_Creator
         CardType selectedType;
         List<TextBox> cardValueTextboxes = new List<TextBox>();
         bool statsAppliedToCard;
+
+
         public NewCardWindow()
         {
             InitializeComponent();
@@ -111,6 +105,26 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
+        /// Resets all the textboxes and textblocks to their default state.
+        /// </summary>
+        private void ResetAllTextBoxAndBlockValues()
+        {
+            ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
+            ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
+            ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
+            ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
+            ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
+
+
+            nameCard.Text = "";
+            manaCard.Text = "";
+            damageCard.Text = "";
+            healthCard.Text = "";
+            abilityCard.Text = "";
+            userSelectedImage.Source = null;
+        }
+
+        /// <summary>
         /// Displaying the correct base card depending on what type of card is chosen.
         /// </summary>
         /// <param name="sender"></param>
@@ -130,7 +144,7 @@ namespace Eksamen_PG5200_Card_Creator
                     cardDisplaySrc.EndInit();
                 }
                 cardDisplay.Source = cardDisplaySrc;
-                PrepareForNextCard();
+                ResetAllTextBoxAndBlockValues();
             }
         }
 
@@ -282,6 +296,43 @@ namespace Eksamen_PG5200_Card_Creator
         //-----------------------------------------------------------------------------------------------
 
         /// <summary>
+        /// Taking a screengrab of an area and turning it into a .png.
+        /// </summary>
+        /// <returns>The contents of the screengrabbed area as an image.</returns>
+        private BitmapEncoder CreateImageFromCanvas()
+        {
+            //Every card image is of equal size, which is the size of the Canvas XAML tag.
+            Rect canvasAsRectangle = new Rect(userCreatedCard.Margin.Left, userCreatedCard.Margin.Top, userCreatedCard.ActualWidth, userCreatedCard.ActualHeight);
+            RenderTargetBitmap canvasAsBitmap = new RenderTargetBitmap((int)canvasAsRectangle.Right, (int)canvasAsRectangle.Bottom, 60, 70, PixelFormats.Default);
+
+            canvasAsBitmap.Render(userCreatedCard);
+
+            //encode as PNG
+            BitmapEncoder pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create(canvasAsBitmap));
+            return pngEncoder;
+        }
+
+        /// <summary>
+        /// Converting an image into a byte array.
+        /// </summary>
+        /// <returns>The image represented as a byte array.</returns>
+        private byte[] ConvertImageToBytes(BitmapEncoder image)
+        {
+            byte[] imageBytes;
+
+            //save to memory stream
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms);
+                imageBytes = ms.ToArray();
+            }
+
+            return imageBytes;
+        }
+
+
+        /// <summary>
         /// Creating a new card object and setting it's values corresponding to what the user typed. Then adding it to the database. 
         /// </summary>
         /// <param name="sender"></param>
@@ -298,7 +349,7 @@ namespace Eksamen_PG5200_Card_Creator
                     damage = damageCard.Text,
                     health = healthCard.Text,
                     cardAbility = abilityValue.Text,
-                    cardImage = CreateImageFromCanvas()
+                    cardImage = ConvertImageToBytes(CreateImageFromCanvas())
                 };
 
                 using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
@@ -307,7 +358,7 @@ namespace Eksamen_PG5200_Card_Creator
                     connection.Insert(newCard);
                 }
                 statsAppliedToCard = false;
-                PrepareForNextCard();
+                ResetAllTextBoxAndBlockValues();
                 cardTypeComboBox.SelectedIndex = 6;
                 MessageBox.Show("Your card was created successfully!");
             }
@@ -315,51 +366,6 @@ namespace Eksamen_PG5200_Card_Creator
             {
                 MessageBox.Show("Give the card some stats!");
             }
-        }
-
-        /// <summary>
-        /// Converting whats inside the canvas into a byte array.
-        /// </summary>
-        /// <returns>The image of whats inside the canvas, as a byte array.</returns>
-        private byte[] CreateImageFromCanvas()
-        {
-            byte[] imageBytes;
-            Rect canvasAsRectangle = new Rect(userCreatedCard.Margin.Left, userCreatedCard.Margin.Top, userCreatedCard.ActualWidth, userCreatedCard.ActualHeight);
-            RenderTargetBitmap canvasAsBitmap = new RenderTargetBitmap((int)canvasAsRectangle.Right, (int)canvasAsRectangle.Bottom, 60, 70, PixelFormats.Default);
-            canvasAsBitmap.Render(userCreatedCard);
-
-            //encode as PNG
-            BitmapEncoder pngEncoder = new PngBitmapEncoder();
-            pngEncoder.Frames.Add(BitmapFrame.Create(canvasAsBitmap));
-
-            //save to memory stream
-            using (MemoryStream ms = new MemoryStream())
-            {
-                pngEncoder.Save(ms);
-                imageBytes = ms.ToArray();
-            }
-
-            return imageBytes;
-        }
-
-        /// <summary>
-        /// Resets all the textboxes and textblocks to their default state.
-        /// </summary>
-        private void PrepareForNextCard()
-        {
-            ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
-            ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
-            ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
-            ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
-            ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
-
-
-            nameCard.Text = "";
-            manaCard.Text = "";
-            damageCard.Text = "";
-            healthCard.Text = "";
-            abilityCard.Text = "";
-            userSelectedImage.Source = null;
         }
     }
 }
