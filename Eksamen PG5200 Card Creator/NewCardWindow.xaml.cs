@@ -105,26 +105,6 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
-        /// Resets all the textboxes and textblocks to their default state.
-        /// </summary>
-        private void ResetAllTextBoxAndBlockValues()
-        {
-            ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
-            ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
-            ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
-            ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
-            ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
-
-
-            nameCard.Text = "";
-            manaCard.Text = "";
-            damageCard.Text = "";
-            healthCard.Text = "";
-            abilityCard.Text = "";
-            userSelectedImage.Source = null;
-        }
-
-        /// <summary>
         /// Displaying the correct base card depending on what type of card is chosen.
         /// </summary>
         /// <param name="sender"></param>
@@ -148,18 +128,29 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-        private void ChangeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
+        /// <summary>
+        /// Resets all the textboxes and textblocks to their default state.
+        /// </summary>
+        private void ResetAllTextBoxAndBlockValues()
         {
-            tb.BorderBrush = br;
-            tb.TextAlignment = ta;
-            tb.Text = txt;
+            SharedMethodsForWindows.ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
+            SharedMethodsForWindows.ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
+            SharedMethodsForWindows.ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
+            SharedMethodsForWindows.ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
+            SharedMethodsForWindows.ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
+
+            nameCard.Text = "";
+            manaCard.Text = "";
+            damageCard.Text = "";
+            healthCard.Text = "";
+            abilityCard.Text = "";
+            userSelectedImage.Source = null;
         }
 
         private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
+            SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
         }
-
 
         /// <summary>
         /// All of the Lostfocus() does more or less excatly the same thing so will only comment one of them.
@@ -171,7 +162,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (nameValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter name: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter name: ");
             }
         }
 
@@ -179,11 +170,11 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (manaValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
             }
             else if (!App.isNumbers.IsMatch(manaValue.Text) || manaValue.Text.Length > 2 || Int64.Parse(manaValue.Text) > selectedType.maxManaCost)
             {
-                ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
             }
 
         }
@@ -192,25 +183,23 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (damageValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
             }
             else if (!App.isNumbers.IsMatch(damageValue.Text) || damageValue.Text.Length > 2 || Int64.Parse(damageValue.Text) > selectedType.maxDamage)
             {
-                ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
             }
         }
-
-
 
         private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (healthValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter health: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter health: ");
             }
             else if (!App.isNumbers.IsMatch(healthValue.Text) || healthValue.Text.Length > 2 || Int64.Parse(healthValue.Text) > selectedType.maxHealth)
             {
-                ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxHealth.ToString());
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxHealth.ToString());
             }
         }
 
@@ -218,7 +207,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (abilityValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter card ability: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter card ability: ");
             }
         }
 
@@ -299,7 +288,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// Taking a screengrab of an area and turning it into a .png.
         /// </summary>
         /// <returns>The contents of the screengrabbed area as an image.</returns>
-        private BitmapEncoder CreateImageFromCanvas()
+        private BitmapEncoder CreatePNGFromCanvas()
         {
             //Every card image is of equal size, which is the size of the Canvas XAML tag.
             Rect canvasAsRectangle = new Rect(userCreatedCard.Margin.Left, userCreatedCard.Margin.Top, userCreatedCard.ActualWidth, userCreatedCard.ActualHeight);
@@ -312,25 +301,6 @@ namespace Eksamen_PG5200_Card_Creator
             pngEncoder.Frames.Add(BitmapFrame.Create(canvasAsBitmap));
             return pngEncoder;
         }
-
-        /// <summary>
-        /// Converting an image into a byte array.
-        /// </summary>
-        /// <returns>The image represented as a byte array.</returns>
-        private byte[] ConvertImageToBytes(BitmapEncoder image)
-        {
-            byte[] imageBytes;
-
-            //save to memory stream
-            using (MemoryStream ms = new MemoryStream())
-            {
-                image.Save(ms);
-                imageBytes = ms.ToArray();
-            }
-
-            return imageBytes;
-        }
-
 
         /// <summary>
         /// Creating a new card object and setting it's values corresponding to what the user typed. Then adding it to the database. 
@@ -349,7 +319,7 @@ namespace Eksamen_PG5200_Card_Creator
                     damage = damageCard.Text,
                     health = healthCard.Text,
                     cardAbility = abilityValue.Text,
-                    cardImage = ConvertImageToBytes(CreateImageFromCanvas())
+                    cardImageAsBytes = SharedMethodsForWindows.ConvertImageToBytes(CreatePNGFromCanvas())
                 };
 
                 using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))

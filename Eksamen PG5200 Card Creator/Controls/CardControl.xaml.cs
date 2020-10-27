@@ -1,8 +1,6 @@
 ﻿using Eksamen_PG5200_Card_Creator.Classes;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace Eksamen_PG5200_Card_Creator.Controls
 {
@@ -30,27 +28,9 @@ namespace Eksamen_PG5200_Card_Creator.Controls
 
             if (control != null)
             {
-                control.cardImage.Source = convertByteToImage((e.NewValue as Card).cardImage);
+                control.cardImage.Source = SharedMethodsForWindows.ConvertByteToImage((e.NewValue as Card).cardImageAsBytes);
+                
             }
-        }
-
-        /// <summary>
-        /// Converting an array of bytes to a BitmapImage.
-        /// </summary>
-        /// <param name="imageBytes">The byte representation of the image.</param>
-        /// <returns>The converted BitmapImage</returns>
-        static BitmapImage convertByteToImage(byte[] imageBytes)
-        {
-            //Converts the byte array to a BitmapImage.
-            BitmapImage controlImageSource = new BitmapImage();
-            using (MemoryStream ms = new MemoryStream(imageBytes))
-            {
-                controlImageSource.BeginInit();
-                controlImageSource.StreamSource = ms;
-                controlImageSource.CacheOption = BitmapCacheOption.OnLoad;
-                controlImageSource.EndInit();
-            }
-            return controlImageSource;
         }
 
         public CardControl()

@@ -12,6 +12,6 @@ namespace Eksamen_PG5200_Card_Creator.Classes
         public string manaCost { get; set; }
         public string damage { get; set; }
         public string health { get; set; }
-        public byte[] cardImage{ get; set; }
+        public byte[] cardImageAsBytes{ get; set; }
     }
 }

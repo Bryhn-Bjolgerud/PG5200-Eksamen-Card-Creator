@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Classes\Card.cs" />
     <Compile Include="Classes\CardType.cs" />
+    <Compile Include="Classes\SharedMethodsForWindows.cs" />
     <Compile Include="Controls\CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>

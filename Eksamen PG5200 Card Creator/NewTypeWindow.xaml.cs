@@ -2,7 +2,6 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -51,34 +50,20 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
-        /// Applying changes to the textbox given as an argument.
-        /// </summary>
-        /// <param name="tb">The textbox that will be changed.</param>
-        /// <param name="br">The brush the border will be set to.</param>
-        /// <param name="ta">The type of text alignment to be used.</param>
-        /// <param name="txt">The new text of the textbox.</param>
-        private void ChangeTextBox(TextBox tb, Brush br, TextAlignment ta, string txt)
-        {
-            tb.BorderBrush = br;
-            tb.TextAlignment = ta;
-            tb.Text = txt;
-        }
-
-        /// <summary>
         /// Calling the changeTextBox() but with preset values.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
+            SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
         }
 
         private void TypeValue_LostFocus(object sender, RoutedEventArgs e)
         {
             if (typeValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set type name: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set type name: ");
             }
         }
 
@@ -92,13 +77,13 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (manaValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max manacost: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max manacost: ");
             }
             else
             {
                 if (!App.isNumbers.IsMatch(manaValue.Text) || manaValue.Text.Length > 2)
                 {
-                    ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max manacost must be a number between 0-99!");
+                    SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max manacost must be a number between 0-99!");
                 } 
             }
         }
@@ -107,13 +92,13 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (damageValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max damage: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max damage: ");
             }
             else
             {
                 if (!App.isNumbers.IsMatch(damageValue.Text) || damageValue.Text.Length > 2)
                 {
-                    ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max damage must be a number between 0-99!");
+                    SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max damage must be a number between 0-99!");
                 }
             }
         }
@@ -122,13 +107,13 @@ namespace Eksamen_PG5200_Card_Creator
         {
             if (healthValue.Text == "")
             {
-                ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max health: ");
+                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max health: ");
             }
             else
             {
                 if (!App.isNumbers.IsMatch(healthValue.Text) || healthValue.Text.Length > 2)
                 {
-                    ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max health must be a number between 0-99!");
+                    SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max health must be a number between 0-99!");
                 }
             }
         }
@@ -154,20 +139,15 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
-        /// Converts an image into an array of bytes.
+        /// Converts an image.source into a .png.
         /// </summary>
-        /// <returns>The array of bytes.</returns>
-        private byte[] ConvertUserSelectedImageToBytes()
-        {
-            byte[] imageBytes;
+        /// <returns>The png file.</returns>
+        private BitmapEncoder ConvertUserSelectedImageSourceToPng()
+        { 
             BitmapEncoder pngEncoder = new PngBitmapEncoder();
             pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
-            using (MemoryStream ms = new MemoryStream())
-            {
-                pngEncoder.Save(ms);
-                imageBytes = ms.ToArray();
-            }
-            return imageBytes;
+            
+            return pngEncoder;
         }
 
         /// <summary>
@@ -188,7 +168,7 @@ namespace Eksamen_PG5200_Card_Creator
                         maxManaCost = Int32.Parse(manaValue.Text),
                         maxDamage = Int32.Parse(damageValue.Text),
                         maxHealth = Int32.Parse(healthValue.Text),
-                        typeImage = ConvertUserSelectedImageToBytes()
+                        typeImage = SharedMethodsForWindows.ConvertImageToBytes(ConvertUserSelectedImageSourceToPng())
                     };
 
                     using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))

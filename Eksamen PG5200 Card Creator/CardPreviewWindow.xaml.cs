@@ -4,7 +4,6 @@ using SQLite;
 using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace Eksamen_PG5200_Card_Creator
 {
@@ -18,7 +17,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             InitializeComponent();
             m_card = card;
-            cardImage.Source = convertByteToImage(m_card.cardImage);
+            cardImage.Source = SharedMethodsForWindows.ConvertByteToImage(m_card.cardImageAsBytes);
         }
 
         /// <summary>
@@ -47,25 +46,5 @@ namespace Eksamen_PG5200_Card_Creator
             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/" + m_card.cardName + m_card.Id + ".json", jsonData);
             MessageBox.Show("Your .json file is added to your 'My Documents' folder");
         }
-
-        /// <summary>
-        /// Converting an array of bytes to a BitmapImage.
-        /// </summary>
-        /// <param name="imageBytes">The byte representation of the image.</param>
-        /// <returns>The converted BitmapImage</returns>
-        private BitmapImage convertByteToImage(byte [] imageBytes)
-        {
-            //Converts the byte array to a BitmapImage.
-            BitmapImage controlImageSource = new BitmapImage();
-            using (MemoryStream ms = new MemoryStream(imageBytes))
-            {
-                controlImageSource.BeginInit();
-                controlImageSource.StreamSource = ms;
-                controlImageSource.CacheOption = BitmapCacheOption.OnLoad;
-                controlImageSource.EndInit();
-            }
-
-            return controlImageSource;
-        } 
     }
 }
