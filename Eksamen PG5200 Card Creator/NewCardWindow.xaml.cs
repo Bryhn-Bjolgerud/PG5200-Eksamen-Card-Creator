@@ -46,6 +46,66 @@ namespace Eksamen_PG5200_Card_Creator
             cardTypeComboBox.SelectedIndex = 6;
         }
 
+       
+
+        /// <summary>
+        /// Displaying the correct base card depending on what type of card is chosen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
+
+            if (selectedType != null)
+            {
+                BitmapImage cardDisplaySrc = new BitmapImage();
+                using (MemoryStream ms = new MemoryStream(selectedType.typeImage))
+                {
+                    cardDisplaySrc.BeginInit();
+                    cardDisplaySrc.StreamSource = ms;
+                    cardDisplaySrc.CacheOption = BitmapCacheOption.OnLoad;
+                    cardDisplaySrc.EndInit();
+                }
+                cardDisplay.Source = cardDisplaySrc;
+                ResetAllTextBoxAndBlockValues();
+            }
+        }
+
+        /// <summary>
+        /// Resets all the textboxes and textblocks to their default state.
+        /// </summary>
+        private void ResetAllTextBoxAndBlockValues()
+        {
+            SharedMethodsForWindows.ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
+            SharedMethodsForWindows.ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
+            SharedMethodsForWindows.ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
+            SharedMethodsForWindows.ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
+            SharedMethodsForWindows.ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
+
+            nameCard.Text = "";
+            manaCard.Text = "";
+            damageCard.Text = "";
+            healthCard.Text = "";
+            abilityCard.Text = "";
+            userSelectedImage.Source = null;
+        }
+
+        private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
+        }
+
+        /// <summary>
+        /// Each time a textBox loses focus, we check if what the user typed in it is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeTextBoxBasedOnInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SharedMethodsForWindows.CheckAndChangeNewCardTextBox(e.Source as TextBox, selectedType);
+        }
+
         /// <summary>
         /// Checking every textbox to see if their values are default or not.
         /// </summary>
@@ -101,113 +161,6 @@ namespace Eksamen_PG5200_Card_Creator
                 healthCard.Text = healthValue.Text;
                 abilityCard.Text = abilityValue.Text;
                 statsAppliedToCard = true;
-            }
-        }
-
-        /// <summary>
-        /// Displaying the correct base card depending on what type of card is chosen.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
-
-            if (selectedType != null)
-            {
-                BitmapImage cardDisplaySrc = new BitmapImage();
-                using (MemoryStream ms = new MemoryStream(selectedType.typeImage))
-                {
-                    cardDisplaySrc.BeginInit();
-                    cardDisplaySrc.StreamSource = ms;
-                    cardDisplaySrc.CacheOption = BitmapCacheOption.OnLoad;
-                    cardDisplaySrc.EndInit();
-                }
-                cardDisplay.Source = cardDisplaySrc;
-                ResetAllTextBoxAndBlockValues();
-            }
-        }
-
-        /// <summary>
-        /// Resets all the textboxes and textblocks to their default state.
-        /// </summary>
-        private void ResetAllTextBoxAndBlockValues()
-        {
-            SharedMethodsForWindows.ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
-            SharedMethodsForWindows.ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
-            SharedMethodsForWindows.ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
-            SharedMethodsForWindows.ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
-            SharedMethodsForWindows.ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
-
-            nameCard.Text = "";
-            manaCard.Text = "";
-            damageCard.Text = "";
-            healthCard.Text = "";
-            abilityCard.Text = "";
-            userSelectedImage.Source = null;
-        }
-
-        private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
-        }
-
-        /// <summary>
-        /// All of the Lostfocus() does more or less excatly the same thing so will only comment one of them.
-        /// Checking if what the user typed in, is within the rules we set for each type of value.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NameValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (nameValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter name: ");
-            }
-        }
-
-        private void ManaValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (manaValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter manacost: ");
-            }
-            else if (!App.isNumbers.IsMatch(manaValue.Text) || manaValue.Text.Length > 2 || Int64.Parse(manaValue.Text) > selectedType.maxManaCost)
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString());
-            }
-
-        }
-
-        private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (damageValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter damage: ");
-            }
-            else if (!App.isNumbers.IsMatch(damageValue.Text) || damageValue.Text.Length > 2 || Int64.Parse(damageValue.Text) > selectedType.maxDamage)
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString());
-            }
-        }
-
-        private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (healthValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter health: ");
-            }
-            else if (!App.isNumbers.IsMatch(healthValue.Text) || healthValue.Text.Length > 2 || Int64.Parse(healthValue.Text) > selectedType.maxHealth)
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Damage has to be a number between 0 - " + selectedType.maxHealth.ToString());
-            }
-        }
-
-        private void AbilityValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (abilityValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Enter card ability: ");
             }
         }
 

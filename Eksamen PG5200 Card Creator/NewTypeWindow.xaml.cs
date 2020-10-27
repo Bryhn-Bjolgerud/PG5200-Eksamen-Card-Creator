@@ -24,6 +24,26 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
+        /// Calling the changeTextBox() but with preset values.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
+        }
+
+        /// <summary>
+        /// Each time a textBox loses focus, we check if what the user typed in it is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeTextBoxBasedOnInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SharedMethodsForWindows.CheckAndChangeNewTypeTextBox(e.Source as TextBox);
+        }
+
+        /// <summary>
         /// Checking every textbox to see if their values are default or not.
         /// </summary>
         /// <returns>A bool representing whether or not the type is setup correct.</returns>
@@ -50,71 +70,43 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
-        /// Calling the changeTextBox() but with preset values.
+        /// Creating a new newType object and setting it's values corresponding to what the user typed. Then adding it to the database. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ResetTextbox_GotFocus(object sender, RoutedEventArgs e)
+        private void CreateType_Click(object sender, RoutedEventArgs e)
         {
-            SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
-        }
-
-        private void TypeValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (typeValue.Text == "")
+            if (userSelectedImage.Source != null)
             {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set type name: ");
-            }
-        }
-
-        /// <summary>
-        /// All of the Lostfocus() does more or less excatly the same thing so will only comment one of them.
-        /// Checking if what the user typed in, is within the rules we set for each type of value.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ManaValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (manaValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max manacost: ");
-            }
-            else
-            {
-                if (!App.isNumbers.IsMatch(manaValue.Text) || manaValue.Text.Length > 2)
+                if (IsTypeReady())
                 {
-                    SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max manacost must be a number between 0-99!");
-                } 
-            }
-        }
 
-        private void DamageValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (damageValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max damage: ");
-            }
-            else
-            {
-                if (!App.isNumbers.IsMatch(damageValue.Text) || damageValue.Text.Length > 2)
-                {
-                    SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max damage must be a number between 0-99!");
+                    CardType newType = new CardType()
+                    {
+                        cardType = typeValue.Text,
+                        maxManaCost = Int32.Parse(manaValue.Text),
+                        maxDamage = Int32.Parse(damageValue.Text),
+                        maxHealth = Int32.Parse(healthValue.Text),
+                        typeImage = SharedMethodsForWindows.ConvertImageToBytes(ConvertUserSelectedImageSourceToPng())
+                    };
+
+                    using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
+                    {
+                        connection.CreateTable<CardType>();
+                        connection.Insert(newType);
+                    }
+                    Close();
                 }
-            }
-        }
+                else
+                {
+                    MessageBox.Show("You have chosen invalid values for the type parameters!");
+                }
 
-        private void HealthValue_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (healthValue.Text == "")
-            {
-                SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, App.yellowBrush, TextAlignment.Left, "Set max health: ");
             }
             else
             {
-                if (!App.isNumbers.IsMatch(healthValue.Text) || healthValue.Text.Length > 2)
-                {
-                    SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Red, TextAlignment.Right, "Max health must be a number between 0-99!");
-                }
+                MessageBox.Show("You have not selected an image for your type!");
+
             }
         }
 
@@ -148,47 +140,6 @@ namespace Eksamen_PG5200_Card_Creator
             pngEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)userSelectedImage.Source));
             
             return pngEncoder;
-        }
-
-        /// <summary>
-        /// Creating a new newType object and setting it's values corresponding to what the user typed. Then adding it to the database. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CreateType_Click(object sender, RoutedEventArgs e)
-        {
-            if (userSelectedImage.Source != null)
-            { 
-                if (IsTypeReady())
-                {
-
-                    CardType newType = new CardType()
-                    {
-                        cardType = typeValue.Text,
-                        maxManaCost = Int32.Parse(manaValue.Text),
-                        maxDamage = Int32.Parse(damageValue.Text),
-                        maxHealth = Int32.Parse(healthValue.Text),
-                        typeImage = SharedMethodsForWindows.ConvertImageToBytes(ConvertUserSelectedImageSourceToPng())
-                    };
-
-                    using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
-                    {
-                        connection.CreateTable<CardType>();
-                        connection.Insert(newType);
-                    }
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("You have chosen invalid values for the type parameters!");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("You have not selected an image for your type!");
-
-            }
         }
     }
 }
