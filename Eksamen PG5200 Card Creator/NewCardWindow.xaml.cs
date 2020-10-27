@@ -232,48 +232,64 @@ namespace Eksamen_PG5200_Card_Creator
             }
         }
 
-
-        //-----------------------------------------------------------------------------------------------
         /// <summary>
         /// All the code for dragging the image inside the portrait frame... Need refactoring.
         /// </summary>
+        private bool m_isMoving;
+        private Point? m_imagePosition;
+        private double m_deltaX;
+        private double m_deltaY;
+        private TranslateTransform m_currentTT;
 
-        private bool _isMoving;
-        private Point? _imagePosition;
-        private double deltaX;
-        private double deltaY;
-        private TranslateTransform _currentTT;
-
-
+        /// <summary>
+        /// Saving the position of the mouse relative to the images "coordinate system".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void userSelectedImageMoving_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (_imagePosition == null)
+            if (m_imagePosition == null)
             {
-                _imagePosition = userSelectedImage.TransformToAncestor(userSelectedImageContainer).Transform(new Point(0, 0));
+                m_imagePosition = userSelectedImage.TransformToAncestor(userSelectedImageContainer).Transform(new Point(0, 0));
             }
             var mousePosition = Mouse.GetPosition(userSelectedImageContainer);
-            deltaX = mousePosition.X - _imagePosition.Value.X;
-            deltaY = mousePosition.Y - _imagePosition.Value.Y;
-            _isMoving = true;
+            m_deltaX = mousePosition.X - m_imagePosition.Value.X;
+            m_deltaY = mousePosition.Y - m_imagePosition.Value.Y;
+            m_isMoving = true;
         }
 
         private void userSelectedImageMoving_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            _currentTT = userSelectedImage.RenderTransform as TranslateTransform;
-            _isMoving = false;
+            m_currentTT = userSelectedImage.RenderTransform as TranslateTransform;
+            m_isMoving = false;
         }
 
+        /// <summary>
+        /// Moving the image based on the mouses position. Have to include the position relative to the Grid the image is within, to account for the different "coordiante systems". 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void userSelectedImageMoving_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            if (!_isMoving)
+            if (!m_isMoving)
             {
                 return;
             }
 
             var mousePoint = Mouse.GetPosition(userSelectedImageContainer);
 
-            var offsetX = (_currentTT == null ? _imagePosition.Value.X : _imagePosition.Value.X - _currentTT.X) + deltaX - mousePoint.X;
-            var offsetY = (_currentTT == null ? _imagePosition.Value.Y : _imagePosition.Value.Y - _currentTT.Y) + deltaY - mousePoint.Y;
+            /* '?:' is a conditional operator. Works kinda like an if statement. Before '?' is the statement. After it is the two expressions seperated with ':'. The first of them is executed if the statement is 'true.
+                var x;
+                if(bool)
+                {
+                    x = a;
+                } else {
+                    x = b;
+                }
+
+            */
+            var offsetX = (m_currentTT == null ? m_imagePosition.Value.X : m_imagePosition.Value.X - m_currentTT.X) + m_deltaX - mousePoint.X;
+            var offsetY = (m_currentTT == null ? m_imagePosition.Value.Y : m_imagePosition.Value.Y - m_currentTT.Y) + m_deltaY - mousePoint.Y;
 
             userSelectedImage.RenderTransform = new TranslateTransform(-offsetX, -offsetY);
         }
@@ -286,11 +302,8 @@ namespace Eksamen_PG5200_Card_Creator
         private void userSelectedImageMoving_MouseLeave(object sender, MouseEventArgs e)
         {
             Cursor = Cursors.Arrow;
-            _isMoving = false;
+            m_isMoving = false;
         }
-
-
-        //-----------------------------------------------------------------------------------------------
 
         /// <summary>
         /// Taking a screengrab of an area and turning it into a .png.

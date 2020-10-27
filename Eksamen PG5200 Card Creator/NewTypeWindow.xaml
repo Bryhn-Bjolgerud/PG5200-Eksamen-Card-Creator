@@ -23,7 +23,6 @@
                     <Image x:Name="userSelectedImage"/>
                 </Grid>
             </Border>
-
         </Canvas>
     </Grid>
 </Window>
