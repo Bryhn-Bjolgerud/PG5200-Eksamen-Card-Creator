@@ -14,13 +14,16 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class NewTypeWindow : Window
     {
-        List<TextBox> cardValueTextboxes = new List<TextBox>();
+        private List<TextBox> m_typeValueTextboxes = new List<TextBox>();
         public NewTypeWindow()
         {
             InitializeComponent();
-            cardValueTextboxes.Add(manaValue);
-            cardValueTextboxes.Add(damageValue);
-            cardValueTextboxes.Add(healthValue);
+            m_typeValueTextboxes.AddRange(new List<TextBox>
+            {
+                manaValue,
+                damageValue,
+                healthValue
+            });
         }
 
         /// <summary>
@@ -33,6 +36,48 @@ namespace Eksamen_PG5200_Card_Creator
             SharedMethodsForWindows.ChangeTextBox(e.Source as TextBox, Brushes.Green, TextAlignment.Left, "");
         }
 
+
+        /// <summary>
+        /// Checking if what the user typed in the textbox is within our rules. Changing the textbox accordingly.
+        /// </summary>
+        /// <param name="tb">The textbox we want to check.</param>
+        public static void CheckAndChangeNewTypeTextBox(TextBox tb)
+        {
+            string defaultText = "";
+            string wrongInputText = "";
+
+            switch (tb.Name)
+            {
+                case "typeValue":
+                    defaultText = "Set typename:";
+                    break;
+                case "manaValue":
+                    defaultText = "Set manacost:";
+                    wrongInputText = "Max manacost must be a number between 0 - 99!";
+                    break;
+                case "damageValue":
+                    defaultText = "Set max damage:";
+                    wrongInputText = "Max damage must be a number between 0 - 99!";
+                    break;
+                case "healthValue":
+                    defaultText = "Set max health:";
+                    wrongInputText = "Max health must be a number between 0 - 99!";
+                    break;
+            }
+
+            if (tb.Text == "")
+            {
+                SharedMethodsForWindows.ChangeTextBox(tb, App.yellowBrush, TextAlignment.Left, defaultText);
+            }
+            else if (tb.Name != "typeValue")
+            {
+                if (!App.isNumbers.IsMatch(tb.Text) || tb.Text.Length > 2)
+                {
+                    SharedMethodsForWindows.ChangeTextBox(tb, Brushes.Red, TextAlignment.Right, wrongInputText);
+                }
+            }
+        }
+
         /// <summary>
         /// Each time a textBox loses focus, we check if what the user typed in it is valid.
         /// </summary>
@@ -40,7 +85,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// <param name="e"></param>
         private void ChangeTextBoxBasedOnInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            SharedMethodsForWindows.CheckAndChangeNewTypeTextBox(e.Source as TextBox);
+            CheckAndChangeNewTypeTextBox(e.Source as TextBox);
         }
 
         /// <summary>
@@ -51,7 +96,7 @@ namespace Eksamen_PG5200_Card_Creator
         {
             bool cardReady = true;
 
-            foreach (TextBox tb in cardValueTextboxes)
+            foreach (TextBox tb in m_typeValueTextboxes)
             {
                 //We dont allow stats to be bigger than 99.
                 if (tb.Text.Length > 2)

@@ -19,6 +19,7 @@ namespace Eksamen_PG5200_Card_Creator
         private List<Card> m_cards = new List<Card>();
         private List<string> m_searchFilters = new List<string>();
         private ComboBoxItem m_selectedFilter = new ComboBoxItem();
+        private List<string> m_JsonKeys = new List<string>();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +30,18 @@ namespace Eksamen_PG5200_Card_Creator
             {
                 m_searchFilters.Add(searchFilterComboBox.Items[i].ToString());
             }
-            
+
+            m_JsonKeys.AddRange(new List<string>
+            {
+                "Id",
+                "cardName",
+                "cardType",
+                "cardAbility",
+                "manaCost",
+                "damage",
+                "health",
+                "cardImageAsBytes"
+            });
         }
 
         /// <summary>
@@ -64,6 +76,25 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
+        /// Checking if the imported json data contains all the 'keys' that our system requires it to have.
+        /// Not optimal, since if a file contains all the keys, but as values instead, it will pass.
+        /// </summary>
+        /// <param name="json1">The json data we are checking</param>
+        /// <returns>True or false if the data is of the correct format</returns>
+        private bool IsImportedJsonFileCorrectFormat(string json) 
+        {
+            bool isCorrectFormat = true;
+            foreach(string str in m_JsonKeys)
+            {
+                if (!json.Contains(str))
+                {
+                    isCorrectFormat = false;
+                }
+            }
+            return isCorrectFormat;
+        }
+
+        /// <summary>
         /// Opens up the files explorer. Imports the selected card into the database.
         /// </summary>
         /// <param name="sender"></param>
@@ -80,15 +111,21 @@ namespace Eksamen_PG5200_Card_Creator
             if (error == true)
             {
                 string importedJsonData = File.ReadAllText(openFilePrompt.FileName);
-                Card newCard = JsonConvert.DeserializeObject<Card>(importedJsonData);
-                using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
-                {
-                    connection.CreateTable<Card>();
-                    connection.Insert(JsonConvert.DeserializeObject<Card>(importedJsonData));
-                }
 
-                ReadDatabase();
-                searchBox.Text = "";
+                if (IsImportedJsonFileCorrectFormat(importedJsonData))
+                {
+                    using (SQLiteConnection connection = new SQLiteConnection(App.cardsDatabasePath))
+                    {
+                        connection.CreateTable<Card>();
+                        connection.Insert(JsonConvert.DeserializeObject<Card>(importedJsonData));
+                    }
+                    ReadDatabase();
+                    searchBox.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("That Json files dont have the correct 'keys'. It is not of a format we support.");
+                }
             }
         }
 

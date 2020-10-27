@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/windowLogo.ico"  Background="#3eb6fc">
+        Title="NewCardWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/Icons/windowLogo.ico"  Background="#3eb6fc">
     <Grid>
-        <Image Source="Resources/hearthstoneLogo.png" Margin="25,264,575,3"/>
+        <Image Source="Resources/Images/hearthstoneLogo.png" Margin="25,264,575,3"/>
         <StackPanel Margin="25,10,575,10" x:Name="statPicker">
-            <TextBox x:Name="nameValue" Text="Enter name: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus"  BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="manaValue" Text="Enter manacost: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="damageValue" Text="Enter attack: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="healthValue" Text="Enter health: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
-            <TextBox x:Name="abilityValue" Text="Enter card ability: " Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="nameValue" Text="Enter name:" Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus"  BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="manaValue" Text="Enter manacost:" Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="damageValue" Text="Enter attack:" Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="healthValue" Text="Enter health:" Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
+            <TextBox x:Name="abilityValue" Text="Enter card ability:" Margin="5, 5, 5, 5" BorderThickness="2.5" GotFocus="ResetTextbox_GotFocus" LostFocus="ChangeTextBoxBasedOnInput_LostFocus" BorderBrush="#f5cf5e"/>
 
             <Button x:Name="makeCard" Margin="5, 5, 5, 5" Click="MakeCard_Click" Background="#f5cf5e" Content="Apply to card"/>
             <Button x:Name="uploadImage" Margin="5, 5, 5, 5" Click="UploadImage_Click" Background="#f5cf5e" Content="Upload portrait for card"/>
@@ -33,10 +33,10 @@
             </Border>
             <Image x:Name="cardDisplay"  Width="550" Height="700" Margin="-40,-15,-40,-15"/>
             <TextBlock x:Name="nameCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="334" RenderTransformOrigin="0.5,0.5"/>
-            <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"/>
             <TextBlock x:Name="manaCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.147,-0.2" Canvas.Left="24" Canvas.Top="27" Width="96" Height="91"/>
             <TextBlock x:Name="damageCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold" Foreground="White" TextAlignment="Center"  RenderTransformOrigin="0.5,0.5" Canvas.Left="32" Canvas.Top="555" Width="91" Height="73"/>
             <TextBlock x:Name="healthCard" FontSize="66" FontFamily="Verdana" FontWeight="Bold"  Foreground="White" TextAlignment="Center" RenderTransformOrigin="-0.16,-0.093" Canvas.Left="380" Canvas.Top="555" Width="90" Height="93"/>
+            <TextBlock x:Name="abilityCard" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Foreground="White" TextAlignment="Center" Width="358" Canvas.Left="64" Canvas.Top="416" Height="117" TextWrapping="Wrap"/>
         </Canvas>
 
         <!-- Since the portrait is underneath our base image, we cannot click on it. 

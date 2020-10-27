@@ -158,7 +158,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\CardTypes.db" />
+    <None Include="Resources\Databases\CardTypes.db" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -167,8 +167,8 @@
     <Folder Include="packages\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\windowLogo.ico" />
-    <Content Include="Resources\hearthstoneLogo.png">
+    <Resource Include="Resources\Icons\windowLogo.ico" />
+    <Content Include="Resources\Images\hearthstoneLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

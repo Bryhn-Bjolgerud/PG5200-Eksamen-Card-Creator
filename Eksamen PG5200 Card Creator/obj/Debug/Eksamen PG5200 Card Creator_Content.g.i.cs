@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/hearthstonelogo.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/hearthstonelogo.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/sqlitepclraw.lib.e_sqlite3.2.0.3/runtimes/win-x86/native/e_sqlite3.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/sqlitepclraw.lib.e_sqlite3.2.0.3/runtimes/win-x64/native/e_sqlite3.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/sqlitepclraw.lib.e_sqlite3.2.0.3/runtimes/win-arm/native/e_sqlite3.dll")]

@@ -140,7 +140,6 @@ C:\Skole\Toolsprog\Ekte Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG
 C:\Skole\Toolsprog\Ekte Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.CopyComplete
 C:\Skole\Toolsprog\Ekte Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.exe
 C:\Skole\Toolsprog\Ekte Eksamen\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.pdb
-C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\hearthstoneLogo.png
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\runtimes\win-arm\native\e_sqlite3.dll
@@ -283,3 +282,4 @@ C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Cre
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.csproj.CopyComplete
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.exe
 C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\obj\Debug\Eksamen PG5200 Card Creator.pdb
+C:\Users\Tobias\source\repos\PG5200-Eksamen-Card-Creator\Eksamen PG5200 Card Creator\bin\Debug\Resources\Images\hearthstoneLogo.png

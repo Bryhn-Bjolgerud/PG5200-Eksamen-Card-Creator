@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:Eksamen_PG5200_Card_Creator.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/windowLogo.ico" Background="#d4b368">
+        Title="MainWindow" Height="850" Width="1200" ResizeMode="NoResize" Icon="/Resources/Icons/windowLogo.ico" Background="#d4b368">
     <Grid>
 
-        <Image Source="Resources/hearthstoneLogo.png" Margin="479,10,477,651"/>
+        <Image Source="Resources/Images/hearthstoneLogo.png" Margin="479,10,477,651"/>
         <Button x:Name="createNewCard" Margin="421,173,659,617" Click="CreateNewCard_Click" Content="Create new card" Background="#f5cf5e"/>
         <Button x:Name="importImage" Margin="540,173,540,617" Click="ImportImage_Click" Content="Import card" Background="#f5cf5e"/>
         <Button x:Name="createNewType" Margin="659,173,421,617"  Click="CreateNewType_Click" Content="Create new type" Background="#f5cf5e"/>

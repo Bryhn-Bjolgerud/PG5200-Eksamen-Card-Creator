@@ -16,10 +16,10 @@ namespace Eksamen_PG5200_Card_Creator
     /// </summary>
     public partial class NewCardWindow : Window
     {
-        List<CardType> cardTypes;
-        CardType selectedType;
-        List<TextBox> cardValueTextboxes = new List<TextBox>();
-        bool statsAppliedToCard;
+        private List<CardType> m_cardTypes;
+        private CardType m_selectedType;
+        private List<TextBox> m_cardValueTextboxes = new List<TextBox>();
+        private bool m_statsAppliedToCard;
 
 
         public NewCardWindow()
@@ -30,18 +30,22 @@ namespace Eksamen_PG5200_Card_Creator
             using (SQLiteConnection connection = new SQLiteConnection(App.cardTypesDatabasePath))
             {
                 connection.CreateTable<CardType>();
-                cardTypes = connection.Table<CardType>().ToList();
-                foreach (CardType ct in cardTypes)
+                m_cardTypes = connection.Table<CardType>().ToList();
+                foreach (CardType ct in m_cardTypes)
                 {
                     cardTypeComboBox.Items.Add(ct.cardType);
                 }
             }
 
-            cardValueTextboxes.Add(nameValue);
-            cardValueTextboxes.Add(manaValue);
-            cardValueTextboxes.Add(damageValue);
-            cardValueTextboxes.Add(healthValue);
-            cardValueTextboxes.Add(abilityValue);
+            m_cardValueTextboxes.AddRange(new List<TextBox>
+            {
+                nameValue,
+                manaValue,
+                damageValue,
+                healthValue,
+                abilityValue
+
+            });
 
             cardTypeComboBox.SelectedIndex = 6;
         }
@@ -55,12 +59,12 @@ namespace Eksamen_PG5200_Card_Creator
         /// <param name="e"></param>
         private void CardTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedType = cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
+            m_selectedType = m_cardTypes.Find(x => x.cardType.Equals(cardTypeComboBox.SelectedItem.ToString()));
 
-            if (selectedType != null)
+            if (m_selectedType != null)
             {
                 BitmapImage cardDisplaySrc = new BitmapImage();
-                using (MemoryStream ms = new MemoryStream(selectedType.typeImage))
+                using (MemoryStream ms = new MemoryStream(m_selectedType.typeImage))
                 {
                     cardDisplaySrc.BeginInit();
                     cardDisplaySrc.StreamSource = ms;
@@ -77,11 +81,11 @@ namespace Eksamen_PG5200_Card_Creator
         /// </summary>
         private void ResetAllTextBoxAndBlockValues()
         {
-            SharedMethodsForWindows.ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name: ");
-            SharedMethodsForWindows.ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost: ");
-            SharedMethodsForWindows.ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage: ");
-            SharedMethodsForWindows.ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health: ");
-            SharedMethodsForWindows.ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability: ");
+            SharedMethodsForWindows.ChangeTextBox(nameValue, Brushes.Gray, TextAlignment.Left, "Enter name:");
+            SharedMethodsForWindows.ChangeTextBox(manaValue, Brushes.Gray, TextAlignment.Left, "Enter manacost:");
+            SharedMethodsForWindows.ChangeTextBox(damageValue, Brushes.Gray, TextAlignment.Left, "Enter damage:");
+            SharedMethodsForWindows.ChangeTextBox(healthValue, Brushes.Gray, TextAlignment.Left, "Enter health:");
+            SharedMethodsForWindows.ChangeTextBox(abilityValue, Brushes.Gray, TextAlignment.Left, "Enter card ability:");
 
             nameCard.Text = "";
             manaCard.Text = "";
@@ -97,13 +101,64 @@ namespace Eksamen_PG5200_Card_Creator
         }
 
         /// <summary>
+        /// Checking if what the user typed in the textbox is within our rules. Changing the textbox accordingly.
+        /// </summary>
+        /// <param name="tb">The textbox we want to check.</param>
+        /// <param name="selectedType">The type of card being created.</param>
+        public static void CheckAndChangeNewCardTextBox(TextBox tb, CardType selectedType)
+        {
+            string defaultText = "";
+            string wrongInputText = "";
+            int maxCost = 0;
+
+            switch (tb.Name)
+            {
+                case "nameValue":
+                    defaultText = "Enter name:";
+                    break;
+                case "manaValue":
+                    defaultText = "Enter manacost:";
+                    wrongInputText = "Manacost has to be a number between 0 - " + selectedType.maxManaCost.ToString();
+                    maxCost = selectedType.maxManaCost;
+                    break;
+                case "damageValue":
+                    defaultText = "Enter damage:";
+                    wrongInputText = "Damage has to be a number between 0 - " + selectedType.maxDamage.ToString();
+                    maxCost = selectedType.maxDamage;
+                    break;
+                case "healthValue":
+                    defaultText = "Enter health:";
+                    wrongInputText = "Health has to be a number between 0 - " + selectedType.maxHealth.ToString();
+                    maxCost = selectedType.maxHealth;
+                    break;
+                case "abilityValue":
+                    defaultText = "Enter card ability:";
+                    break;
+            }
+
+            if (tb.Text == "")
+            {
+                SharedMethodsForWindows.ChangeTextBox(tb, App.yellowBrush, TextAlignment.Left, defaultText);
+
+            }
+            //If the textbox being checked is one of the numerical stats, we validate the input.
+            else if (tb.Name != "nameValue" && tb.Name != "abilityValue")
+            {
+                if (!App.isNumbers.IsMatch(tb.Text) || tb.Text.Length > 2 || Int64.Parse(tb.Text) > maxCost)
+                {
+                    SharedMethodsForWindows.ChangeTextBox(tb, Brushes.Red, TextAlignment.Right, wrongInputText);
+                }
+            }
+        }
+
+        /// <summary>
         /// Each time a textBox loses focus, we check if what the user typed in it is valid.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ChangeTextBoxBasedOnInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            SharedMethodsForWindows.CheckAndChangeNewCardTextBox(e.Source as TextBox, selectedType);
+            CheckAndChangeNewCardTextBox(e.Source as TextBox, m_selectedType);
         }
 
         /// <summary>
@@ -114,18 +169,18 @@ namespace Eksamen_PG5200_Card_Creator
         {
             bool cardReady = true;
 
-            foreach (TextBox tb in cardValueTextboxes)
+            foreach (TextBox tb in m_cardValueTextboxes)
             {
                 if (tb == nameValue)
                 {
-                    if (nameValue.Text == "Enter name: ")
+                    if (nameValue.Text == "Enter name:")
                     {
                         cardReady = false;
                     }
                 }
                 else if (tb == abilityValue)
                 {
-                    if (abilityValue.Text == "Enter card ability: ")
+                    if (abilityValue.Text == "Enter card ability:")
                     {
                         cardReady = false;
                     }
@@ -160,7 +215,7 @@ namespace Eksamen_PG5200_Card_Creator
                 damageCard.Text = damageValue.Text;
                 healthCard.Text = healthValue.Text;
                 abilityCard.Text = abilityValue.Text;
-                statsAppliedToCard = true;
+                m_statsAppliedToCard = true;
             }
         }
 
@@ -262,7 +317,7 @@ namespace Eksamen_PG5200_Card_Creator
         /// <param name="e"></param>
         private void SaveCard_Click(object sender, RoutedEventArgs e)
         {
-            if (statsAppliedToCard)
+            if (m_statsAppliedToCard)
             {
                 Card newCard = new Card()
                 {
@@ -271,7 +326,7 @@ namespace Eksamen_PG5200_Card_Creator
                     manaCost = manaCard.Text,
                     damage = damageCard.Text,
                     health = healthCard.Text,
-                    cardAbility = abilityValue.Text,
+                    cardAbility = abilityCard.Text,
                     cardImageAsBytes = SharedMethodsForWindows.ConvertImageToBytes(CreatePNGFromCanvas())
                 };
 
@@ -280,7 +335,8 @@ namespace Eksamen_PG5200_Card_Creator
                     connection.CreateTable<Card>();
                     connection.Insert(newCard);
                 }
-                statsAppliedToCard = false;
+
+                m_statsAppliedToCard = false;
                 ResetAllTextBoxAndBlockValues();
                 cardTypeComboBox.SelectedIndex = 6;
                 MessageBox.Show("Your card was created successfully!");
