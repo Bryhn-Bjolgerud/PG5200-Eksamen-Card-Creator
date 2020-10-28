@@ -124,7 +124,7 @@ namespace Eksamen_PG5200_Card_Creator
                 }
                 else
                 {
-                    MessageBox.Show("That Json files dont have the correct 'keys'. It is not of a format we support.");
+                    MessageBox.Show("That Json file dont have the correct 'keys'. It is not of a format we support.");
                 }
             }
         }
