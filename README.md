@@ -48,5 +48,3 @@ en ny en. Da vil ikke løsningen vår fungere med tanke på at de databasene mes
 sannsynlig ikke er satt opp likt. Det kan være relevant å sjekke om det finnes en slik
 fil på forhånd og fjerne/endre navn på den før man kjører programmet vårt for å
 garantere at løsningen vår vil fungere.
-
-[hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle
