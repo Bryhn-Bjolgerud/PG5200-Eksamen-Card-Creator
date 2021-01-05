@@ -1,6 +1,4 @@
-# PG5200 Tools Programmering
-
-# Eksamen Høst 2020
+# PG5200 Tools Programmering Exam Autumn 2020
 
 Contributors: [makka1998](https://github.com/makka1998) & [BryhnBjolgerud](https://github.com/Bryhn-Bjolgerud)
 
@@ -49,3 +47,12 @@ en ny en. Da vil ikke løsningen vår fungere med tanke på at de databasene mes
 sannsynlig ikke er satt opp likt. Det kan være relevant å sjekke om det finnes en slik
 fil på forhånd og fjerne/endre navn på den før man kjører programmet vårt for å
 garantere at løsningen vår vil fungere.
+
+## References 
+http://www.hearthcards.net/
+https://docs.microsoft.com/en-us/documentation/
+https://stackoverflow.com/questions/46380682/wpf-move-element-with-mouse
+https://stackoverflow.com/questions/1268552/how-do-i-get-a-textbox-to-only-acceptnumeric-input-in-wpf
+https://jasonkemp.ca/blog/how-to-save-xaml-as-an-image/
+https://stackoverflow.com/questions/15089359/how-to-convert-image-png-to-base64-string-vice-a-versa-and-strore-it-to-a-sp
+
