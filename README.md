@@ -50,9 +50,14 @@ garantere at løsningen vår vil fungere.
 
 ## References 
 http://www.hearthcards.net/
+
 https://docs.microsoft.com/en-us/documentation/
+
 https://stackoverflow.com/questions/46380682/wpf-move-element-with-mouse
+
 https://stackoverflow.com/questions/1268552/how-do-i-get-a-textbox-to-only-acceptnumeric-input-in-wpf
+
 https://jasonkemp.ca/blog/how-to-save-xaml-as-an-image/
+
 https://stackoverflow.com/questions/15089359/how-to-convert-image-png-to-base64-string-vice-a-versa-and-strore-it-to-a-sp
 
