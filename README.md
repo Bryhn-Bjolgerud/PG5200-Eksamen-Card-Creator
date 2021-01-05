@@ -2,9 +2,8 @@
 
 # Eksamen Høst 2020
 
-```
 Contributors: [makka1998](https://github.com/makka1998) & [BryhnBjolgerud](https://github.com/Bryhn-Bjolgerud)
-```
+
 ## Innledning
 
 Vi har fått i oppgave å lage en card editor for et spill som f.eks Hearthstone. Årsaken
