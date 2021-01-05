@@ -3,7 +3,7 @@
 # Eksamen Høst 2020
 
 ```
-Contributors: https://github.com/makka1998 & https://github.com/Bryhn-Bjolgerud
+Contributors: [makka1998](https://github.com/makka1998) & [BryhnBjolgerud](https://github.com/Bryhn-Bjolgerud)
 ```
 ## Innledning
 
@@ -50,4 +50,4 @@ sannsynlig ikke er satt opp likt. Det kan være relevant å sjekke om det finnes
 fil på forhånd og fjerne/endre navn på den før man kjører programmet vårt for å
 garantere at løsningen vår vil fungere.
 
-
+[hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle
