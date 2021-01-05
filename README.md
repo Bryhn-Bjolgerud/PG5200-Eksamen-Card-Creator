@@ -3,7 +3,7 @@
 # Eksamen Høst 2020
 
 ```
-Kandidatnr: 610 & 611
+Contributors: https://github.com/makka1998 & https://github.com/Bryhn-Bjolgerud
 ```
 ## Innledning
 
