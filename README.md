@@ -4,6 +4,7 @@
 
 Contributors: [makka1998](https://github.com/makka1998) & [BryhnBjolgerud](https://github.com/Bryhn-Bjolgerud)
 
+![Start page of program](https://github.com/Bryhn-Bjolgerud/images/blob/main/tollsprogreadmebilde2.png)
 ## Innledning
 
 Vi har fått i oppgave å lage en card editor for et spill som f.eks Hearthstone. Årsaken
